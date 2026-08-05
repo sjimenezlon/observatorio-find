@@ -37,6 +37,8 @@ const lider = ranking[0];
 const ultimo = ranking[ranking.length - 1];
 const nombrePais = (code: string) =>
   PAISES.find((p) => p.code === code)?.nombre ?? code;
+/** Coma decimal, como el resto del sitio. */
+const cifra = (n: number, dec = 1) => n.toFixed(dec).replace(".", ",");
 
 const colombia = ranking.find((f) => f.code === "CO");
 const puestoColombia = ranking.findIndex((f) => f.code === "CO") + 1;
@@ -466,7 +468,7 @@ export default function Presentacion() {
                       />
                     </div>
                     <span className="tabnum w-12 text-right text-[13px] font-bold text-fg">
-                      {f.indice.toFixed(1)}
+                      {cifra(f.indice)}
                     </span>
                     <span className="hidden w-32 text-[12px] text-muted sm:inline">
                       {b.label}
@@ -478,11 +480,11 @@ export default function Presentacion() {
             <p className="mt-4 text-[12px] leading-relaxed text-muted">
               Los puntajes son relativos a estos {PAISES.length} países, no una escala
               absoluta. {nombrePais(lider.code)} marca el techo del panel con{" "}
-              {lider.indice.toFixed(1)} y {nombrePais(ultimo.code)} el piso con{" "}
-              {ultimo.indice.toFixed(1)}.{" "}
+              {cifra(lider.indice)} y {nombrePais(ultimo.code)} el piso con{" "}
+              {cifra(ultimo.indice)}.{" "}
               {colombia && (
                 <>
-                  Colombia queda {puestoColombia}ª con {colombia.indice.toFixed(1)}.{" "}
+                  Colombia queda {puestoColombia}ª con {cifra(colombia.indice)}.{" "}
                 </>
               )}
               En el inicio se pueden mover los pesos y ver si el orden aguanta.
