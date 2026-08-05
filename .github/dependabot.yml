@@ -1,0 +1,32 @@
+version: 2
+
+updates:
+  # Dependencias de la aplicación
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Bogota
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    groups:
+      # Un solo PR para los parches: menos ruido, misma cobertura.
+      parches:
+        update-types: [patch]
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
+    ignore:
+      # Next mayor se sube a mano: cambia el build y hay que revisar el despliegue.
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+
+  # Las propias GitHub Actions son superficie de ataque: se actualizan igual.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "ci"

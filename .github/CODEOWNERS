@@ -1,0 +1,14 @@
+# Todo cambio requiere revisión de Santiago.
+* @sjimenezlon
+
+# El dataset y el motor del índice son el activo del observatorio:
+# aquí es donde una edición descuidada deja de ser un bug y pasa a ser
+# una cifra mal publicada bajo el nombre de EAFIT.
+/data/    @sjimenezlon
+/lib/     @sjimenezlon
+/scripts/ @sjimenezlon
+
+# La configuración de seguridad y despliegue no se toca sin revisión.
+/.github/        @sjimenezlon
+/next.config.ts  @sjimenezlon
+/SECURITY.md     @sjimenezlon

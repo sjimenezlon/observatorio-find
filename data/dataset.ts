@@ -110,7 +110,10 @@ export interface Indicador {
   desc: string;
   unidad: string;
   direccion: Direccion;
-  construido?: boolean; // índice cualitativo del Observatorio
+  /** Índice cualitativo del Observatorio: puntaje asignado con rúbrica, no medido. */
+  construido?: boolean;
+  /** Aritmética del Observatorio sobre cifras publicadas por terceros (la operación va en `desc`). */
+  derivado?: boolean;
   // fuente por defecto del indicador
   fuente: string;
   url: string;
@@ -211,6 +214,7 @@ export const INDICADORES: Indicador[] = [
     desc: "Transacciones anuales en el riel nacional de pagos inmediatos divididas por la población adulta (15+). Aritmética del Observatorio sobre cifras oficiales de cada banco central: mismo perímetro (solo el riel inmediato) para que la comparación sea válida.",
     unidad: "tx / adulto / año",
     direccion: "higher",
+    derivado: true,
     fuente: "Observatorio Find · cálculo sobre datos de bancos centrales",
     url: "https://www.bis.org/statistics/payment_stats/commentary2604.pdf",
     anio: 2026,
@@ -417,6 +421,7 @@ export const INDICADORES: Indicador[] = [
     desc: "De cada 100 adultos que recibieron una llamada o SMS pidiéndoles dinero, cuántos lo enviaron. Aritmética directa sobre dos series del Findex (con22 ÷ con21): aísla la vulnerabilidad de la exposición, porque el intento lo recibe casi todo el mundo.",
     unidad: "% de las solicitudes",
     direccion: "lower",
+    derivado: true,
     fuente: "World Bank · Global Findex 2025, series con21 y con22 (datos 2024)",
     url: "https://www.worldbank.org/en/publication/globalfindex",
     anio: 2024,

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Permisos mínimos: el workflow solo lee el código. Si algún día hace falta
+# escribir (comentar un PR, publicar un artefacto), se concede en ese job y no aquí.
+permissions:
+  contents: read
+
+# Un PR que recibe varios pushes seguidos cancela las corridas viejas.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Tipos, datos y build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias exactas
+        run: npm ci
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Integridad del dataset
+        run: npm run verificar
+
+      - name: Build de producción
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

@@ -1,0 +1,57 @@
+Este repositorio tiene dos licencias, según qué se tome.
+
+═══════════════════════════════════════════════════════════════════════════════
+CÓDIGO — Licencia MIT
+Aplica a: app/, components/, lib/, scripts/, y la configuración del proyecto.
+═══════════════════════════════════════════════════════════════════════════════
+
+MIT License
+
+Copyright (c) 2026 Santiago Jiménez Londoño — Universidad EAFIT
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+═══════════════════════════════════════════════════════════════════════════════
+DATOS — Creative Commons Atribución 4.0 Internacional (CC BY 4.0)
+Aplica a: data/, y a las descargas en CSV/JSON que produce el sitio.
+═══════════════════════════════════════════════════════════════════════════════
+
+Los datos compilados, los índices construidos (IMIAF, ICF, ICF-S) y las series
+derivadas de este observatorio se publican bajo CC BY 4.0:
+
+    https://creativecommons.org/licenses/by/4.0/deed.es
+
+Puedes copiarlos, redistribuirlos, adaptarlos y usarlos comercialmente, siempre
+que des crédito. Cita sugerida:
+
+    Observatorio Find · IA Financiera LATAM (2026). Universidad EAFIT.
+    Índice IMIAF v4.2, corte de julio de 2026.
+    https://observatorio-find.vercel.app
+
+Dos advertencias que no son legales sino de honestidad intelectual:
+
+1. Los datos de terceros conservan la licencia y las condiciones de su fuente
+   original —Banco Mundial, BIS, Basel Institute, Chainalysis, Finnovista,
+   Cuántico VP y los bancos centrales—. Este observatorio los compila y los cita;
+   no los relicencia. Cada cifra trae su URL: ve a la fuente antes de reutilizar.
+
+2. Los índices IMIAF, ICF e ICF-S son construcciones del Observatorio con
+   normalización min–max **relativa al panel medido**, no escalas absolutas. Un
+   puntaje solo tiene sentido frente a los otros países del mismo corte. La
+   metodología completa, con sus límites declarados, está en /metodologia.
