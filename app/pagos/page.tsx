@@ -198,7 +198,7 @@ export default function PagosPage() {
               href="/#datos"
               className="rounded-full border border-teal/40 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
             >
-              Descargar el dataset
+              Explorar los indicadores
             </a>
           </div>
         </div>

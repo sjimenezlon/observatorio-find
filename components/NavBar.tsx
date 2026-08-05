@@ -32,8 +32,8 @@ export function NavBar() {
               Corte {META.version} · ago 2026
             </div>
             <a href="/#datos" className="action-primary px-4 py-2 text-xs">
-              Dataset
-              <span aria-hidden="true">↓</span>
+              Explorar datos
+              <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

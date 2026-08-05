@@ -21,7 +21,7 @@ export default function Home() {
                 <span className="eyebrow text-teal">Find · Universidad EAFIT</span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-lime/25 bg-lime/[0.07] px-3 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.13em] text-lime">
                   <span className="status-dot" />
-                  Dataset abierto · {META.curado}
+                  Datos auditables · {META.curado}
                 </span>
               </div>
 
@@ -52,7 +52,7 @@ export default function Home() {
             <aside className="technical-panel" aria-label="Estado del observatorio">
               <div className="flex items-center justify-between gap-4 border-b border-white/8 px-5 py-4">
                 <div>
-                  <div className="data-label text-muted">System / dataset status</div>
+                  <div className="data-label text-muted">System / evidence status</div>
                   <div className="mt-1 text-sm font-semibold text-fg">Corte {META.version}</div>
                 </div>
                 <span className="rounded-md border border-teal/25 bg-teal/[0.08] px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-teal">
@@ -100,7 +100,7 @@ export default function Home() {
               { n: "01", t: "Diagnóstico", d: "Mapa y ranking por país", h: "#mapa" },
               { n: "02", t: "Escenarios", d: "Pesos y simulador en vivo", h: "#indice" },
               { n: "03", t: "Confianza", d: "Pagos e ICF para 21 economías", h: "/pagos" },
-              { n: "04", t: "Evidencia", d: "Dataset, fuentes y método", h: "#datos" },
+              { n: "04", t: "Evidencia", d: "Indicadores, fuentes y método", h: "#datos" },
             ].map((item) => (
               <a key={item.n} href={item.h} className="quick-route group">
                 <span className="font-mono text-[9px] text-teal">{item.n}</span>

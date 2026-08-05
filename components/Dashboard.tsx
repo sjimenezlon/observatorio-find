@@ -25,7 +25,6 @@ import {
   Indicador,
   SNAPSHOT_ANTERIOR,
   SNAPSHOT_COMPARABLE,
-  META,
 } from "@/data/dataset";
 import {
   calcularIndice,
@@ -35,9 +34,6 @@ import {
   PESOS_DEFAULT,
 } from "@/lib/index";
 import { ACTORES, PRESETS } from "@/data/lentes";
-import { LATAM } from "@/data/latam";
-import { DIMENSIONES } from "@/data/confianza";
-import { calcularICF } from "@/lib/confianza";
 import Simulador from "@/components/Simulador";
 import Duelo from "@/components/Duelo";
 import FichaPais from "@/components/FichaPais";
@@ -75,7 +71,6 @@ export default function Dashboard() {
       <Comparador />
       <FichaPais />
       <ExploradorPilar />
-      <Descargas />
     </div>
   );
 }
@@ -597,13 +592,28 @@ function ExploradorPilar() {
   const inds = INDICADORES.filter((i) => i.pilar === activo);
 
   return (
-    <section id="pilares">
+    <section id="datos">
       <Eyebrow>Explorador por pilar</Eyebrow>
       <H2>Los datos detrás del índice</H2>
       <Sub>
-        Cada indicador con su valor por país, su fuente y su año. Alterná entre
-        el valor crudo y el puntaje normalizado 0–100 que alimenta el índice.
+        Consultá cada indicador dentro del observatorio, con su valor por país,
+        fuente y año. Alterná entre el valor crudo y el puntaje normalizado
+        0–100 que alimenta el índice.
       </Sub>
+
+      <div className="mb-7 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-3">
+        {[
+          ["01", "Elegí un pilar", "Filtrá la lectura por inclusión, pagos, IA, fraude, tokenización o regulación."],
+          ["02", "Cambiá la escala", "Compará el valor publicado con el puntaje normalizado que usa el IMIAF."],
+          ["03", "Abrí la evidencia", "Cada indicador conserva el enlace a la fuente original y su año de corte."],
+        ].map(([n, title, detail]) => (
+          <div key={n} className="bg-panel px-5 py-4">
+            <div className="font-mono text-[9px] font-semibold tracking-[0.14em] text-teal">{n}</div>
+            <div className="mt-2 text-sm font-semibold text-fg">{title}</div>
+            <p className="mt-1.5 text-[11px] leading-relaxed text-muted">{detail}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div className="flex flex-wrap gap-2">
@@ -775,134 +785,6 @@ function IndicadorCard({
 }
 
 // ---------------------------------------------------------------------------
-function Descargas() {
-  const descargarJSON = () => {
-    const payload = {
-      meta: {
-        observatorio: `${META.marca} · IA Financiera LATAM`,
-        institucion: META.institucion,
-        version: META.version,
-        curado: META.curado,
-      },
-      paises: PAISES,
-      indice: calcularIndice(),
-      indicadores: INDICADORES,
-      panel_latam: LATAM,
-      icf: calcularICF(),
-      icf_dimensiones: DIMENSIONES,
-    };
-    download(
-      JSON.stringify(payload, null, 2),
-      "observatorio-finhub-dataset.json",
-      "application/json"
-    );
-  };
-
-  const descargarCSV = () => {
-    const head = ["indicador", "pilar", "unidad", "direccion", "fuente", "anio", ...PAISES.map((p) => p.code)];
-    const rows = INDICADORES.map((i) =>
-      [
-        i.label,
-        i.pilar,
-        i.unidad,
-        i.direccion,
-        `"${i.fuente}"`,
-        i.anio,
-        ...PAISES.map((p) => (i.valores[p.code] ?? "n/d")),
-      ].join(",")
-    );
-    download([head.join(","), ...rows].join("\n"), "observatorio-finhub-dataset.csv", "text/csv");
-  };
-
-  // Panel LATAM (21 economías) + ICF calculado, en un CSV aparte: el IMIAF
-  // compara seis países y este panel abre a la región, así que mezclarlos en un
-  // mismo archivo confundiría los universos.
-  const descargarLatamCSV = () => {
-    const icf = calcularICF();
-    const campos: (keyof (typeof LATAM)[number])[] = [
-      "cuenta", "pagodigital", "merchantpay", "efectivo", "inactiva", "guarda",
-      "desconfianza", "desconfianzaRaw", "creditoformal", "borrowAny",
-      "formalidadCredito", "prestatarios", "depositantes", "creditoDeposito",
-      "estafaOferta", "estafaEnvio", "conversionEstafa", "comisiones",
-      "remesasPib", "costoRemesa", "debito", "movil",
-    ];
-    const head = [
-      "iso3", "pais", ...campos, "icf",
-      ...DIMENSIONES.map((d) => `icf_${d.key}`),
-      "cobertura_icf", "medible_icf",
-    ];
-    const rows = LATAM.map((p) => {
-      const f = icf.find((x) => x.cc === p.cc)!;
-      return [
-        p.cc,
-        `"${p.nombre}"`,
-        ...campos.map((c) => p[c] ?? "n/d"),
-        f.icf ?? "n/d",
-        ...DIMENSIONES.map((d) => f.dims[d.key] ?? "n/d"),
-        f.cobertura,
-        f.medible ? "si" : "no",
-      ].join(",");
-    });
-    download(
-      [head.join(","), ...rows].join("\n"),
-      "observatorio-find-panel-latam-icf.csv",
-      "text/csv"
-    );
-  };
-
-  return (
-    <section id="datos">
-      <div className="card p-7 text-center">
-        <H3>Dataset abierto</H3>
-        <p className="mx-auto mt-2 max-w-2xl text-sm text-muted">
-          Descargá la base completa con valores por país, fuentes y el índice
-          calculado. Metodología abierta y reproducible: cualquiera puede
-          auditar, replicar y citar. El panel LATAM va aparte porque cubre 21
-          economías, no los seis del IMIAF.
-        </p>
-        <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <button
-            onClick={descargarCSV}
-            className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] hover:bg-teal-d transition"
-          >
-            Descargar CSV
-          </button>
-          <button
-            onClick={descargarJSON}
-            className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal hover:bg-teal/10 transition"
-          >
-            Descargar JSON
-          </button>
-          <button
-            onClick={descargarLatamCSV}
-            className="rounded-full border px-5 py-2.5 text-sm font-semibold transition"
-            style={{ borderColor: "rgba(232,130,90,0.5)", color: "#E8825A" }}
-          >
-            Panel LATAM + ICF (CSV)
-          </button>
-          <a
-            href="/metodologia"
-            className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-muted hover:text-fg transition"
-          >
-            Ver metodología →
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function download(content: string, filename: string, type: string) {
-  const blob = new Blob([content], { type });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-// ---------------------------------------------------------------------------
 // primitives
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -917,9 +799,6 @@ function H2({ children }: { children: React.ReactNode }) {
       {children}
     </h2>
   );
-}
-function H3({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-xl font-extrabold tracking-tight text-fg">{children}</h3>;
 }
 function Sub({ children }: { children: React.ReactNode }) {
   return <p className="mt-2 mb-7 max-w-3xl text-[15px] text-muted">{children}</p>;

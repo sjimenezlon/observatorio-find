@@ -115,7 +115,7 @@ export const ACTORES: Actor[] = [
     emoji: "🎓",
     leImporta: "Rigor, metodología, evidencia y formación de talento.",
     insight:
-      "Aquí el diferencial es el rigor: metodología abierta, datos citados y preguntas que el mercado no se hace. Descargá el dataset, replicá el índice y desafialo.",
+      "Aquí el diferencial es el rigor: metodología abierta, datos citados y preguntas que el mercado no se hace. Explorá los indicadores, revisá las fuentes y desafiá el índice.",
     pesos: { inclusion: 17, pagos: 17, adopcion: 17, fraude: 16, tokenizacion: 16, regulacion: 17 },
   },
 ];
