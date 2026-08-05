@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a2c28;
+  --bg-2: #0e3b36;
+  --panel: #0f332e;
+  --panel-2: #134039;
+  --border: rgba(159, 206, 46, 0.14);
+  --border-2: rgba(255, 255, 255, 0.08);
+  --fg: #eaf3ef;
+  --muted: #8fa9a1;
+  --teal: #1fc9a0;
+  --teal-d: #13a382;
+  --lime: #9fce2e;
+  --purple: #6c5cd6;
+  --cyan: #5bd0e0;
+  --amber: #e8b452;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-d: var(--teal-d);
+  --color-lime: var(--lime);
+  --color-purple: var(--purple);
+  --color-cyan: var(--cyan);
+  --color-amber: var(--amber);
+  --font-sans: var(--font-poppins);
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  scroll-behavior: smooth;
+}
+body {
+  background:
+    radial-gradient(1100px 600px at 85% -10%, rgba(31, 201, 160, 0.16), transparent 60%),
+    radial-gradient(900px 500px at -5% 5%, rgba(108, 92, 214, 0.14), transparent 55%),
+    var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(159, 206, 46, 0.28);
+}
+
+.tabnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border-2);
+  border-radius: 18px;
+}
+
+/* sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(31, 201, 160, 0.25);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+}

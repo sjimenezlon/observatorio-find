@@ -1,0 +1,538 @@
+import type { Metadata } from "next";
+import { NavBar } from "@/components/NavBar";
+import { META } from "@/data/dataset";
+
+export const metadata: Metadata = {
+  title: "Presentación · Observatorio Find",
+  description:
+    "Por qué existe el Observatorio de IA Financiera LATAM, qué entrega y por qué la Interledger Foundation es el aliado natural.",
+};
+
+// -----------------------------------------------------------------------------
+// Contenido curado (jul-2026). Fuentes: interledger.org (verificadas 10-jul-2026).
+// -----------------------------------------------------------------------------
+
+const PORQUE = [
+  {
+    icono: "🧭",
+    titulo: "Nadie produce la métrica neutral",
+    texto:
+      "Las consultoras venden reportes, los gremios abogan por sus miembros y los proveedores inflan sus casos. No existía una medición independiente, citable y reproducible de la IA financiera en América Latina. Ese vacío es la razón de ser del observatorio.",
+  },
+  {
+    icono: "⚖️",
+    titulo: "La política pública se decide sin evidencia comparable",
+    texto:
+      "Solo en 2026: Colombia volvió obligatorias las finanzas abiertas (Decreto 0368), Brasil puso en vigor su marco VASP (Resoluções 519–521), Argentina amplió la tokenización (RG 1150) y Chile completó sus reglas técnicas (NCG 569). Quien regula —y quien invierte— necesita ver los seis tableros a la vez.",
+  },
+  {
+    icono: "🔬",
+    titulo: "Dataset abierto: insumo para papers y decisiones",
+    texto:
+      "Cada cifra declara fuente, año y método; el índice se recalcula con un archivo editable y los datos se descargan en CSV/JSON. Academia, reguladores y medios pueden auditar, replicar y desafiar el índice — esa es la diferencia entre opinión y evidencia.",
+  },
+  {
+    icono: "📈",
+    titulo: "Serie en el tiempo, no una foto",
+    texto:
+      "El observatorio publica cortes comparables con la misma metodología. Entre junio y julio de 2026 Colombia ya subió 1,5 puntos por Bre-B y las finanzas abiertas obligatorias, mientras el archivo del proyecto de ley cripto la frenó. El movimiento es la noticia.",
+  },
+  {
+    icono: "🎓",
+    titulo: "Independencia académica",
+    texto:
+      "El observatorio nace en la Universidad EAFIT sin patrocinio de ningún actor medido. La credibilidad —el activo que ni bancos, ni fintechs, ni vendors pueden comprar— es lo que lo convierte en referencia común para todos.",
+  },
+];
+
+const ENTREGA = [
+  { k: "IMIAF", v: "Índice de madurez 0–100 con 6 pilares y 17 indicadores en 6 países, más el ICF de confianza en 21 economías" },
+  { k: "Mapa & fichas", v: "Mapa interactivo, ficha por país y duelos cara a cara" },
+  { k: "Simulador", v: "Escenarios ¿y si…? que recalculan el ranking en vivo" },
+  { k: "Lentes", v: "7 lecturas por actor: inversionista, banco, fintech, regulador, gremio, academia e infraestructura de pagos" },
+  { k: "Pagos & confianza", v: "Pilar de Pagos (5 indicadores) e Índice de Confianza Financiera con la aritmética publicada" },
+  { k: "Dataset", v: "Descarga abierta en CSV/JSON con metodología documentada" },
+  { k: "Cortes", v: "Serie comparable en el tiempo (jun-2026 → jul-2026 → …)" },
+  { k: "Agenda", v: "Los 5 focos del Centro con 20 indicadores por construir (bienestar financiero, impacto…)" },
+];
+
+const ILF_TECNOLOGIA = [
+  {
+    nombre: "Interledger Protocol (ILP)",
+    desc: "Estándar que enruta pagos entre ledgers y redes distintas en paquetes, como internet enruta información.",
+    url: "https://interledger.org/interledger",
+  },
+  {
+    nombre: "Open Payments",
+    desc: "API estándar para que las aplicaciones interactúen con cuentas mediante wallet addresses — alias públicos tipo URL.",
+    url: "https://interledger.org/open-payments",
+  },
+  {
+    nombre: "Rafiki",
+    desc: "Software open source (Apache 2.0) con el que una wallet, banco o cooperativa habilita Interledger en sus cuentas.",
+    url: "https://rafiki.dev",
+  },
+  {
+    nombre: "Web Monetization",
+    desc: "Micropagos automáticos y pasivos de los visitantes de un sitio web a sus creadores.",
+    url: "https://interledger.org/web-monetization",
+  },
+];
+
+const GANA_ILF = [
+  {
+    titulo: "Evidencia para focalizar sus grants en LATAM",
+    texto:
+      "Tras su mayor apuesta regional (Summit + Hackathon en Ciudad de México, nov-2025) y con la ventana de Digital Financial Services 2026 por abrir, el observatorio le dice a la Fundación dónde un dólar de grant mueve más la aguja: qué país, qué riel, qué brecha.",
+  },
+  {
+    titulo: "La interoperabilidad, por fin medida",
+    texto:
+      "Su tesis es que el valor debe fluir tan fácil como la información. El observatorio convierte esa narrativa en dato citable: PIX vs. Bre-B vs. SPEI/DiMo vs. Yape/Plin vs. Transferencias 3.0, con la misma vara y cada trimestre.",
+  },
+  {
+    titulo: "Un ancla académica hispanohablante",
+    texto:
+      "Su socio académico de política pública en LATAM es lusófono (FGV, Brasil) y Colombia es un vacío visible en su portafolio de grantees. EAFIT llena el hueco hispano con capacidad de investigación instalada y un observatorio ya operando.",
+  },
+  {
+    titulo: "Datos para abogar ante los reguladores andinos",
+    texto:
+      "Sus Public Policy Activation Grants financian investigación y diálogo estructurado con reguladores, pero exigen conocimiento local del paisaje normativo. El observatorio lo aporta llave en mano: URF y Banco de la República en Colombia, CNBV en México, SBS en Perú.",
+  },
+  {
+    titulo: "El termómetro de la capa de IA sobre los rieles",
+    texto:
+      "La Fundación mide rieles de pago; el observatorio mide la IA que se monta sobre ellos — scoring, agentes de pago, prevención de fraude — y cómo amplía o cierra la exclusión del ~70% de población sub-bancarizada que ellos mismos citan para la región.",
+  },
+  {
+    titulo: "Pipeline de talento y casos de uso",
+    texto:
+      "Semilleros, cursos y hackathones-satélite en EAFIT sobre Open Payments con datos reales del observatorio: estudiantes, prototipos y visibilidad universitaria en el país andino donde la Fundación aún no tiene grantee.",
+  },
+];
+
+const RUTAS = [
+  {
+    cuando: "Ahora (hasta 31-jul-2026)",
+    que: "Interledger on Campus: mini-grants de hasta US$5.000 para clubes estudiantiles — un semillero EAFIT sobre Open Payments con datos del observatorio.",
+    url: "https://interledger.org/grant/education/on-campus",
+  },
+  {
+    cuando: "Q3-2026 (reapertura esperada)",
+    que: "Call for Papers: US$5.000 por paper sobre interoperabilidad, inclusión y marcos regulatorios — el dataset del observatorio como base empírica.",
+    url: "https://interledger.org/grant/call-for-papers",
+  },
+  {
+    cuando: "2026 (por anunciar)",
+    que: "NextGen Higher Education: hasta US$50.000 para instituciones de educación superior; y la ventana 2026 de Digital Financial Services (hasta US$250.000).",
+    url: "https://interledger.org/grant/education/nextgen",
+  },
+  {
+    cuando: "Vía policy@interledger.org",
+    que: "Public Policy Activation: evidencia del observatorio en submissions formales ante URF, SFC y pares andinos por estándares abiertos e interoperables.",
+    url: "https://interledger.org/grant/public-policy-activation",
+  },
+  {
+    cuando: "Summit 2026 (sede sin anunciar)",
+    que: "Proponer a Medellín como sede o escala del Interledger Summit 2026: la alianza le da a la Fundación un anfitrión académico y un caso regional (Bre-B) en pleno despegue.",
+    url: "https://interledger.org/summit",
+  },
+];
+
+export default function Presentacion() {
+  return (
+    <main>
+      <NavBar />
+
+      {/* HERO */}
+      <header className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <span className="mb-5 inline-block rounded-full border border-lime/35 bg-lime/10 px-4 py-1.5 text-[13px] font-semibold text-lime">
+            Presentación · {META.marca} · {META.institucion}
+          </span>
+          <h1 className="max-w-[24ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
+            Medir la IA financiera de América Latina{" "}
+            <span className="text-teal">para que alguien más pueda actuar</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg font-light text-fg/80">
+            Un observatorio no compite en el mercado que observa: produce el
+            bien público que a ese mercado le falta — evidencia neutral,
+            comparable y abierta. Esta es la presentación del Observatorio, y la
+            propuesta de recorrerlo junto a un aliado:{" "}
+            <b className="font-semibold text-fg">la Interledger Foundation</b>.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#aliado"
+              className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
+            >
+              Ver la alianza propuesta
+            </a>
+            <a
+              href="/"
+              className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-fg/80 transition hover:text-fg"
+            >
+              Ir al observatorio →
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* ALCANCE: finanzas emergentes → fintech → IA */}
+      <section className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            El alcance, sin ambigüedad
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Finanzas emergentes es el universo; fintech, el foco
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            El observatorio es el instrumento de medición del{" "}
+            <b className="text-fg">Centro de Innovación Financiera</b> de
+            EAFIT, que trabaja cinco focos estratégicos: finanzas para el
+            desarrollo, sostenibles y climáticas, conductuales, emergentes y
+            seguras. Las finanzas emergentes abarcan mucho más de lo que un
+            índice puede medir con rigor — DeFi, infraestructura digital,
+            tecnologías de frontera. Por eso el recorte se declara: dentro de
+            ese mundo amplio, esta etapa mide el segmento fintech, con la IA
+            como lente transversal. Los demás focos entran con la{" "}
+            <a href="/agenda" className="text-teal hover:underline">
+              agenda de medición
+            </a>{" "}
+            — bienestar financiero, impacto, conducta — a medida que existan
+            datos comparables entre los seis países.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="card p-6" style={{ borderColor: "rgba(255,255,255,0.14)" }}>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
+                1 · El universo
+              </div>
+              <h3 className="mt-1.5 font-bold text-fg">Finanzas emergentes</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                Todo lo que está redefiniendo el sistema financiero: DeFi,
+                CBDCs, stablecoins, open finance, insurtech, microfinanzas
+                digitales, embedded finance.
+              </p>
+            </div>
+            <div className="card p-6" style={{ borderColor: "rgba(31,201,160,0.45)" }}>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-teal">
+                2 · El foco de esta etapa
+              </div>
+              <h3 className="mt-1.5 font-bold text-teal">Fintech</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                El segmento con datos comparables hoy: ecosistema de startups,
+                rieles de pago instantáneo, crédito e inclusión, cripto-activos
+                y los marcos que los regulan en los seis países.
+              </p>
+            </div>
+            <div className="card p-6" style={{ borderColor: "rgba(159,206,46,0.45)" }}>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-lime">
+                3 · La lente transversal
+              </div>
+              <h3 className="mt-1.5 font-bold text-lime">IA financiera</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                La pregunta que atraviesa todos los pilares: cómo el scoring,
+                los agentes y la prevención de fraude con IA amplían — o
+                cierran — las brechas del sistema.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* POR QUÉ */}
+      <section className="border-b border-white/8 bg-white/[0.02]">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            La pregunta de fondo
+          </div>
+          <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
+            ¿Por qué es importante un observatorio?
+          </h2>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {PORQUE.map((p) => (
+              <div key={p.titulo} className="card p-6">
+                <div className="text-3xl">{p.icono}</div>
+                <h3 className="mt-3 font-bold text-fg">{p.titulo}</h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                  {p.texto}
+                </p>
+              </div>
+            ))}
+            <div
+              className="card p-6"
+              style={{
+                background:
+                  "linear-gradient(120deg, rgba(31,201,160,0.10), rgba(108,92,214,0.08))",
+              }}
+            >
+              <div className="text-3xl">📦</div>
+              <h3 className="mt-3 font-bold text-fg">Lo que entrega hoy</h3>
+              <ul className="mt-2 space-y-1.5 text-[13px] leading-relaxed text-muted">
+                {ENTREGA.map((e) => (
+                  <li key={e.k}>
+                    <b className="text-teal">{e.k}:</b> {e.v}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LO QUE V4 AGREGA PARA INTERLEDGER */}
+      <section id="pagos-ilf" className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div
+            className="mb-1 text-xs font-bold uppercase tracking-[0.16em]"
+            style={{ color: "#E8825A" }}
+          >
+            Nuevo en v4 · construido sobre el foco de la Fundación
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Pagos y confianza, ya medidos
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            La Fundación pone el foco en la confianza y en el mundo de los pagos.
+            El observatorio los incorporó al índice como{" "}
+            <b className="text-fg">pilar propio</b> y como{" "}
+            <b className="text-fg">índice complementario</b>, con fuentes
+            primarias y la aritmética publicada. Cuatro hallazgos ordenan la
+            agenda:
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              {
+                n: "01",
+                t: "El riel doméstico está resuelto; el cruce de frontera, no",
+                d: "Brasil hace 498 pagos inmediatos por adulto al año y Argentina 237 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
+              },
+              {
+                n: "02",
+                t: "Colombia es el vacío más grande frente al tamaño de su diáspora",
+                d: "Las remesas ya son 2,87% del PIB colombiano y Bre-B nació sin conexión al exterior: el propio Banco de la República la señala como pendiente. Es el punto exacto donde un estándar abierto de pagos cambia el resultado — y el país donde la Fundación aún no tiene grantee.",
+              },
+              {
+                n: "03",
+                t: "El freno del pago digital no es el miedo a la tecnología",
+                d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en pagar con tarjeta o celular. La desconfianza no está en el riel: está en la institución del otro lado. Seis de cada diez latinoamericanos que se endeudaron no usaron el sistema formal.",
+              },
+              {
+                n: "04",
+                t: "La confianza medible pone a Colombia de último",
+                d: "El ICF ordena 16 economías con datos comparables y Colombia queda 16ª, con regulación de finanzas abiertas entre las más ambiciosas de la región. Madurez y confianza no son lo mismo — y hasta ahora nadie publicaba la segunda con fuentes primarias.",
+              },
+            ].map((c) => (
+              <div key={c.n} className="card p-5">
+                <div className="mb-2 flex items-start gap-3">
+                  <span
+                    className="tabnum text-lg font-extrabold leading-none"
+                    style={{ color: "#E8825A" }}
+                  >
+                    {c.n}
+                  </span>
+                  <h3 className="text-[15px] font-bold leading-snug text-fg">
+                    {c.t}
+                  </h3>
+                </div>
+                <p className="text-[13px] leading-relaxed text-muted">{c.d}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="card mt-5 p-5">
+            <h3 className="mb-2 text-sm font-bold text-teal">
+              Y lo que todavía no se puede medir — la propuesta de trabajo
+            </h3>
+            <p className="text-[13px] leading-relaxed text-muted">
+              No existe un dato mundial comparable de transacciones por persona
+              (el Red Book del BIS cubre 26 jurisdicciones; de la región, tres).
+              La única serie de desconfianza con cobertura casi mundial solo se le
+              pregunta a quien no tiene cuenta. El fraude se mide con encuestas de
+              industria de metodología propietaria. Y la interoperabilidad
+              transfronteriza no tiene indicador en ningún organismo. El
+              observatorio ya construyó un primer intento de los cuatro y publica
+              cómo: eso es exactamente lo que un grant de investigación puede
+              volver estándar.{" "}
+              <a href="/pagos" className="text-teal underline">
+                Ver el módulo completo →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ALIADO */}
+      <section id="aliado" className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-lime">
+            El aliado — no un cliente
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Interledger Foundation: la misma misión, desde el otro extremo del
+            riel
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            La Interledger Foundation es una fundación sin ánimo de lucro cuya
+            visión es la <i>Internet of Opportunity</i>: un mundo donde{" "}
+            <b className="text-fg">
+              enviar un pago sea tan fácil como enviar un correo
+            </b>
+            . Entre 2020 y 2025 invirtió más de{" "}
+            <b className="text-fg">US$21 millones en 271 proyectos de 42 países</b>{" "}
+            para que nadie quede por fuera de la economía digital. Ellos
+            construyen y financian los rieles abiertos; el observatorio mide si
+            la región los está aprovechando. Por eso la relación correcta no es
+            proveedor-cliente sino co-creación de evidencia: un aliado que
+            financia y usa el bien público, no que lo compra.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {ILF_TECNOLOGIA.map((t) => (
+              <a
+                key={t.nombre}
+                href={t.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card block p-5 transition hover:border-teal/40"
+              >
+                <div className="text-sm font-bold text-teal">{t.nombre}</div>
+                <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
+                  {t.desc}
+                </p>
+              </a>
+            ))}
+          </div>
+
+          <h3 className="mt-12 mb-6 text-xl font-extrabold tracking-tight">
+            ¿Qué ganaría Interledger con el Observatorio?
+          </h3>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {GANA_ILF.map((g, i) => (
+              <div key={g.titulo} className="card p-6">
+                <div
+                  className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg text-sm font-extrabold"
+                  style={{ background: "rgba(159,206,46,0.15)", color: "#9FCE2E" }}
+                >
+                  {i + 1}
+                </div>
+                <h4 className="font-bold text-fg">{g.titulo}</h4>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                  {g.texto}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-8 max-w-3xl text-[13px] leading-relaxed text-muted">
+            ¿Y qué gana el Observatorio? Sostenibilidad para la investigación
+            (fellowships y papers financiados), una red global de práctica en
+            pagos abiertos, y el foco que más le falta a la conversación
+            regional: la interoperabilidad como métrica, no como eslogan.
+          </p>
+        </div>
+      </section>
+
+      {/* RUTAS CONCRETAS */}
+      <section className="border-b border-white/8 bg-white/[0.02]">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            De la idea al primer paso
+          </div>
+          <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Cinco rutas concretas para activar la alianza
+          </h2>
+          <div className="space-y-4">
+            {RUTAS.map((r) => (
+              <a
+                key={r.que}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card grid gap-2 p-5 transition hover:border-teal/40 md:grid-cols-[220px_1fr] md:items-baseline"
+              >
+                <span className="text-sm font-bold text-lime">{r.cuando}</span>
+                <span className="text-[14px] leading-relaxed text-fg/85">
+                  {r.que}
+                </span>
+              </a>
+            ))}
+          </div>
+          <p className="mt-6 text-[12px] text-muted">
+            Programas y fechas verificados en interledger.org al 10 de julio de
+            2026; los montos y ventanas pueden cambiar con cada convocatoria.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section>
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div
+            className="card p-8 text-center md:p-10"
+            style={{
+              background:
+                "linear-gradient(120deg, rgba(31,201,160,0.12), rgba(108,92,214,0.10))",
+            }}
+          >
+            <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
+              La evidencia ya está publicada. Falta recorrerla juntos.
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[15px] text-fg/80">
+              El observatorio es un bien público en operación: índice, mapa,
+              simulador y dataset abierto, curados a {META.curado}. La alianza
+              con Interledger lo convertiría, además, en el instrumento de
+              medición de la interoperabilidad financiera de América Latina.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <a
+                href="/"
+                className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
+              >
+                Explorar el observatorio
+              </a>
+              <a
+                href="/#datos"
+                className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
+              >
+                Descargar el dataset
+              </a>
+              <a
+                href="https://interledger.org/es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-fg/80 transition hover:text-fg"
+              >
+                Conocer a Interledger →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-muted">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <span className="text-lg font-extrabold tracking-tight text-fg">
+              fin<span className="text-lime">d</span>
+            </span>
+            <a href="/metodologia" className="text-teal hover:underline">
+              Metodología completa →
+            </a>
+          </div>
+          <p className="mt-4 max-w-3xl text-[12px] leading-relaxed text-muted/80">
+            {META.marca} · {META.institucion}. Los datos de la Interledger
+            Foundation provienen de interledger.org y fuentes citadas
+            (verificados el 10-jul-2026). Esta página es una propuesta de
+            alianza académica, no un documento comercial ni una comunicación
+            oficial de la Fundación.
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
+}

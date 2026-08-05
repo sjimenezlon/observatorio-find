@@ -1,0 +1,74 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# --- endurecimiento (repo público: nada de esto debe salir de la máquina) ---
+# credenciales y llaves
+*.key
+*.p12
+*.pfx
+*.p8
+*.crt
+id_rsa*
+.netrc
+credentials*.json
+service-account*.json
+*token*.txt
+
+# datos crudos y de trabajo: el repo publica `data/*.ts` verificado, no descargas
+/raw/
+/scratch/
+/tmp/
+*.xlsx
+*.xls
+*.csv.gz
+*.geojson
+*.zip
+
+# editores y sistema
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# ajustes locales de agentes (AGENTS.md y CLAUDE.md sí se versionan)
+.claude/settings.local.json
+.codex/
