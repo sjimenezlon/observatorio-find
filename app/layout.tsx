@@ -9,9 +9,33 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Observatorio Find · IA Financiera LATAM",
+  metadataBase: new URL("https://observatorio-find.vercel.app"),
+  title: "Observatorio Find · Inteligencia Financiera LATAM",
   description:
-    "Dataset y tablero público de benchmarking de la IA financiera en América Latina: adopción de IA, scoring e inclusión, fraude y AML, y tokenización. Métricas neutrales con metodología abierta. Universidad EAFIT.",
+    "Sistema público de evidencia para comparar IA financiera, pagos y confianza en América Latina: 6 países, 17 indicadores y un panel de 21 economías. Universidad EAFIT.",
+  openGraph: {
+    title: "Find · Inteligencia financiera latinoamericana",
+    description:
+      "Tres índices propios, fuentes trazables y metodología abierta. Corte agosto de 2026.",
+    url: "/",
+    siteName: "Observatorio Find",
+    locale: "es_CO",
+    type: "website",
+    images: [
+      {
+        url: "/og-find-agosto-2026.png",
+        width: 1734,
+        height: 907,
+        alt: "Observatorio Find: inteligencia financiera latinoamericana, medible y auditable",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Find · Inteligencia financiera latinoamericana",
+    description: "Datos abiertos, índices auditables y benchmark regional. Corte agosto de 2026.",
+    images: ["/og-find-agosto-2026.png"],
+  },
 };
 
 export default function RootLayout({

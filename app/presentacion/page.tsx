@@ -70,7 +70,7 @@ const VACIO = [
     icono: "🔬",
     titulo: "Sin método abierto no hay forma de estar en desacuerdo",
     texto:
-      "Un ranking que no publica cómo se calcula solo se puede creer o ignorar. Aquí el índice se recalcula con un archivo editable, los pesos se mueven en pantalla y el dataset se descarga entero. Se puede replicar y se puede refutar: esa es la diferencia entre opinión y evidencia.",
+      "Un ranking que no publica cómo se calcula solo se puede creer o ignorar. Aquí los pesos se mueven en pantalla y cada indicador conserva su valor, fuente, año y regla de normalización. Se puede auditar y se puede refutar: esa es la diferencia entre opinión y evidencia.",
   },
   {
     icono: "📈",
@@ -714,17 +714,17 @@ export default function Presentacion() {
               Está publicado para que lo uses — y para que lo discutas
             </h2>
             <p className="mt-3 max-w-2xl text-[15px] text-fg/80">
-              El dataset se descarga completo en CSV y JSON, el código es abierto
-              y la metodología está escrita con sus límites. Si una cifra está
-              mal, la corrección se publica con fecha y razón. Eso es lo que hace
-              que un ranking valga algo.
+              Los indicadores se consultan dentro del observatorio con sus fuentes,
+              años y reglas de normalización; el código es abierto y la metodología
+              está escrita con sus límites. Si una cifra está mal, la corrección se
+              publica con fecha y razón. Eso es lo que hace que un ranking valga algo.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="/#datos"
                 className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
               >
-                Descargar el dataset
+                Explorar los indicadores
               </a>
               <a
                 href="/metodologia"

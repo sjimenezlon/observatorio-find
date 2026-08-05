@@ -162,7 +162,7 @@ export default function PagosPage() {
             {[
               {
                 t: "El riel doméstico está resuelto; el cruce de frontera, no",
-                d: "Brasil hace 498 pagos inmediatos por adulto al año y Argentina 237. Ninguno de los seis países tiene interoperabilidad transfronteriza nativa: la única oferta estructurada de la región es Pix Internacional, y la interconexión multilateral de rieles (Project Nexus del BIS) no tiene ningún participante latinoamericano.",
+                d: "Brasil hace 502 pagos inmediatos por adulto al año y Argentina 237. Ninguno de los seis países tiene interoperabilidad transfronteriza nativa: la única oferta estructurada de la región es Pix Internacional, y la interconexión multilateral de rieles (Project Nexus del BIS) no tiene ningún participante latinoamericano.",
               },
               {
                 t: "El costo de cruzar sigue por encima de la meta",
@@ -198,7 +198,7 @@ export default function PagosPage() {
               href="/#datos"
               className="rounded-full border border-teal/40 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
             >
-              Descargar el dataset
+              Explorar los indicadores
             </a>
           </div>
         </div>

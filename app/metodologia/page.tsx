@@ -104,11 +104,11 @@ export default function Metodologia() {
           pagos inmediatos— y publica la aritmética país por país:
         </p>
         <pre className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
-{`Brasil     87.100 M tx/año (PIX, BCB, ene–may 2026 anualizado) ÷ 175 M adultos = 498
+{`Brasil     87.800 M tx/año (PIX, BCB, 1S-2026 anualizado)      ÷ 175 M adultos = 502
 Argentina   8.772 M tx/año (731 M/mes, BCRA mar-2026)           ÷  37 M adultos = 237
 Perú        3.156 M tx/año (263 M/mes interoperables, BCRP)      ÷  26,5 M       = 119
 México      7.300 M tx/año (SPEI usuarios finales, Banxico 2025) ÷ 100 M        =  73
-Colombia    1.898 M tx/año (5,2 M/día, Banrep 31-ene-2026)       ÷  41,5 M      =  46
+Colombia    1.825 M tx/año (5 M/día corrientes, Banrep)          ÷  41,5 M      =  44
 Chile       sin riel de pagos inmediatos → n/d`}
         </pre>
         <p className="mt-3">
@@ -376,7 +376,7 @@ score = 100 * (max − valor) / (max − min)`}
         </p>
       </Section>
 
-      <Section n="10b" t="Auditoría del 26 de julio de 2026" id="auditoria">
+      <Section n="10b" t={`Auditoría del ${META.auditoria}`} id="auditoria">
         <p>
           Cada corte se vuelve a verificar contra la fuente primaria antes de
           publicarse. Este es el registro de la última revisión: qué se comprobó,
@@ -385,9 +385,30 @@ score = 100 * (max − valor) / (max − min)`}
         </p>
 
         <div className="mt-4 space-y-3">
+          <div className="card p-4" style={{ borderColor: "rgba(31,201,160,0.35)" }}>
+            <div className="mb-2 text-sm font-bold text-teal">
+              Nuevo en el corte de agosto
+            </div>
+            <p className="text-sm leading-relaxed text-muted">
+              Se incorporó como benchmark el{" "}
+              <a
+                href="https://www.jbs.cam.ac.uk/faculty-research/centres/alternative-finance/publications/2026-global-ai-in-financial-services-report/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-fg hover:text-teal hover:underline"
+              >
+                Global AI in Financial Services Report 2026 de Cambridge CCAF
+              </a>
+              : 628 organizaciones en 151 jurisdicciones. El 81% de las firmas
+              financieras encuestadas adopta IA en algún nivel, pero solo 14%
+              reporta una transformación del negocio. La cifra se usa como ancla
+              global y no altera el cálculo del IMIAF.
+            </p>
+          </div>
+
           <div className="card p-4">
             <div className="mb-2 text-sm font-bold text-amber">
-              Tres correcciones aplicadas
+              Correcciones aplicadas el 26 de julio
             </div>
             <ul className="space-y-2.5 text-sm text-muted">
               <li>
@@ -425,7 +446,7 @@ score = 100 * (max − valor) / (max − min)`}
 
           <div className="card p-4">
             <div className="mb-2 text-sm font-bold text-teal">
-              Confirmado vigente a julio de 2026
+              Confirmado vigente a agosto de 2026
             </div>
             <ul className="space-y-1.5 text-sm text-muted">
               <li>

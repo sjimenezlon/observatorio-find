@@ -103,7 +103,7 @@ const RUTAS = [
   },
   {
     cuando: "Q3-2026 (reapertura esperada)",
-    que: "Call for Papers: US$5.000 por paper sobre interoperabilidad, inclusión y marcos regulatorios — el dataset del observatorio como base empírica.",
+    que: "Call for Papers: US$5.000 por paper sobre interoperabilidad, inclusión y marcos regulatorios — la evidencia del observatorio como base empírica.",
     url: "https://interledger.org/grant/call-for-papers",
   },
   {
@@ -344,7 +344,7 @@ export default function Aliados() {
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-[15px] text-fg/80">
               El observatorio es un bien público en operación: índice, mapa,
-              simulador y dataset abierto, curados a {META.curado}. La alianza
+              simulador y evidencia trazable, curados a {META.curado}. La alianza
               con Interledger lo convertiría, además, en el instrumento de
               medición de la interoperabilidad financiera de América Latina.
             </p>
@@ -359,7 +359,7 @@ export default function Aliados() {
                 href="/#datos"
                 className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
               >
-                Descargar el dataset
+                Explorar los indicadores
               </a>
               <a
                 href="https://interledger.org/es"

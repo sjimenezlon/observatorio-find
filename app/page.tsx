@@ -3,6 +3,7 @@ import { NavBar } from "@/components/NavBar";
 import Brecha from "@/components/Brecha";
 import Anclas from "@/components/Anclas";
 import MapaIndice from "@/components/MapaIndice";
+import GlobalBenchmarks from "@/components/GlobalBenchmarks";
 import { FUENTES, META, PILARES } from "@/data/dataset";
 import { DINAMICA, DINAMICA_STATS, TENDENCIAS } from "@/data/lentes";
 
@@ -12,77 +13,106 @@ export default function Home() {
       <NavBar />
 
       {/* HERO */}
-      <header className="relative overflow-hidden border-b border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-          <div className="mb-8 flex items-center gap-3">
-            <span className="text-2xl font-extrabold tracking-tight">
-              fin<span className="text-lime">d</span>
-            </span>
-            <span className="border-l border-white/25 pl-3 text-[11px] font-bold uppercase tracking-[0.18em] text-teal">
-              Universidad EAFIT
-            </span>
+      <header className="hero-grid relative overflow-hidden border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 pb-10 pt-12 md:pb-14 md:pt-16">
+          <div className="grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-center">
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="eyebrow text-teal">Find · Universidad EAFIT</span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-lime/25 bg-lime/[0.07] px-3 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.13em] text-lime">
+                  <span className="status-dot" />
+                  Datos auditables · {META.curado}
+                </span>
+              </div>
+
+              <h1 className="mt-6 max-w-[18ch] text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.055em]">
+                Inteligencia financiera latinoamericana,
+                <span className="block text-teal">medible y auditable.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-fg/72 md:text-[18px]">
+                Un sistema público de evidencia para comparar la madurez de la IA
+                financiera, los pagos y la confianza en América Latina. Tres
+                índices propios, fuentes trazables y una metodología que cualquiera
+                puede replicar.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#indice" className="action-primary px-5 py-3 text-sm">
+                  Explorar el IMIAF <span aria-hidden="true">→</span>
+                </a>
+                <a href="#mapa" className="action-secondary px-5 py-3 text-sm">
+                  Ver mapa regional
+                </a>
+                <a href="/metodologia" className="action-quiet px-4 py-3 text-sm">
+                  Auditar metodología ↗
+                </a>
+              </div>
+            </div>
+
+            <aside className="technical-panel" aria-label="Estado del observatorio">
+              <div className="flex items-center justify-between gap-4 border-b border-white/8 px-5 py-4">
+                <div>
+                  <div className="data-label text-muted">System / evidence status</div>
+                  <div className="mt-1 text-sm font-semibold text-fg">Corte {META.version}</div>
+                </div>
+                <span className="rounded-md border border-teal/25 bg-teal/[0.08] px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-teal">
+                  Validado
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-px bg-white/8">
+                {[
+                  ["06", "países IMIAF"],
+                  [String(META.indicadores).padStart(2, "0"), "indicadores"],
+                  [String(META.pilares).padStart(2, "0"), "pilares"],
+                  ["21", "economías ICF"],
+                ].map(([value, label]) => (
+                  <div key={label} className="bg-[#0b2925] px-5 py-4">
+                    <div className="font-mono text-2xl font-semibold tracking-[-0.05em] text-fg">
+                      {value}
+                    </div>
+                    <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+                      {label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-3 px-5 py-4 font-mono text-[10px]">
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted">Última auditoría</span>
+                  <span className="text-right text-fg/75">{META.auditoria}</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted">Motores</span>
+                  <span className="text-right text-fg/75">IMIAF · ICF · ICF-S</span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted">Prioridad de fuente</span>
+                  <span className="text-right text-fg/75">API / emisor / originador</span>
+                </div>
+              </div>
+            </aside>
           </div>
 
-          <span className="mb-5 inline-block rounded-full border border-lime/35 bg-lime/10 px-4 py-1.5 text-[13px] font-semibold text-lime">
-            Observatorio · dataset abierto · curado a {META.curado}
-          </span>
-
-          <h1 className="max-w-[20ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
-            Observatorio de <span className="text-teal">IA Financiera</span> en
-            América Latina
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg font-light text-fg/80">
-            El campo del observatorio son las{" "}
-            <b className="font-semibold text-fg">finanzas emergentes</b> — un
-            mundo muy amplio. Dentro de ese universo, el foco de esta etapa es{" "}
-            <b className="font-semibold text-fg">fintech y la IA financiera</b>:
-            métricas neutrales de inclusión, <b className="font-semibold text-fg">pagos</b>,
-            adopción de IA, fraude, tokenización y regulación —más un{" "}
-            <b className="font-semibold text-fg">Índice de Confianza Financiera</b>{" "}
-            para 21 economías—, leídas siempre como{" "}
-            <b className="font-semibold text-fg">LatAm frente al mundo</b> y
-            filtrables por tipo de actor. Metodología abierta: el insumo para
-            papers y política pública que hoy nadie produce de forma
-            independiente.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg/60">
-            <span>
-              Campo: <b className="text-teal">Finanzas emergentes → fintech</b>
-            </span>
-            <span>
-              Eje: <b className="text-teal">LatAm vs. el mundo</b>
-            </span>
-            <span>
-              Alcance: <b className="text-teal">6 países + panel de 21</b>
-            </span>
-            <span>
-              Pilares: <b className="text-teal">6</b>
-            </span>
-            <span>
-              Lentes: <b className="text-teal">6 actores</b>
-            </span>
-          </div>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="#indice"
-              className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
-            >
-              Ver el índice
-            </a>
-            <a
-              href="#datos"
-              className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-fg/80 transition hover:text-fg"
-            >
-              Descargar dataset
-            </a>
-            <a
-              href="/presentacion"
-              className="rounded-full border border-lime/40 px-5 py-2.5 text-sm font-semibold text-lime transition hover:bg-lime/10"
-            >
-              ¿Por qué un observatorio? →
-            </a>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: "01", t: "Diagnóstico", d: "Mapa y ranking por país", h: "#mapa" },
+              { n: "02", t: "Escenarios", d: "Pesos y simulador en vivo", h: "#indice" },
+              { n: "03", t: "Confianza", d: "Pagos e ICF para 21 economías", h: "/pagos" },
+              { n: "04", t: "Evidencia", d: "Indicadores, fuentes y método", h: "#datos" },
+            ].map((item) => (
+              <a key={item.n} href={item.h} className="quick-route group">
+                <span className="font-mono text-[9px] text-teal">{item.n}</span>
+                <div className="mt-3 flex items-end justify-between gap-3">
+                  <div>
+                    <div className="text-sm font-semibold text-fg">{item.t}</div>
+                    <div className="mt-1 text-[11px] text-muted">{item.d}</div>
+                  </div>
+                  <span className="text-fg/35 transition group-hover:translate-x-0.5 group-hover:text-teal">→</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </header>
@@ -94,7 +124,7 @@ export default function Home() {
             El contexto, en cifras verificadas
           </div>
           <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
-            Ocho señales que enmarcan el ecosistema
+            Nueve señales que enmarcan el ecosistema
           </h2>
           <Anclas />
         </div>
@@ -117,7 +147,7 @@ export default function Home() {
                     color: "#E8825A",
                   }}
                 >
-                  Nuevo en v4
+                  Módulo de confianza
                 </span>
                 <h2 className="mb-3 text-2xl font-extrabold tracking-tight">
                   Pagos y confianza: lo que la bancarización no mide
@@ -142,8 +172,8 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-px bg-white/8">
                 {[
-                  { k: "498", l: "pagos inmediatos por adulto al año en Brasil", c: "#E8825A" },
-                  { k: "46", l: "en Colombia: el riel es nuevo, no maduro", c: "#E8825A" },
+                  { k: "502", l: "pagos inmediatos por adulto al año en Brasil", c: "#E8825A" },
+                  { k: "44", l: "en Colombia: el riel es nuevo, no maduro", c: "#E8825A" },
                   { k: "6 de 10", l: "créditos de la región son informales", c: "#1FC9A0" },
                   { k: "último", l: "lugar de Colombia en confianza (ICF) entre 16 países medibles", c: "#FF7A9E" },
                 ].map((x) => (
@@ -211,6 +241,8 @@ export default function Home() {
         </div>
       </section>
 
+      <GlobalBenchmarks />
+
       {/* INCUMBENTES VS FINTECHS */}
       <section className="border-b border-white/8">
         <div className="mx-auto max-w-6xl px-6 py-14">
@@ -275,9 +307,9 @@ export default function Home() {
             La estructura
           </div>
           <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
-            Cinco pilares
+            Seis pilares
           </h2>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PILARES.map((pl, i) => (
               <div key={pl.key} className="card p-6">
                 <div
