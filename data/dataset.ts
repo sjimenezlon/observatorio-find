@@ -1,6 +1,6 @@
 // =============================================================================
 // Observatorio Find · IA Financiera LATAM
-// Dataset verificado y citable — seed v3 (curado a julio de 2026)
+// Dataset verificado y citable — seed v4 (curado a agosto de 2026)
 //
 // Metodología abierta: cada indicador declara su fuente, año y dirección.
 // Los valores "construido" son índices cualitativos del Observatorio,
@@ -640,6 +640,14 @@ export interface Ancla {
 
 export const ANCLAS: Ancla[] = [
   {
+    valor: "81% / 14%",
+    label:
+      "de las firmas financieras encuestadas ya adopta IA en algún nivel, pero solo 14% se considera transformacional: la brecha global ya es de ejecución, no de acceso a la tecnología.",
+    fuente: "Cambridge CCAF · Global AI in Financial Services Report 2026",
+    url: "https://www.jbs.cam.ac.uk/faculty-research/centres/alternative-finance/publications/2026-global-ai-in-financial-services-report/",
+    anio: 2026,
+  },
+  {
     valor: "242 vs 579",
     label:
       "pagos sin efectivo por habitante al año: economías emergentes contra avanzadas. La brecha ya no es de acceso, es de frecuencia — y dos de los tres primeros puestos del mundo en pagos inmediatos son latinoamericanos.",
@@ -707,6 +715,11 @@ export interface FuenteRef {
 }
 
 export const FUENTES: FuenteRef[] = [
+  {
+    nombre: "Cambridge CCAF · Global AI in Financial Services Report 2026",
+    url: "https://www.jbs.cam.ac.uk/faculty-research/centres/alternative-finance/publications/2026-global-ai-in-financial-services-report/",
+    nota: "Benchmark global de adopción, impacto y riesgo de IA en finanzas: 628 organizaciones en 151 jurisdicciones; 81% de las firmas adopta IA y 14% reporta transformación.",
+  },
   {
     nombre: "World Bank · The Global Findex Database 2025",
     url: "https://www.worldbank.org/en/publication/globalfindex",
@@ -795,7 +808,7 @@ export const FUENTES: FuenteRef[] = [
   {
     nombre: "Bancos centrales (rieles instantáneos)",
     url: "https://www.banrep.gov.co/es/bre-b",
-    nota: "Banco de la República (Bre-B: 5,2M tx/día, 99M de llaves), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 36.300M tx ene–may 2026), BCRP (263M tx interoperables/mes; 655 pagos digitales por adulto en 2025), BCRA (731M transferencias inmediatas/mes), BCCh (382 pagos por persona en 2025, esquema de alias/QR en consulta). Insumos del indicador de pagos inmediatos por adulto.",
+    nota: "Banco de la República (Bre-B: 5M tx/día y 108M de llaves a jun-2026), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 43.900M tx en 1S-2026), BCRP (263M tx interoperables/mes; 655 pagos digitales por adulto en 2025), BCRA (731M transferencias inmediatas/mes), BCCh (382 pagos por persona en 2025, esquema de alias/QR en consulta). Insumos del indicador de pagos inmediatos por adulto.",
   },
   {
     nombre: "Marcos regulatorios oficiales",
@@ -820,9 +833,9 @@ export const SNAPSHOT_ANTERIOR: { fecha: string; scores: Record<CC, number> } = 
 export const SNAPSHOT_COMPARABLE = false;
 
 export const META = {
-  version: "v4.2",
-  curado: "julio de 2026",
-  auditoria: "26 de julio de 2026",
+  version: "v4.3",
+  curado: "agosto de 2026",
+  auditoria: "5 de agosto de 2026",
   marca: "Observatorio Find",
   institucion: "Universidad EAFIT",
   pilares: PILARES.length,
