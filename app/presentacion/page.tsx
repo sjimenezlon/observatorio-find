@@ -1,143 +1,207 @@
 import type { Metadata } from "next";
 import { NavBar } from "@/components/NavBar";
-import { META } from "@/data/dataset";
+import {
+  META,
+  PAISES,
+  PILARES,
+  INDICADORES,
+  FUENTES,
+} from "@/data/dataset";
+import { calcularIndice, banda } from "@/lib/index";
+import { INDICADORES_ICF, DIMENSIONES } from "@/data/confianza";
+import { calcularICF } from "@/lib/confianza";
+import { calcularICFS } from "@/lib/segmentos";
+import { LATAM } from "@/data/latam";
+import { ACTORES } from "@/data/lentes";
+import { AGENDA, FOCOS } from "@/data/agenda";
 
 export const metadata: Metadata = {
-  title: "Presentación · Observatorio Find",
+  title: "Qué hace el Observatorio · Observatorio Find",
   description:
-    "Por qué existe el Observatorio de IA Financiera LATAM, qué entrega y por qué la Interledger Foundation es el aliado natural.",
+    "Qué mide el Observatorio de IA Financiera LATAM, cómo lo construye, qué encuentra y qué no pretende medir. Tres índices propios sobre fuentes primarias, con metodología abierta y correcciones publicadas.",
 };
 
 // -----------------------------------------------------------------------------
-// Contenido curado (jul-2026). Fuentes: interledger.org (verificadas 10-jul-2026).
+// Presentación del observatorio.
+//
+// Las cifras de esta página se derivan del dataset en tiempo de build, no se
+// escriben a mano: si cambia el corte, la presentación cambia con él. Lo único
+// redactado son las lecturas — y cada una remite a la ruta donde está el dato.
 // -----------------------------------------------------------------------------
 
-const PORQUE = [
+const ranking = calcularIndice();
+const icf = calcularICF().filter((f) => f.medible);
+const icfs = calcularICFS();
+
+const lider = ranking[0];
+const ultimo = ranking[ranking.length - 1];
+const nombrePais = (code: string) =>
+  PAISES.find((p) => p.code === code)?.nombre ?? code;
+
+const colombia = ranking.find((f) => f.code === "CO");
+const puestoColombia = ranking.findIndex((f) => f.code === "CO") + 1;
+const puestoColombiaICF = icf.findIndex((f) => f.cc === "COL") + 1;
+
+const nConstruidos = INDICADORES.filter((i) => i.construido).length;
+const nDerivados = INDICADORES.filter((i) => i.derivado).length;
+const nMedidos = INDICADORES.length - nConstruidos - nDerivados;
+
+const agendaPorEstado = (estado: string) =>
+  AGENDA.filter((a) => a.estado === estado).length;
+
+// --- Contenido redactado -----------------------------------------------------
+
+const VACIO = [
   {
     icono: "🧭",
     titulo: "Nadie produce la métrica neutral",
     texto:
-      "Las consultoras venden reportes, los gremios abogan por sus miembros y los proveedores inflan sus casos. No existía una medición independiente, citable y reproducible de la IA financiera en América Latina. Ese vacío es la razón de ser del observatorio.",
+      "Las consultoras venden reportes, los gremios abogan por sus miembros y los proveedores inflan sus casos. No existía una medición independiente, citable y reproducible de las finanzas emergentes en América Latina. Ese vacío es la razón de ser del observatorio.",
   },
   {
     icono: "⚖️",
     titulo: "La política pública se decide sin evidencia comparable",
     texto:
-      "Solo en 2026: Colombia volvió obligatorias las finanzas abiertas (Decreto 0368), Brasil puso en vigor su marco VASP (Resoluções 519–521), Argentina amplió la tokenización (RG 1150) y Chile completó sus reglas técnicas (NCG 569). Quien regula —y quien invierte— necesita ver los seis tableros a la vez.",
+      "Solo en 2026: Colombia volvió obligatorias las finanzas abiertas (Decreto 0368), Brasil puso en vigor su marco VASP (Resoluções 519–521), Argentina amplió la tokenización (RG 1150) y Chile completó sus reglas técnicas (NCG 569). Quien regula —y quien invierte— necesita ver los seis tableros con la misma vara.",
   },
   {
     icono: "🔬",
-    titulo: "Dataset abierto: insumo para papers y decisiones",
+    titulo: "Sin método abierto no hay forma de estar en desacuerdo",
     texto:
-      "Cada cifra declara fuente, año y método; el índice se recalcula con un archivo editable y los datos se descargan en CSV/JSON. Academia, reguladores y medios pueden auditar, replicar y desafiar el índice — esa es la diferencia entre opinión y evidencia.",
+      "Un ranking que no publica cómo se calcula solo se puede creer o ignorar. Aquí el índice se recalcula con un archivo editable, los pesos se mueven en pantalla y el dataset se descarga entero. Se puede replicar y se puede refutar: esa es la diferencia entre opinión y evidencia.",
   },
   {
     icono: "📈",
-    titulo: "Serie en el tiempo, no una foto",
+    titulo: "Una foto no dice nada; la serie sí",
     texto:
-      "El observatorio publica cortes comparables con la misma metodología. Entre junio y julio de 2026 Colombia ya subió 1,5 puntos por Bre-B y las finanzas abiertas obligatorias, mientras el archivo del proyecto de ley cripto la frenó. El movimiento es la noticia.",
+      "El observatorio publica cortes con la misma metodología. Entre junio y julio de 2026 Colombia subió 1,5 puntos por Bre-B y las finanzas abiertas obligatorias, mientras el archivo del proyecto de ley cripto la frenó. El movimiento es la noticia, no el puesto.",
   },
   {
     icono: "🎓",
     titulo: "Independencia académica",
     texto:
-      "El observatorio nace en la Universidad EAFIT sin patrocinio de ningún actor medido. La credibilidad —el activo que ni bancos, ni fintechs, ni vendors pueden comprar— es lo que lo convierte en referencia común para todos.",
+      "Nace en la Universidad EAFIT sin patrocinio de ningún actor medido. La credibilidad —el activo que ni bancos, ni fintechs, ni proveedores pueden comprar— es lo que lo vuelve una referencia común para todos ellos.",
   },
 ];
 
-const ENTREGA = [
-  { k: "IMIAF", v: "Índice de madurez 0–100 con 6 pilares y 17 indicadores en 6 países, más el ICF de confianza en 21 economías" },
-  { k: "Mapa & fichas", v: "Mapa interactivo, ficha por país y duelos cara a cara" },
-  { k: "Simulador", v: "Escenarios ¿y si…? que recalculan el ranking en vivo" },
-  { k: "Lentes", v: "7 lecturas por actor: inversionista, banco, fintech, regulador, gremio, academia e infraestructura de pagos" },
-  { k: "Pagos & confianza", v: "Pilar de Pagos (5 indicadores) e Índice de Confianza Financiera con la aritmética publicada" },
-  { k: "Dataset", v: "Descarga abierta en CSV/JSON con metodología documentada" },
-  { k: "Cortes", v: "Serie comparable en el tiempo (jun-2026 → jul-2026 → …)" },
-  { k: "Agenda", v: "Los 5 focos del Centro con 20 indicadores por construir (bienestar financiero, impacto…)" },
-];
-
-const ILF_TECNOLOGIA = [
+const METODO = [
   {
-    nombre: "Interledger Protocol (ILP)",
-    desc: "Estándar que enruta pagos entre ledgers y redes distintas en paquetes, como internet enruta información.",
-    url: "https://interledger.org/interledger",
+    n: "01",
+    t: "Fuente primaria o nada",
+    d: "Cada cifra sale de la API del Banco Mundial, del PDF oficial del emisor o del portal del banco central. La prensa sirve para saber dónde buscar, nunca para citar. La auditoría de julio dejó por qué: un «+24% según KPMG» citado por medios era un −8,9% en el informe original.",
   },
   {
-    nombre: "Open Payments",
-    desc: "API estándar para que las aplicaciones interactúen con cuentas mediante wallet addresses — alias públicos tipo URL.",
-    url: "https://interledger.org/open-payments",
+    n: "02",
+    t: "Se declara qué es dato y qué es construcción",
+    d: `De los ${INDICADORES.length} indicadores, ${nMedidos} son mediciones de terceros que se citan, ${nDerivados} son aritmética del Observatorio sobre cifras publicadas —con la operación escrita— y ${nConstruidos} son índices cualitativos con rúbrica propia. La marca va en el dato, no en una nota al pie.`,
   },
   {
-    nombre: "Rafiki",
-    desc: "Software open source (Apache 2.0) con el que una wallet, banco o cooperativa habilita Interledger en sus cuentas.",
-    url: "https://rafiki.dev",
+    n: "03",
+    t: "Normalización relativa al panel, declarada como tal",
+    d: "Cada indicador se lleva a 0–100 por min–max entre los países medidos, invirtiendo la escala cuando menos es mejor. Un puntaje no es una nota absoluta: dice dónde queda ese país frente a los otros de este corte. Cambiar el panel cambia los números, y por eso el panel se publica.",
   },
   {
-    nombre: "Web Monetization",
-    desc: "Micropagos automáticos y pasivos de los visitantes de un sitio web a sus creadores.",
-    url: "https://interledger.org/web-monetization",
-  },
-];
-
-const GANA_ILF = [
-  {
-    titulo: "Evidencia para focalizar sus grants en LATAM",
-    texto:
-      "Tras su mayor apuesta regional (Summit + Hackathon en Ciudad de México, nov-2025) y con la ventana de Digital Financial Services 2026 por abrir, el observatorio le dice a la Fundación dónde un dólar de grant mueve más la aguja: qué país, qué riel, qué brecha.",
+    n: "04",
+    t: "Los pesos son del lector, no del autor",
+    d: `Los ${PILARES.length} pilares pesan igual por defecto porque ninguna teoría justifica otra cosa. Pero el peso se mueve con sliders y hay ${ACTORES.length} lentes por tipo de actor: si el orden se cae al cambiar la ponderación, eso también es un hallazgo.`,
   },
   {
-    titulo: "La interoperabilidad, por fin medida",
-    texto:
-      "Su tesis es que el valor debe fluir tan fácil como la información. El observatorio convierte esa narrativa en dato citable: PIX vs. Bre-B vs. SPEI/DiMo vs. Yape/Plin vs. Transferencias 3.0, con la misma vara y cada trimestre.",
+    n: "05",
+    t: "El dato ausente se declara, no se rellena",
+    d: "Cuando un país no fue encuestado en un módulo, el valor es nulo y se omite del promedio de su pilar; no se imputa. En el ICF hay además una regla dura: con menos de la mitad de los indicadores, la economía no entra al ranking. Chile y Uruguay quedan fuera por eso.",
   },
   {
-    titulo: "Un ancla académica hispanohablante",
-    texto:
-      "Su socio académico de política pública en LATAM es lusófono (FGV, Brasil) y Colombia es un vacío visible en su portafolio de grantees. EAFIT llena el hueco hispano con capacidad de investigación instalada y un observatorio ya operando.",
-  },
-  {
-    titulo: "Datos para abogar ante los reguladores andinos",
-    texto:
-      "Sus Public Policy Activation Grants financian investigación y diálogo estructurado con reguladores, pero exigen conocimiento local del paisaje normativo. El observatorio lo aporta llave en mano: URF y Banco de la República en Colombia, CNBV en México, SBS en Perú.",
-  },
-  {
-    titulo: "El termómetro de la capa de IA sobre los rieles",
-    texto:
-      "La Fundación mide rieles de pago; el observatorio mide la IA que se monta sobre ellos — scoring, agentes de pago, prevención de fraude — y cómo amplía o cierra la exclusión del ~70% de población sub-bancarizada que ellos mismos citan para la región.",
-  },
-  {
-    titulo: "Pipeline de talento y casos de uso",
-    texto:
-      "Semilleros, cursos y hackathones-satélite en EAFIT sobre Open Payments con datos reales del observatorio: estudiantes, prototipos y visibilidad universitaria en el país andino donde la Fundación aún no tiene grantee.",
+    n: "06",
+    t: "Corregir a la vista es parte del método",
+    d: "Toda cifra que corrige una ya publicada queda en la auditoría con fecha, valor anterior, valor nuevo y razón. Tres correcciones en julio de 2026: Bre-B se estaba anualizando sobre el pico de un solo día, PIX cambió de base, y el costo de remesas usaba el índice de los servicios más baratos en vez del promedio.",
   },
 ];
 
-const RUTAS = [
+const HALLAZGOS = [
   {
-    cuando: "Ahora (hasta 31-jul-2026)",
-    que: "Interledger on Campus: mini-grants de hasta US$5.000 para clubes estudiantiles — un semillero EAFIT sobre Open Payments con datos del observatorio.",
-    url: "https://interledger.org/grant/education/on-campus",
+    color: "#E8825A",
+    kicker: "Madurez ≠ confianza",
+    t: "Colombia construyó el riel y no logró que se use",
+    d: `Queda ${puestoColombia}ª de ${PAISES.length} en el IMIAF y ${puestoColombiaICF}ª de ${icf.length} en el ICF, con una de las regulaciones de finanzas abiertas más ambiciosas de la región. Tener infraestructura y marco normativo no produce confianza por sí solo.`,
+    href: "/pagos#confianza",
+    cta: "Ver el ICF",
   },
   {
-    cuando: "Q3-2026 (reapertura esperada)",
-    que: "Call for Papers: US$5.000 por paper sobre interoperabilidad, inclusión y marcos regulatorios — el dataset del observatorio como base empírica.",
-    url: "https://interledger.org/grant/call-for-papers",
+    color: "#1FC9A0",
+    kicker: "El freno no es el miedo",
+    t: "La desconfianza casi no se declara: se revela en el uso",
+    d: "Solo el 2,7% de los colombianos que pagan en efectivo dice desconfiar de pagar con tarjeta o celular; el 94% lo hace por costumbre. El freno está en el hábito y en la aceptación del comercio. Por eso el ICF pesa más lo revelado que lo declarado.",
+    href: "/pagos",
+    cta: "Ver el pilar de pagos",
   },
   {
-    cuando: "2026 (por anunciar)",
-    que: "NextGen Higher Education: hasta US$50.000 para instituciones de educación superior; y la ventana 2026 de Digital Financial Services (hasta US$250.000).",
-    url: "https://interledger.org/grant/education/nextgen",
+    color: "#6C5CD6",
+    kicker: "Crédito",
+    t: "Seis de cada diez créditos de la región son informales",
+    d: "En 21 economías, apenas el 38,8% de quienes se endeudaron usó el sistema formal; el resto fue a la familia, al prestamista o al gota a gota. Colombia tiene la peor formalidad del panel: 26,8%. Abrir cuentas no resuelve esto.",
+    href: "/pagos",
+    cta: "Ver el panel LATAM",
   },
   {
-    cuando: "Vía policy@interledger.org",
-    que: "Public Policy Activation: evidencia del observatorio en submissions formales ante URF, SFC y pares andinos por estándares abiertos e interoperables.",
-    url: "https://interledger.org/grant/public-policy-activation",
+    color: "#9FCE2E",
+    kicker: "Segmentos",
+    t: "El problema de confianza colombiano tiene género, ingreso y territorio",
+    d: `Sobre ${icfs.length} observaciones país×segmento, Colombia es el único país del panel con las tres brechas por encima de 19 puntos a la vez: género +19,0 · ingreso +21,8 · territorio +22,7. Su 60% más rico está en el promedio regional; su población rural, por debajo de casi cualquier segmento de cualquier otro país.`,
+    href: "/pagos#segmentos",
+    cta: "Ver el ICF-S",
   },
   {
-    cuando: "Summit 2026 (sede sin anunciar)",
-    que: "Proponer a Medellín como sede o escala del Interledger Summit 2026: la alianza le da a la Fundación un anfitrión académico y un caso regional (Bre-B) en pleno despegue.",
-    url: "https://interledger.org/summit",
+    color: "#5BD0E0",
+    kicker: "Regulación",
+    t: "La región adopta como nadie y no escribe casi ninguna regla",
+    d: "De las 32 medidas regulatorias que están definiendo el futuro de estos rieles, ninguna es colombiana y solo una es brasileña. América Latina lidera el mundo en pagos inmediatos por habitante y no tiene autoría sobre las normas que van a gobernarlos.",
+    href: "/frontera",
+    cta: "Ver el radar regulatorio",
   },
+  {
+    color: "#B79CED",
+    kicker: "Inclusión de papel",
+    t: "96,3% con producto financiero frente a 57,1% que dice tener cuenta",
+    d: "39 puntos de diferencia entre los registros de la Superintendencia y lo que la gente declara en la encuesta del Findex. No es que una fuente esté equivocada: la brecha es el hallazgo. Hay cuentas abiertas que su titular no reconoce como suyas.",
+    href: "/frontera#colombia",
+    cta: "Ver las brechas de Colombia",
+  },
+];
+
+const LIMITES = [
+  {
+    t: "No califica instituciones ni productos",
+    d: "Mide países. No hay ranking de bancos, ni de fintechs, ni de aplicaciones. Ningún actor medido puede aparecer premiado o castigado por nombre.",
+  },
+  {
+    t: "No es una escala absoluta",
+    d: "Un 85 no significa «maduro» en abstracto: significa que ese país está arriba entre los seis medidos en este corte. Cambiar el panel cambia todos los puntajes.",
+  },
+  {
+    t: "No predice",
+    d: "No hay proyecciones ni pronósticos. La sección de prospectiva recoge hitos anunciados por terceros, con su grado de certeza declarado, y los marca como tales.",
+  },
+  {
+    t: "No mide lo que no tiene fuente comparable",
+    d: `Finanzas sostenibles y conducta son focos del Centro sin datos comparables entre los seis países. Aparecen en la agenda como vacíos, no rellenados con estimaciones: ${agendaPorEstado("por-construir")} de los ${AGENDA.length} indicadores están por construir.`,
+  },
+  {
+    t: "No sustituye al dato oficial",
+    d: "Compila y cita; no relicencia. Cada cifra trae su URL para que quien la use vaya a la fuente. Los datos de terceros conservan las condiciones de su emisor.",
+  },
+  {
+    t: "No se declara infalible",
+    d: "Ha corregido cifras propias en público y las dejó anotadas con fecha y razón. Un observatorio que nunca se corrige no es más preciso: es menos transparente.",
+  },
+];
+
+const RUTAS_SITIO = [
+  { href: "/", t: "Inicio", d: "Ranking con pesos ajustables, mapa por capa, fichas y duelos país contra país." },
+  { href: "/pagos", t: "Pagos & confianza", d: "El pilar de pagos, el ICF sobre 21 economías, el ICF-S por segmento y el panel LATAM completo." },
+  { href: "/frontera", t: "Frontera", d: "Radar de 32 medidas regulatorias, línea de tiempo prospectiva, 36 tendencias y las brechas de Colombia." },
+  { href: "/agenda", t: "Agenda", d: `Los ${FOCOS.length} focos del Centro de Innovación Financiera y los ${AGENDA.length} indicadores de la siguiente etapa.` },
+  { href: "/roadmap", t: "Roadmap", d: "Hoja de ruta fintech para Colombia en tres horizontes, con KPI por acción." },
+  { href: "/metodologia", t: "Metodología", d: "Cómo se calcula todo, con la aritmética de cada derivado y la auditoría de correcciones." },
 ];
 
 export default function Presentacion() {
@@ -149,25 +213,42 @@ export default function Presentacion() {
       <header className="border-b border-white/8">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <span className="mb-5 inline-block rounded-full border border-lime/35 bg-lime/10 px-4 py-1.5 text-[13px] font-semibold text-lime">
-            Presentación · {META.marca} · {META.institucion}
+            {META.marca} · {META.institucion} · {META.version}, corte de {META.curado}
           </span>
-          <h1 className="max-w-[24ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
-            Medir la IA financiera de América Latina{" "}
-            <span className="text-teal">para que alguien más pueda actuar</span>
+          <h1 className="max-w-[22ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
+            Mide si el sistema financiero de la región{" "}
+            <span className="text-teal">de verdad le llegó a la gente</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg font-light text-fg/80">
-            Un observatorio no compite en el mercado que observa: produce el
-            bien público que a ese mercado le falta — evidencia neutral,
-            comparable y abierta. Esta es la presentación del Observatorio, y la
-            propuesta de recorrerlo junto a un aliado:{" "}
-            <b className="font-semibold text-fg">la Interledger Foundation</b>.
+          <p className="mt-5 max-w-3xl text-lg font-light text-fg/80">
+            El Observatorio Find es un instrumento de medición público: convierte
+            fuentes primarias dispersas —encuestas del Banco Mundial, estadísticas
+            del BIS, cifras de bancos centrales, marcos normativos— en tres
+            índices comparables, con el método abierto y cada cifra citada. No
+            vende un reporte ni defiende a un gremio. Produce la evidencia que a
+            esta conversación le faltaba.
           </p>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: `${PILARES.length}`, l: "pilares", d: `${INDICADORES.length} indicadores en ${PAISES.length} países` },
+              { n: `${icf.length}`, l: "economías en el ICF", d: `de ${LATAM.length} del panel latinoamericano` },
+              { n: `${icfs.length}`, l: "observaciones por segmento", d: "género, ingreso y territorio" },
+              { n: `${FUENTES.length}`, l: "fuentes primarias", d: "cada cifra con su URL y su año" },
+            ].map((k) => (
+              <div key={k.l} className="card p-5">
+                <div className="tabnum text-3xl font-extrabold text-teal">{k.n}</div>
+                <div className="mt-0.5 text-sm font-semibold text-fg">{k.l}</div>
+                <div className="mt-1 text-[12px] leading-relaxed text-muted">{k.d}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-9 flex flex-wrap gap-3">
             <a
-              href="#aliado"
+              href="#que-mide"
               className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
             >
-              Ver la alianza propuesta
+              Ver qué mide
             </a>
             <a
               href="/"
@@ -179,7 +260,33 @@ export default function Presentacion() {
         </div>
       </header>
 
-      {/* ALCANCE: finanzas emergentes → fintech → IA */}
+      {/* EL VACÍO */}
+      <section className="border-b border-white/8 bg-white/[0.02]">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            La pregunta de fondo
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            ¿Por qué hace falta un observatorio?
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            Un observatorio no compite en el mercado que observa: produce el bien
+            público que a ese mercado le falta. Cinco razones por las que este,
+            aquí y ahora.
+          </p>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {VACIO.map((p) => (
+              <div key={p.titulo} className="card p-6">
+                <div className="text-3xl">{p.icono}</div>
+                <h3 className="mt-3 font-bold text-fg">{p.titulo}</h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">{p.texto}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ALCANCE */}
       <section className="border-b border-white/8">
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
@@ -190,19 +297,16 @@ export default function Presentacion() {
           </h2>
           <p className="mb-8 max-w-3xl text-[15px] text-muted">
             El observatorio es el instrumento de medición del{" "}
-            <b className="text-fg">Centro de Innovación Financiera</b> de
-            EAFIT, que trabaja cinco focos estratégicos: finanzas para el
-            desarrollo, sostenibles y climáticas, conductuales, emergentes y
-            seguras. Las finanzas emergentes abarcan mucho más de lo que un
-            índice puede medir con rigor — DeFi, infraestructura digital,
-            tecnologías de frontera. Por eso el recorte se declara: dentro de
-            ese mundo amplio, esta etapa mide el segmento fintech, con la IA
-            como lente transversal. Los demás focos entran con la{" "}
+            <b className="text-fg">Centro de Innovación Financiera</b> de EAFIT,
+            que trabaja cinco focos estratégicos. Las finanzas emergentes abarcan
+            mucho más de lo que un índice puede medir con rigor. Por eso el
+            recorte se declara: dentro de ese mundo amplio, esta etapa mide el
+            segmento fintech, con la IA como lente transversal. Los demás focos
+            entran por la{" "}
             <a href="/agenda" className="text-teal hover:underline">
               agenda de medición
             </a>{" "}
-            — bienestar financiero, impacto, conducta — a medida que existan
-            datos comparables entre los seis países.
+            a medida que existan datos comparables entre los seis países.
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             <div className="card p-6" style={{ borderColor: "rgba(255,255,255,0.14)" }}>
@@ -211,9 +315,9 @@ export default function Presentacion() {
               </div>
               <h3 className="mt-1.5 font-bold text-fg">Finanzas emergentes</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
-                Todo lo que está redefiniendo el sistema financiero: DeFi,
-                CBDCs, stablecoins, open finance, insurtech, microfinanzas
-                digitales, embedded finance.
+                Todo lo que está redefiniendo el sistema financiero: DeFi, CBDCs,
+                stablecoins, open finance, insurtech, microfinanzas digitales,
+                embedded finance.
               </p>
             </div>
             <div className="card p-6" style={{ borderColor: "rgba(31,201,160,0.45)" }}>
@@ -223,8 +327,8 @@ export default function Presentacion() {
               <h3 className="mt-1.5 font-bold text-teal">Fintech</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
                 El segmento con datos comparables hoy: ecosistema de startups,
-                rieles de pago instantáneo, crédito e inclusión, cripto-activos
-                y los marcos que los regulan en los seis países.
+                rieles de pago instantáneo, crédito e inclusión, cripto-activos y
+                los marcos que los regulan en los seis países.
               </p>
             </div>
             <div className="card p-6" style={{ borderColor: "rgba(159,206,46,0.45)" }}>
@@ -233,281 +337,418 @@ export default function Presentacion() {
               </div>
               <h3 className="mt-1.5 font-bold text-lime">IA financiera</h3>
               <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
-                La pregunta que atraviesa todos los pilares: cómo el scoring,
-                los agentes y la prevención de fraude con IA amplían — o
-                cierran — las brechas del sistema.
+                La pregunta que atraviesa todos los pilares: cómo el scoring, los
+                agentes y la prevención de fraude con IA amplían — o cierran — las
+                brechas del sistema.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* POR QUÉ */}
-      <section className="border-b border-white/8 bg-white/[0.02]">
+      {/* QUÉ MIDE: LOS TRES ÍNDICES */}
+      <section id="que-mide" className="border-b border-white/8 bg-white/[0.02]">
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
-            La pregunta de fondo
+            Qué mide
           </div>
-          <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
-            ¿Por qué es importante un observatorio?
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Tres índices que responden tres preguntas distintas
           </h2>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {PORQUE.map((p) => (
-              <div key={p.titulo} className="card p-6">
-                <div className="text-3xl">{p.icono}</div>
-                <h3 className="mt-3 font-bold text-fg">{p.titulo}</h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-muted">
-                  {p.texto}
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            Construir la infraestructura, lograr que la gente confíe en ella y
+            que todos confíen por igual son tres cosas diferentes. Medirlas con
+            un solo número las confunde.
+          </p>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            {[
+              {
+                sigla: "IMIAF",
+                color: "#1FC9A0",
+                nombre: "Índice de Madurez de IA Financiera",
+                pregunta: "¿Qué tan madura es la infraestructura financiera del país?",
+                alcance: `${PILARES.length} pilares · ${INDICADORES.length} indicadores · ${PAISES.length} países`,
+                d: "Combina inclusión, pagos, ecosistema de IA, integridad, tokenización y regulación. Es el tablero de la oferta: lo que el sistema pone a disposición.",
+              },
+              {
+                sigla: "ICF",
+                color: "#E8825A",
+                nombre: "Índice de Confianza Financiera",
+                pregunta: "¿Confía la gente lo suficiente como para usarla?",
+                alcance: `${DIMENSIONES.length} dimensiones · ${INDICADORES_ICF.length} indicadores · ${icf.length} economías rankeadas`,
+                d: "Pesa más lo revelado que lo declarado: qué hace la gente con su dinero, no qué dice en una encuesta. Es el tablero de la demanda.",
+              },
+              {
+                sigla: "ICF-S",
+                color: "#9FCE2E",
+                nombre: "Confianza por segmento",
+                pregunta: "¿Confía toda la gente por igual?",
+                alcance: `${icfs.length} observaciones país×segmento`,
+                d: "El mismo índice, en versión reducida, desagregado por género, ingreso y territorio. Un promedio nacional puede esconder tres países dentro del mismo país.",
+              },
+            ].map((i) => (
+              <div key={i.sigla} className="card p-6" style={{ borderColor: `${i.color}55` }}>
+                <div className="text-2xl font-extrabold tracking-tight" style={{ color: i.color }}>
+                  {i.sigla}
+                </div>
+                <div className="mt-0.5 text-[13px] font-semibold text-fg">{i.nombre}</div>
+                <p className="mt-3 text-[14px] font-medium leading-snug text-fg/85">
+                  {i.pregunta}
                 </p>
+                <p className="mt-2.5 text-[13px] leading-relaxed text-muted">{i.d}</p>
+                <div className="mt-4 border-t border-white/8 pt-3 text-[12px] text-muted">
+                  {i.alcance}
+                </div>
               </div>
             ))}
-            <div
-              className="card p-6"
-              style={{
-                background:
-                  "linear-gradient(120deg, rgba(31,201,160,0.10), rgba(108,92,214,0.08))",
-              }}
-            >
-              <div className="text-3xl">📦</div>
-              <h3 className="mt-3 font-bold text-fg">Lo que entrega hoy</h3>
-              <ul className="mt-2 space-y-1.5 text-[13px] leading-relaxed text-muted">
-                {ENTREGA.map((e) => (
-                  <li key={e.k}>
-                    <b className="text-teal">{e.k}:</b> {e.v}
-                  </li>
-                ))}
-              </ul>
+          </div>
+
+          {/* Los pilares */}
+          <h3 className="mt-12 mb-5 text-lg font-extrabold tracking-tight">
+            Los {PILARES.length} pilares del IMIAF
+          </h3>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {PILARES.map((pl) => {
+              const inds = INDICADORES.filter((i) => i.pilar === pl.key);
+              return (
+                <div key={pl.key} className="card p-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h4 className="font-bold" style={{ color: pl.color }}>
+                      {pl.nombre}
+                    </h4>
+                    <span className="tabnum shrink-0 text-[12px] text-muted">
+                      {inds.length} ind.
+                    </span>
+                  </div>
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted">{pl.desc}</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {inds.map((i) => (
+                      <span
+                        key={i.key}
+                        className="rounded-full border border-white/10 px-2 py-0.5 text-[11px] text-muted"
+                      >
+                        {i.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Ranking vigente */}
+          <div className="card mt-8 p-6">
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="text-lg font-extrabold tracking-tight">
+                Cómo queda el IMIAF hoy
+              </h3>
+              <span className="text-[12px] text-muted">
+                pesos iguales · corte de {META.curado}
+              </span>
+            </div>
+            <div className="space-y-2">
+              {ranking.map((f, n) => {
+                const b = banda(f.indice);
+                return (
+                  <div key={f.code} className="flex items-center gap-3">
+                    <span className="tabnum w-5 text-right text-[12px] text-muted">{n + 1}</span>
+                    <span className="w-32 shrink-0 text-[13px] font-semibold text-fg">
+                      {PAISES.find((p) => p.code === f.code)?.flag} {nombrePais(f.code)}
+                    </span>
+                    <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-white/6">
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${f.indice}%`,
+                          background: `linear-gradient(90deg, ${b.color}99, ${b.color})`,
+                        }}
+                      />
+                    </div>
+                    <span className="tabnum w-12 text-right text-[13px] font-bold text-fg">
+                      {f.indice.toFixed(1)}
+                    </span>
+                    <span className="hidden w-32 text-[12px] text-muted sm:inline">
+                      {b.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mt-4 text-[12px] leading-relaxed text-muted">
+              Los puntajes son relativos a estos {PAISES.length} países, no una escala
+              absoluta. {nombrePais(lider.code)} marca el techo del panel con{" "}
+              {lider.indice.toFixed(1)} y {nombrePais(ultimo.code)} el piso con{" "}
+              {ultimo.indice.toFixed(1)}.{" "}
+              {colombia && (
+                <>
+                  Colombia queda {puestoColombia}ª con {colombia.indice.toFixed(1)}.{" "}
+                </>
+              )}
+              En el inicio se pueden mover los pesos y ver si el orden aguanta.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CÓMO SE CONSTRUYE */}
+      <section className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            Cómo se construye
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Seis reglas que sostienen todo lo demás
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            El método completo está en{" "}
+            <a href="/metodologia" className="text-teal hover:underline">
+              /metodologia
+            </a>
+            , con la aritmética de cada cálculo propio. Estas son las reglas que lo
+            gobiernan.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {METODO.map((m) => (
+              <div key={m.n} className="card p-5">
+                <div className="tabnum text-lg font-extrabold text-teal">{m.n}</div>
+                <h3 className="mt-1.5 text-[15px] font-bold leading-snug text-fg">{m.t}</h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">{m.d}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Las tres marcas */}
+          <div className="card mt-6 p-6">
+            <h3 className="mb-4 text-sm font-bold text-teal">
+              La línea entre lo medido y lo construido, en el propio dato
+            </h3>
+            <div className="grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  t: "Dato de tercero",
+                  n: nMedidos,
+                  d: "Medido y publicado por la fuente que se cita. El observatorio solo lo recoge y lo compara.",
+                  ej: "Tenencia de cuenta (Global Findex 2025)",
+                },
+                {
+                  t: "Derivado",
+                  n: nDerivados,
+                  d: "Aritmética del Observatorio sobre cifras publicadas. La operación va escrita en la descripción del indicador.",
+                  ej: "Pagos inmediatos por adulto = transacciones del riel ÷ población adulta",
+                },
+                {
+                  t: "Construido",
+                  n: nConstruidos,
+                  d: "Índice cualitativo con rúbrica propia, para lo que ningún organismo mide todavía. La rúbrica se publica.",
+                  ej: "Madurez de pagos inmediatos · Interoperabilidad transfronteriza",
+                },
+              ].map((m) => (
+                <div key={m.t}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="tabnum text-2xl font-extrabold text-fg">{m.n}</span>
+                    <span className="text-[13px] font-bold text-teal">{m.t}</span>
+                  </div>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{m.d}</p>
+                  <p className="mt-2 text-[12px] italic leading-relaxed text-muted/80">{m.ej}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* LO QUE V4 AGREGA PARA INTERLEDGER */}
-      <section id="pagos-ilf" className="border-b border-white/8">
+      {/* QUÉ ENCUENTRA */}
+      <section className="border-b border-white/8 bg-white/[0.02]">
         <div className="mx-auto max-w-6xl px-6 py-14">
-          <div
-            className="mb-1 text-xs font-bold uppercase tracking-[0.16em]"
-            style={{ color: "#E8825A" }}
-          >
-            Nuevo en v4 · construido sobre el foco de la Fundación
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            Qué encuentra
           </div>
           <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
-            Pagos y confianza, ya medidos
+            Seis hallazgos que no estaban publicados
           </h2>
           <p className="mb-8 max-w-3xl text-[15px] text-muted">
-            La Fundación pone el foco en la confianza y en el mundo de los pagos.
-            El observatorio los incorporó al índice como{" "}
-            <b className="text-fg">pilar propio</b> y como{" "}
-            <b className="text-fg">índice complementario</b>, con fuentes
-            primarias y la aritmética publicada. Cuatro hallazgos ordenan la
-            agenda:
+            No son opiniones: cada uno sale de una cifra con fuente y se puede
+            seguir hasta el indicador que lo produce.
           </p>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              {
-                n: "01",
-                t: "El riel doméstico está resuelto; el cruce de frontera, no",
-                d: "Brasil hace 498 pagos inmediatos por adulto al año y Argentina 237 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
-              },
-              {
-                n: "02",
-                t: "Colombia es el vacío más grande frente al tamaño de su diáspora",
-                d: "Las remesas ya son 2,87% del PIB colombiano y Bre-B nació sin conexión al exterior: el propio Banco de la República la señala como pendiente. Es el punto exacto donde un estándar abierto de pagos cambia el resultado — y el país donde la Fundación aún no tiene grantee.",
-              },
-              {
-                n: "03",
-                t: "El freno del pago digital no es el miedo a la tecnología",
-                d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en pagar con tarjeta o celular. La desconfianza no está en el riel: está en la institución del otro lado. Seis de cada diez latinoamericanos que se endeudaron no usaron el sistema formal.",
-              },
-              {
-                n: "04",
-                t: "La confianza medible pone a Colombia de último",
-                d: "El ICF ordena 16 economías con datos comparables y Colombia queda 16ª, con regulación de finanzas abiertas entre las más ambiciosas de la región. Madurez y confianza no son lo mismo — y hasta ahora nadie publicaba la segunda con fuentes primarias.",
-              },
-            ].map((c) => (
-              <div key={c.n} className="card p-5">
-                <div className="mb-2 flex items-start gap-3">
-                  <span
-                    className="tabnum text-lg font-extrabold leading-none"
-                    style={{ color: "#E8825A" }}
-                  >
-                    {c.n}
-                  </span>
-                  <h3 className="text-[15px] font-bold leading-snug text-fg">
-                    {c.t}
-                  </h3>
+          <div className="grid gap-5 md:grid-cols-2">
+            {HALLAZGOS.map((h) => (
+              <div key={h.t} className="card flex flex-col p-6">
+                <div
+                  className="text-[11px] font-bold uppercase tracking-[0.14em]"
+                  style={{ color: h.color }}
+                >
+                  {h.kicker}
                 </div>
-                <p className="text-[13px] leading-relaxed text-muted">{c.d}</p>
+                <h3 className="mt-1.5 text-[17px] font-bold leading-snug text-fg">{h.t}</h3>
+                <p className="mt-2.5 flex-1 text-[13px] leading-relaxed text-muted">{h.d}</p>
+                <a
+                  href={h.href}
+                  className="mt-4 text-[13px] font-semibold hover:underline"
+                  style={{ color: h.color }}
+                >
+                  {h.cta} →
+                </a>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="card mt-5 p-5">
-            <h3 className="mb-2 text-sm font-bold text-teal">
-              Y lo que todavía no se puede medir — la propuesta de trabajo
-            </h3>
-            <p className="text-[13px] leading-relaxed text-muted">
-              No existe un dato mundial comparable de transacciones por persona
-              (el Red Book del BIS cubre 26 jurisdicciones; de la región, tres).
-              La única serie de desconfianza con cobertura casi mundial solo se le
-              pregunta a quien no tiene cuenta. El fraude se mide con encuestas de
-              industria de metodología propietaria. Y la interoperabilidad
-              transfronteriza no tiene indicador en ningún organismo. El
-              observatorio ya construyó un primer intento de los cuatro y publica
-              cómo: eso es exactamente lo que un grant de investigación puede
-              volver estándar.{" "}
-              <a href="/pagos" className="text-teal underline">
-                Ver el módulo completo →
+      {/* PARA QUIÉN */}
+      <section className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            Para quién
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            El mismo dato, {ACTORES.length} lecturas distintas
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            Un inversionista y un regulador no le preguntan lo mismo a estas
+            cifras. En el inicio, cada lente reordena los pesos del índice según
+            lo que a ese actor le importa — y muestra qué cambia cuando cambia la
+            pregunta.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {ACTORES.map((a) => (
+              <div key={a.key} className="card p-5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">{a.emoji}</span>
+                  <h3 className="font-bold text-fg">{a.label}</h3>
+                </div>
+                <p className="mt-2 text-[12px] font-medium leading-relaxed text-teal">
+                  {a.leImporta}
+                </p>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">{a.insight}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LÍMITES */}
+      <section className="border-b border-white/8 bg-white/[0.02]">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-amber">
+            Los límites, declarados
+          </div>
+          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Lo que el observatorio no hace
+          </h2>
+          <p className="mb-8 max-w-3xl text-[15px] text-muted">
+            Un instrumento que no declara su alcance invita a que lo usen mal.
+            Estas son las seis cosas que este no pretende ser.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {LIMITES.map((l) => (
+              <div key={l.t} className="card p-5">
+                <h3 className="text-[15px] font-bold leading-snug text-fg">{l.t}</h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">{l.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RECORRIDO */}
+      <section className="border-b border-white/8">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
+            Cómo recorrerlo
+          </div>
+          <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
+            Seis secciones, seis preguntas
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {RUTAS_SITIO.map((r) => (
+              <a
+                key={r.href}
+                href={r.href}
+                className="card block p-5 transition hover:border-teal/40"
+              >
+                <div className="flex items-baseline gap-2">
+                  <h3 className="font-bold text-teal">{r.t}</h3>
+                  <span className="text-[11px] text-muted">{r.href}</span>
+                </div>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{r.d}</p>
+              </a>
+            ))}
+          </div>
+
+          <div className="card mt-6 p-6">
+            <h3 className="mb-2 text-sm font-bold text-teal">Qué sigue</h3>
+            <p className="max-w-3xl text-[13px] leading-relaxed text-muted">
+              La agenda de medición lista {AGENDA.length} indicadores para los{" "}
+              {FOCOS.length} focos del Centro:{" "}
+              <b className="text-fg">{agendaPorEstado("operando")} ya operan</b> dentro
+              del IMIAF,{" "}
+              <b className="text-fg">{agendaPorEstado("proximo-corte")} tienen fuente
+              identificada</b>{" "}
+              y entran en un corte próximo, y{" "}
+              <b className="text-fg">{agendaPorEstado("por-construir")} exigen
+              levantamiento propio o alianzas</b>. Entre estos últimos está la pieza
+              bandera: un índice de bienestar financiero adaptado a la informalidad
+              latinoamericana.{" "}
+              <a href="/agenda" className="text-teal underline">
+                Ver la agenda completa →
               </a>
             </p>
           </div>
         </div>
       </section>
 
-      {/* ALIADO */}
-      <section id="aliado" className="border-b border-white/8">
-        <div className="mx-auto max-w-6xl px-6 py-14">
-          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-lime">
-            El aliado — no un cliente
-          </div>
-          <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
-            Interledger Foundation: la misma misión, desde el otro extremo del
-            riel
-          </h2>
-          <p className="mb-8 max-w-3xl text-[15px] text-muted">
-            La Interledger Foundation es una fundación sin ánimo de lucro cuya
-            visión es la <i>Internet of Opportunity</i>: un mundo donde{" "}
-            <b className="text-fg">
-              enviar un pago sea tan fácil como enviar un correo
-            </b>
-            . Entre 2020 y 2025 invirtió más de{" "}
-            <b className="text-fg">US$21 millones en 271 proyectos de 42 países</b>{" "}
-            para que nadie quede por fuera de la economía digital. Ellos
-            construyen y financian los rieles abiertos; el observatorio mide si
-            la región los está aprovechando. Por eso la relación correcta no es
-            proveedor-cliente sino co-creación de evidencia: un aliado que
-            financia y usa el bien público, no que lo compra.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {ILF_TECNOLOGIA.map((t) => (
-              <a
-                key={t.nombre}
-                href={t.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card block p-5 transition hover:border-teal/40"
-              >
-                <div className="text-sm font-bold text-teal">{t.nombre}</div>
-                <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
-                  {t.desc}
-                </p>
-              </a>
-            ))}
-          </div>
-
-          <h3 className="mt-12 mb-6 text-xl font-extrabold tracking-tight">
-            ¿Qué ganaría Interledger con el Observatorio?
-          </h3>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {GANA_ILF.map((g, i) => (
-              <div key={g.titulo} className="card p-6">
-                <div
-                  className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg text-sm font-extrabold"
-                  style={{ background: "rgba(159,206,46,0.15)", color: "#9FCE2E" }}
-                >
-                  {i + 1}
-                </div>
-                <h4 className="font-bold text-fg">{g.titulo}</h4>
-                <p className="mt-2 text-[13px] leading-relaxed text-muted">
-                  {g.texto}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-8 max-w-3xl text-[13px] leading-relaxed text-muted">
-            ¿Y qué gana el Observatorio? Sostenibilidad para la investigación
-            (fellowships y papers financiados), una red global de práctica en
-            pagos abiertos, y el foco que más le falta a la conversación
-            regional: la interoperabilidad como métrica, no como eslogan.
-          </p>
-        </div>
-      </section>
-
-      {/* RUTAS CONCRETAS */}
-      <section className="border-b border-white/8 bg-white/[0.02]">
-        <div className="mx-auto max-w-6xl px-6 py-14">
-          <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
-            De la idea al primer paso
-          </div>
-          <h2 className="mb-8 text-2xl font-extrabold tracking-tight md:text-3xl">
-            Cinco rutas concretas para activar la alianza
-          </h2>
-          <div className="space-y-4">
-            {RUTAS.map((r) => (
-              <a
-                key={r.que}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card grid gap-2 p-5 transition hover:border-teal/40 md:grid-cols-[220px_1fr] md:items-baseline"
-              >
-                <span className="text-sm font-bold text-lime">{r.cuando}</span>
-                <span className="text-[14px] leading-relaxed text-fg/85">
-                  {r.que}
-                </span>
-              </a>
-            ))}
-          </div>
-          <p className="mt-6 text-[12px] text-muted">
-            Programas y fechas verificados en interledger.org al 10 de julio de
-            2026; los montos y ventanas pueden cambiar con cada convocatoria.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* CIERRE */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div
-            className="card p-8 text-center md:p-10"
+            className="card p-8 md:p-10"
             style={{
               background:
                 "linear-gradient(120deg, rgba(31,201,160,0.12), rgba(108,92,214,0.10))",
             }}
           >
-            <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
-              La evidencia ya está publicada. Falta recorrerla juntos.
+            <h2 className="max-w-[28ch] text-2xl font-extrabold tracking-tight md:text-3xl">
+              Está publicado para que lo uses — y para que lo discutas
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-[15px] text-fg/80">
-              El observatorio es un bien público en operación: índice, mapa,
-              simulador y dataset abierto, curados a {META.curado}. La alianza
-              con Interledger lo convertiría, además, en el instrumento de
-              medición de la interoperabilidad financiera de América Latina.
+            <p className="mt-3 max-w-2xl text-[15px] text-fg/80">
+              El dataset se descarga completo en CSV y JSON, el código es abierto
+              y la metodología está escrita con sus límites. Si una cifra está
+              mal, la corrección se publica con fecha y razón. Eso es lo que hace
+              que un ranking valga algo.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <a
-                href="/"
-                className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
-              >
-                Explorar el observatorio
-              </a>
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="/#datos"
-                className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
+                className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
               >
                 Descargar el dataset
               </a>
               <a
-                href="https://interledger.org/es"
+                href="/metodologia"
+                className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
+              >
+                Leer la metodología
+              </a>
+              <a
+                href="https://github.com/sjimenezlon/observatorio-find"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-fg/80 transition hover:text-fg"
               >
-                Conocer a Interledger →
+                Ver el código →
               </a>
+            </div>
+
+            <div className="mt-8 border-t border-white/10 pt-5">
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
+                Cita sugerida
+              </div>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-fg/75">
+                {META.marca} · IA Financiera LATAM (2026). {META.institucion}.
+                Índice IMIAF {META.version}, corte de {META.curado}.
+                https://observatorio-find.vercel.app
+              </p>
             </div>
           </div>
         </div>
@@ -520,16 +761,21 @@ export default function Presentacion() {
             <span className="text-lg font-extrabold tracking-tight text-fg">
               fin<span className="text-lime">d</span>
             </span>
-            <a href="/metodologia" className="text-teal hover:underline">
-              Metodología completa →
-            </a>
+            <div className="flex flex-wrap gap-5">
+              <a href="/metodologia" className="text-teal hover:underline">
+                Metodología completa →
+              </a>
+              <a href="/aliados" className="text-muted hover:text-fg">
+                Aliados
+              </a>
+            </div>
           </div>
           <p className="mt-4 max-w-3xl text-[12px] leading-relaxed text-muted/80">
-            {META.marca} · {META.institucion}. Los datos de la Interledger
-            Foundation provienen de interledger.org y fuentes citadas
-            (verificados el 10-jul-2026). Esta página es una propuesta de
-            alianza académica, no un documento comercial ni una comunicación
-            oficial de la Fundación.
+            {META.marca} · {META.institucion}. Datos curados a {META.curado} y
+            auditados el {META.auditoria}. Los índices IMIAF, ICF e ICF-S son
+            construcciones del Observatorio con normalización relativa al panel
+            medido; no son escalas absolutas. Los datos de terceros conservan la
+            licencia de su fuente original.
           </p>
         </div>
       </footer>

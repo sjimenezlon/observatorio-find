@@ -23,7 +23,7 @@ Los tres normalizan min–max **relativo al panel medido**: un puntaje solo tien
 frente a los otros países del mismo corte, no como escala absoluta.
 
 **Ranking IMIAF, corte de julio de 2026 (pesos iguales):**
-Brasil 85,9 · Chile 60,0 · Argentina 48,0 · México 32,6 · Perú 24,9 · Colombia 19,7.
+Brasil 85,9 · Chile 60,7 · Argentina 48,4 · México 32,6 · Perú 25,2 · Colombia 19,6.
 
 ## Tres hallazgos
 
