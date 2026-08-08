@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://observatorio-find.vercel.app"),
   title: "Observatorio Find · Inteligencia Financiera LATAM",
   description:
-    "Sistema público de evidencia para comparar IA financiera, pagos y confianza en América Latina: 6 países, 17 indicadores y un panel de 21 economías. Universidad EAFIT.",
+    "Sistema público de evidencia para comparar inclusión, fintech, regulación, pagos, confianza y riesgo financiero en América Latina. Universidad EAFIT.",
   openGraph: {
     title: "Find · Inteligencia financiera latinoamericana",
     description:

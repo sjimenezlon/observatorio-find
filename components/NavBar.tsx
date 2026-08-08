@@ -2,8 +2,9 @@ import { META } from "@/data/dataset";
 
 export function NavBar() {
   const links = [
+    { href: "/dashboards", label: "Dashboards" },
     { href: "/#mapa", label: "Mapa" },
-    { href: "/#indice", label: "Índice IMIAF" },
+    { href: "/#indice", label: "Índice IIIF" },
     { href: "/pagos", label: "Pagos e ICF" },
     { href: "/#referentes", label: "Benchmark global" },
     { href: "/frontera", label: "Frontera" },
@@ -31,8 +32,8 @@ export function NavBar() {
               <span className="status-dot" />
               Corte {META.version} · ago 2026
             </div>
-            <a href="/#datos" className="action-primary px-4 py-2 text-xs">
-              Explorar datos
+            <a href="/dashboards" className="action-primary px-4 py-2 text-xs">
+              Abrir dashboards
               <span aria-hidden="true">→</span>
             </a>
           </div>

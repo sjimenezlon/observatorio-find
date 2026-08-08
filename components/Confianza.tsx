@@ -239,7 +239,7 @@ export default function Confianza() {
                 Madurez ≠ confianza
               </div>
               <p className="mb-3 text-[11px] text-muted">
-                Eje horizontal: IMIAF (madurez del sistema). Eje vertical: ICF
+                Eje horizontal: IIIF (madurez del sistema). Eje vertical: ICF
                 (confianza). Los seis países del índice principal.
               </p>
               <CruceScatter datos={cruce} />
@@ -410,7 +410,7 @@ function CruceScatter({ datos }: { datos: Punto[] }) {
         ))}
         <text x={(W + M.l) / 2} y={H - 2} textAnchor="middle"
           style={{ fontSize: 9.5, fill: "#8fa9a1", fontWeight: 600 }}>
-          IMIAF · madurez →
+          IIIF · madurez →
         </text>
         <text x={11} y={(H - M.b + M.t) / 2} textAnchor="middle"
           transform={`rotate(-90 11 ${(H - M.b + M.t) / 2})`}
@@ -459,7 +459,7 @@ function CruceScatter({ datos }: { datos: Punto[] }) {
                   {d.flag} {d.nombre}
                 </div>
                 <div className="tabnum text-muted">
-                  IMIAF <b className="text-fg">{fmt(d.x)}</b> · ICF{" "}
+                  IIIF <b className="text-fg">{fmt(d.x)}</b> · ICF{" "}
                   <b className="text-fg">{fmt(d.y)}</b>
                 </div>
               </>

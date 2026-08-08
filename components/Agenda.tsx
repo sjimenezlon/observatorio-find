@@ -25,7 +25,7 @@ export default function Agenda() {
         <div className="card p-5">
           <div className="tabnum text-3xl font-extrabold text-teal">12</div>
           <p className="mt-1 text-[13px] text-muted">
-            indicadores <b className="text-fg/80">ya operando</b> en el IMIAF
+            indicadores <b className="text-fg/80">ya operando</b> en el IIIF
             v3, mapeados a los focos del Centro.
           </p>
         </div>
@@ -136,7 +136,7 @@ export default function Agenda() {
           </div>
           <div>
             <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-teal">
-              Lo que el IMIAF v3 ya mide en este foco
+              Lo que el IIIF ya mide en este foco
             </div>
             {f.proxiesIMIAF.length > 0 ? (
               <div className="flex flex-wrap gap-1.5">

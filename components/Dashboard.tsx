@@ -188,7 +188,7 @@ function RankingIndice({
   return (
     <section id="indice">
       <Eyebrow>Sección bandera · Índice compuesto</Eyebrow>
-      <H2>Índice de Madurez de IA Financiera (IMIAF)</H2>
+      <H2>Índice Integral de Innovación Financiera (IIIF)</H2>
       <Sub>
         Un puntaje 0–100 por país que combina los seis pilares. Cada indicador
         se normaliza 0–100 sobre los seis países y se promedia por pilar; el
@@ -289,7 +289,7 @@ function RankingIndice({
                     borderRadius: 12,
                     color: "#eaf3ef",
                   }}
-                  formatter={(v) => [`${v} / 100`, "IMIAF"]}
+                  formatter={(v) => [`${v} / 100`, "IIIF"]}
                 />
                 <Bar dataKey="indice" radius={[0, 8, 8, 0]} barSize={26}>
                   {data.map((d) => (
@@ -401,7 +401,7 @@ function RankingIndice({
                   {pl.corto}
                 </th>
               ))}
-              <th className="p-3 font-medium text-center">IMIAF</th>
+              <th className="p-3 font-medium text-center">IIIF</th>
               {pesosDefault && (
                 <th className="p-3 font-medium text-center">
                   Δ vs {SNAPSHOT_ANTERIOR.fecha}
@@ -604,7 +604,7 @@ function ExploradorPilar() {
       <div className="mb-7 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-3">
         {[
           ["01", "Elegí un pilar", "Filtrá la lectura por inclusión, pagos, IA, fraude, tokenización o regulación."],
-          ["02", "Cambiá la escala", "Compará el valor publicado con el puntaje normalizado que usa el IMIAF."],
+          ["02", "Cambiá la escala", "Compará el valor publicado con el puntaje normalizado que usa el IIIF."],
           ["03", "Abrí la evidencia", "Cada indicador conserva el enlace a la fuente original y su año de corte."],
         ].map(([n, title, detail]) => (
           <div key={n} className="bg-panel px-5 py-4">

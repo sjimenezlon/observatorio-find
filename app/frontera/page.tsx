@@ -110,7 +110,7 @@ export default function FronteraPage() {
             <p className="text-[14px] leading-relaxed text-fg/80">
               Un índice sin contexto se lee como un ranking deportivo. Estos tres
               mapas hacen el trabajo contrario: muestran que la posición de cada
-              país en el IMIAF no es mérito ni culpa, sino el resultado de
+              país en el IIIF no es mérito ni culpa, sino el resultado de
               decisiones regulatorias tomadas —o no tomadas— en ventanas de
               tiempo concretas, muchas de ellas fuera de la región.
             </p>

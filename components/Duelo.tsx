@@ -118,7 +118,7 @@ export default function Duelo() {
               {flag(a)} {nombre(a)}
             </div>
             <div className="tabnum text-sm text-muted">
-              IMIAF <b style={{ color: banda(fA.indice).color }}>{fA.indice}</b>
+              IIIF <b style={{ color: banda(fA.indice).color }}>{fA.indice}</b>
             </div>
           </div>
           <div className="px-4 text-center">
@@ -136,7 +136,7 @@ export default function Duelo() {
               {flag(b)} {nombre(b)}
             </div>
             <div className="tabnum text-sm text-muted">
-              IMIAF <b style={{ color: banda(fB.indice).color }}>{fB.indice}</b>
+              IIIF <b style={{ color: banda(fB.indice).color }}>{fB.indice}</b>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function AgendaPage() {
             Agenda de medición · Centro de Innovación Financiera · EAFIT
           </span>
           <h1 className="max-w-[24ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
-            Del IMIAF al tablero completo:{" "}
+            Del IIIF al tablero completo:{" "}
             <span className="text-teal">
               los pilares que vamos a construir
             </span>
@@ -32,7 +32,7 @@ export default function AgendaPage() {
             El Centro de Innovación Financiera trabaja cinco focos estratégicos
             — finanzas para el desarrollo, sostenibles y climáticas,
             conductuales, emergentes y seguras. El observatorio es su
-            instrumento de medición: el IMIAF ya cubre el foco de{" "}
+            instrumento de medición: el IIIF ya cubre el foco de{" "}
             <b className="font-semibold text-fg">
               finanzas emergentes (donde vive fintech)
             </b>{" "}
@@ -51,7 +51,7 @@ export default function AgendaPage() {
               En agenda: <b className="text-teal">{totalNuevos} indicadores</b>
             </span>
             <span>
-              Operando hoy: <b className="text-teal">IMIAF v3 (12 indicadores)</b>
+              Operando hoy: <b className="text-teal">IIIF (17 indicadores)</b>
             </span>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function AgendaPage() {
               },
               {
                 t: "Método abierto y replicable",
-                d: "Como en el IMIAF: fuente, año, dirección y método publicados; los índices construidos se marcan explícitamente y se someten a crítica.",
+                d: "Como en el IIIF: fuente, año, dirección y método publicados; los índices construidos se marcan explícitamente y se someten a crítica.",
               },
               {
                 t: "Del proxy al instrumento propio",
@@ -107,7 +107,7 @@ export default function AgendaPage() {
             }}
           >
             <h2 className="text-xl font-extrabold tracking-tight md:text-2xl">
-              El IMIAF fue el primer paso. Esta agenda es el mapa de los
+              El IIIF fue el primer paso. Esta agenda es el mapa de los
               siguientes.
             </h2>
             <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -115,7 +115,7 @@ export default function AgendaPage() {
                 href="/#indice"
                 className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
               >
-                Ver el IMIAF vigente
+                Ver el IIIF vigente
               </a>
               <a
                 href="/presentacion"

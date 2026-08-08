@@ -30,15 +30,15 @@ export default function Home() {
                 <span className="block text-teal">medible y auditable.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-[16px] leading-relaxed text-fg/72 md:text-[18px]">
-                Un sistema público de evidencia para comparar la madurez de la IA
-                financiera, los pagos y la confianza en América Latina. Tres
-                índices propios, fuentes trazables y una metodología que cualquiera
-                puede replicar.
+                Un sistema público de evidencia para comparar inclusión, pagos,
+                ecosistema, regulación, confianza y riesgo financiero en América
+                Latina. Seis dashboards, fuentes trazables y una metodología que
+                cualquiera puede replicar.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#indice" className="action-primary px-5 py-3 text-sm">
-                  Explorar el IMIAF <span aria-hidden="true">→</span>
+                <a href="/dashboards" className="action-primary px-5 py-3 text-sm">
+                  Abrir los 6 dashboards <span aria-hidden="true">→</span>
                 </a>
                 <a href="#mapa" className="action-secondary px-5 py-3 text-sm">
                   Ver mapa regional
@@ -62,7 +62,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-px bg-white/8">
                 {[
-                  ["06", "países IMIAF"],
+                  ["06", "países IIIF"],
                   [String(META.indicadores).padStart(2, "0"), "indicadores"],
                   [String(META.pilares).padStart(2, "0"), "pilares"],
                   ["21", "economías ICF"],
@@ -85,7 +85,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between gap-4">
                   <span className="text-muted">Motores</span>
-                  <span className="text-right text-fg/75">IMIAF · ICF · ICF-S</span>
+                  <span className="text-right text-fg/75">IIIF · ICF · ICF-S</span>
                 </div>
                 <div className="flex justify-between gap-4">
                   <span className="text-muted">Prioridad de fuente</span>
@@ -97,10 +97,10 @@ export default function Home() {
 
           <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { n: "01", t: "Diagnóstico", d: "Mapa y ranking por país", h: "#mapa" },
-              { n: "02", t: "Escenarios", d: "Pesos y simulador en vivo", h: "#indice" },
-              { n: "03", t: "Confianza", d: "Pagos e ICF para 21 economías", h: "/pagos" },
-              { n: "04", t: "Evidencia", d: "Indicadores, fuentes y método", h: "#datos" },
+              { n: "01", t: "Dashboards", d: "Seis preguntas de decisión", h: "/dashboards" },
+              { n: "02", t: "Diagnóstico", d: "Mapa y ranking por país", h: "#mapa" },
+              { n: "03", t: "Escenarios", d: "Pesos y simulador en vivo", h: "#indice" },
+              { n: "04", t: "Confianza", d: "Pagos e ICF para 21 economías", h: "/pagos" },
             ].map((item) => (
               <a key={item.n} href={item.h} className="quick-route group">
                 <span className="font-mono text-[9px] text-teal">{item.n}</span>
