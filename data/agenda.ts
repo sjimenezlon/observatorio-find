@@ -92,7 +92,7 @@ export const FOCOS: Foco[] = [
     corto: "Emergentes",
     color: "#FF5FA2",
     mision:
-      "Las tecnologías que están transformando la forma de hacer finanzas —ecosistemas fintech, infraestructura de pagos, activos digitales e inteligencia artificial— para entender qué funciona, para quién y bajo qué condiciones. Dentro de este foco vive fintech: el segmento que el IMIAF ya mide.",
+      "Las tecnologías que están transformando la forma de hacer finanzas —ecosistemas fintech, infraestructura de pagos, activos digitales e inteligencia artificial— para entender qué funciona, para quién y bajo qué condiciones. Dentro de este foco vive fintech: el segmento que el IIIF ya mide.",
     lineas: [
       "Ecosistema FinTech y modelos de negocio emergentes",
       "Infraestructura financiera digital",
@@ -226,7 +226,7 @@ export const AGENDA: IndicadorAgenda[] = [
     pregunta: "¿Qué tan completo es el marco de taxonomía sostenible y estándares de reporte de cada país?",
     unidad: "0–100 (índice construido)",
     metodo:
-      "Mismo método de los índices regulatorios del IMIAF: taxonomía vigente, adopción NIIF S1/S2, reporte obligatorio; Colombia fue pionera regional (Taxonomía Verde 2022).",
+      "Mismo método de los índices regulatorios del IIIF: taxonomía vigente, adopción NIIF S1/S2, reporte obligatorio; Colombia fue pionera regional (Taxonomía Verde 2022).",
     fuentes: "Normas oficiales por país, ISSB, CBI",
     estado: "proximo-corte",
   },
@@ -317,7 +317,7 @@ export const AGENDA: IndicadorAgenda[] = [
       "¿Qué porcentaje de bancos y fintechs de cada país tiene GenAI y agentes en producción — no en piloto?",
     unidad: "% de entidades con IA en producción, por caso de uso",
     metodo:
-      "Encuesta anual propia con agremiaciones (Asobancaria, Felaban, Colombia Fintech y pares); llena la limitación declarada del IMIAF: no existe métrica pública comparable de adopción de IA por país.",
+      "Encuesta anual propia con agremiaciones (Asobancaria, Felaban, Colombia Fintech y pares); llena la limitación declarada del IIIF: no existe métrica pública comparable de adopción de IA por país.",
     fuentes: "Encuesta del Centro + gremios; benchmark global Evident/NTT DATA",
     estado: "por-construir",
   },
@@ -379,9 +379,9 @@ export const AGENDA: IndicadorAgenda[] = [
 
 export const ESTADOS: Record<Estado, { label: string; color: string; desc: string }> = {
   operando: {
-    label: "Ya opera en el IMIAF",
+    label: "Ya opera en el IIIF",
     color: "#1FC9A0",
-    desc: "El IMIAF v3 ya lo mide (o tiene un proxy directo) con fuente pública citada.",
+    desc: "El IIIF ya lo mide (o tiene un proxy directo) con fuente pública citada.",
   },
   "proximo-corte": {
     label: "Entra en un corte próximo",

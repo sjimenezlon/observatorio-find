@@ -229,7 +229,7 @@ export default function Simulador({ pesos }: { pesos: Pesos }) {
         {/* resultado */}
         <div className="card p-5">
           <h3 className="font-semibold text-fg mb-3">
-            Ranking IMIAF: hoy → tu escenario
+            Ranking IIIF: hoy → tu escenario
           </h3>
           <div className="space-y-2">
             {filasEsc.map((f, i) => {

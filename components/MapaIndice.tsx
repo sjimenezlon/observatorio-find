@@ -70,7 +70,7 @@ export default function MapaIndice() {
               color: capa === "imiaf" ? "#1FC9A0" : "#8fa9a1",
             }}
           >
-            IMIAF (índice completo)
+            IIIF (índice completo)
           </button>
           {PILARES.map((pl) => {
             const on = capa === pl.key;
@@ -187,7 +187,7 @@ export default function MapaIndice() {
                   {flag(hover)} {nombre(hover)}
                 </div>
                 <div className="tabnum text-[12px] text-muted">
-                  {capa === "imiaf" ? "IMIAF" : pilar!.corto}:{" "}
+                  {capa === "imiaf" ? "IIIF" : pilar!.corto}:{" "}
                   <b
                     style={{
                       color:
@@ -261,7 +261,7 @@ export default function MapaIndice() {
                   {fSel.indice}
                 </div>
                 <div className="text-[11px] text-muted">
-                  IMIAF
+                  IIIF
                   {deltaSel !== 0 && (
                     <span
                       className="tabnum ml-1 font-semibold"

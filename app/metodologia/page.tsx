@@ -4,7 +4,7 @@ import { INDICADORES, PILARES, FUENTES, META } from "@/data/dataset";
 export const metadata: Metadata = {
   title: "Metodología · Observatorio Find",
   description:
-    "Metodología abierta del Índice de Madurez de IA Financiera (IMIAF): indicadores, normalización, ponderación y fuentes.",
+    "Metodología abierta del Índice Integral de Innovación Financiera (IIIF): indicadores, normalización, ponderación y fuentes.",
 };
 
 export default function Metodologia() {
@@ -19,18 +19,25 @@ export default function Metodologia() {
       </h1>
       <p className="mt-3 text-[15px] text-muted">
         {META.marca} · {META.institucion}. Versión {META.version}, curada a{" "}
-        {META.curado}. Este documento describe cómo se construye el Índice de
-        Madurez de IA Financiera (IMIAF) para que cualquiera pueda auditarlo,
+        {META.curado}. Este documento describe cómo se construye el Índice
+        Integral de Innovación Financiera (IIIF) para que cualquiera pueda auditarlo,
         replicarlo y citarlo.
       </p>
 
       <Section n="1" t="Qué mide el índice">
         <p>
-          El IMIAF resume, en un puntaje de 0 a 100 por país, qué tan maduro está
-          el ecosistema de IA financiera en seis pilares. No es un ranking de
+          El IIIF resume, en un puntaje de 0 a 100 por país, qué tan maduro está
+          el ecosistema de innovación financiera en seis pilares. No es un ranking de
           “mejor país”: es un mapa de fortalezas y brechas relativas entre los
           seis países comparados (Colombia, México, Brasil, Chile, Perú y
           Argentina).
+        </p>
+        <p className="rounded-xl border border-teal/20 bg-teal/[0.06] p-4 text-sm">
+          <b className="text-teal">Reencuadre de agosto de 2026:</b> el nombre
+          anterior, Índice de Madurez de IA Financiera, se reemplaza por IIIF
+          porque la medición ya cubre pagos, inclusión, ecosistema, integridad,
+          activos digitales y regulación. El cambio es narrativo: no modifica
+          indicadores, normalización, ponderaciones ni posiciones del corte {META.version}.
         </p>
         <p>
           <b className="text-fg">Alcance:</b> el campo del observatorio son las
@@ -361,7 +368,7 @@ score = 100 * (max − valor) / (max − min)`}
         </p>
         <p>
           Desde el corte de {META.curado}, el tablero muestra la variación del
-          IMIAF de cada país frente al corte anterior (con pesos iguales).{" "}
+          IIIF de cada país frente al corte anterior (con pesos iguales).{" "}
           <b className="text-fg">
             Atención en esta versión: el corte anterior se calculó con cinco
             pilares, sin Pagos.
@@ -402,7 +409,7 @@ score = 100 * (max − valor) / (max − min)`}
               : 628 organizaciones en 151 jurisdicciones. El 81% de las firmas
               financieras encuestadas adopta IA en algún nivel, pero solo 14%
               reporta una transformación del negocio. La cifra se usa como ancla
-              global y no altera el cálculo del IMIAF.
+              global y no altera el cálculo del IIIF.
             </p>
           </div>
 
@@ -479,7 +486,7 @@ score = 100 * (max − valor) / (max − min)`}
 
         <p className="mt-4">
           Ninguna de las tres correcciones cambió el orden del ranking: Colombia
-          seguía y sigue última de los seis en el IMIAF y última de las
+          seguía y sigue última de los seis en el IIIF y última de las
           dieciséis medibles en el ICF. Se corrigieron igual, porque el objetivo
           no es sostener una conclusión sino sostener el método que la produce.
         </p>

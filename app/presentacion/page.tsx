@@ -124,7 +124,7 @@ const HALLAZGOS = [
     color: "#E8825A",
     kicker: "Madurez ≠ confianza",
     t: "Colombia construyó el riel y no logró que se use",
-    d: `Queda ${puestoColombia}ª de ${PAISES.length} en el IMIAF y ${puestoColombiaICF}ª de ${icf.length} en el ICF, con una de las regulaciones de finanzas abiertas más ambiciosas de la región. Tener infraestructura y marco normativo no produce confianza por sí solo.`,
+    d: `Queda ${puestoColombia}ª de ${PAISES.length} en el IIIF y ${puestoColombiaICF}ª de ${icf.length} en el ICF, con una de las regulaciones de finanzas abiertas más ambiciosas de la región. Tener infraestructura y marco normativo no produce confianza por sí solo.`,
     href: "/pagos#confianza",
     cta: "Ver el ICF",
   },
@@ -366,7 +366,7 @@ export default function Presentacion() {
           <div className="grid gap-5 lg:grid-cols-3">
             {[
               {
-                sigla: "IMIAF",
+                sigla: "IIIF",
                 color: "#1FC9A0",
                 nombre: "Índice de Madurez de IA Financiera",
                 pregunta: "¿Qué tan madura es la infraestructura financiera del país?",
@@ -408,7 +408,7 @@ export default function Presentacion() {
 
           {/* Los pilares */}
           <h3 className="mt-12 mb-5 text-lg font-extrabold tracking-tight">
-            Los {PILARES.length} pilares del IMIAF
+            Los {PILARES.length} pilares del IIIF
           </h3>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {PILARES.map((pl) => {
@@ -443,7 +443,7 @@ export default function Presentacion() {
           <div className="card mt-8 p-6">
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="text-lg font-extrabold tracking-tight">
-                Cómo queda el IMIAF hoy
+                Cómo queda el IIIF hoy
               </h3>
               <span className="text-[12px] text-muted">
                 pesos iguales · corte de {META.curado}
@@ -684,7 +684,7 @@ export default function Presentacion() {
               La agenda de medición lista {AGENDA.length} indicadores para los{" "}
               {FOCOS.length} focos del Centro:{" "}
               <b className="text-fg">{agendaPorEstado("operando")} ya operan</b> dentro
-              del IMIAF,{" "}
+              del IIIF,{" "}
               <b className="text-fg">{agendaPorEstado("proximo-corte")} tienen fuente
               identificada</b>{" "}
               y entran en un corte próximo, y{" "}
@@ -748,7 +748,7 @@ export default function Presentacion() {
               </div>
               <p className="mt-1.5 text-[13px] leading-relaxed text-fg/75">
                 {META.marca} · IA Financiera LATAM (2026). {META.institucion}.
-                Índice IMIAF {META.version}, corte de {META.curado}.
+                Índice IIIF {META.version}, corte de {META.curado}.
                 https://observatorio-find.vercel.app
               </p>
             </div>
@@ -774,7 +774,7 @@ export default function Presentacion() {
           </div>
           <p className="mt-4 max-w-3xl text-[12px] leading-relaxed text-muted/80">
             {META.marca} · {META.institucion}. Datos curados a {META.curado} y
-            auditados el {META.auditoria}. Los índices IMIAF, ICF e ICF-S son
+            auditados el {META.auditoria}. Los índices IIIF, ICF e ICF-S son
             construcciones del Observatorio con normalización relativa al panel
             medido; no son escalas absolutas. Los datos de terceros conservan la
             licencia de su fuente original.

@@ -120,7 +120,7 @@ export default function FichaPais() {
                 {fila.indice}
               </div>
               <div className="text-xs text-muted">
-                IMIAF / 100
+                IIIF / 100
                 {delta !== 0 && (
                   <span
                     className="tabnum ml-1.5 font-semibold"
