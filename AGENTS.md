@@ -142,10 +142,10 @@ En el PR:
 **Código.** TypeScript estricto, sin `any`. Componentes de servidor por defecto;
 `"use client"` solo donde de verdad hay interacción. Tailwind con los tokens de
 `globals.css` (`text-fg`, `text-muted`, `text-teal`, `text-lime`), no colores sueltos.
-Paleta: teal `#1FC9A0` · lime `#9FCE2E` · morado `#6C5CD6` · cian `#5BD0E0` ·
-naranja `#E8825A` · fondo `#0A2C28`. Antes de añadir un color a un gráfico, verifica
-que se distinga bajo deuteranopía —así se descartó el `#FF9060` original del pilar de
-pagos—.
+La interfaz sigue la identidad FIND: violeta `#5538FC` · lima `#F0FF29` · negro
+`#101010` · blanco `#FFFFFF`, con Inter y cápsulas redondeadas. Los colores adicionales
+de las visualizaciones conservan su función semántica y deben distinguirse bajo
+deuteranopía.
 
 **Prosa.** El sitio está en español y se escribe para alguien inteligente que no es del
 gremio: un regulador, un periodista, un decano. Frases con sujeto y verbo. Cifras con
@@ -196,3 +196,13 @@ resuelve.
 Los commits deben ir con la identidad de GitHub de Santiago
 (`sjimenezlon@gmail.com`). Un autor que Vercel no reconoce deja el despliegue en estado
 `BLOCKED` sin logs, y parece un build colgado en cola.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
