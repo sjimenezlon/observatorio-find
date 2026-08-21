@@ -67,7 +67,7 @@ export default function Home() {
                   [String(META.pilares).padStart(2, "0"), "pilares"],
                   ["21", "economías ICF"],
                 ].map(([value, label]) => (
-                  <div key={label} className="bg-[#0b2925] px-5 py-4">
+                  <div key={label} className="bg-[#24166f] px-5 py-4">
                     <div className="font-mono text-2xl font-semibold tracking-[-0.05em] text-fg">
                       {value}
                     </div>
