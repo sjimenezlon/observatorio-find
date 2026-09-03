@@ -118,9 +118,9 @@ for (const e of BIBLIOTECA.directorio) {
 }
 const hoy = new Date().toISOString().slice(0, 10);
 for (const e of BIBLIOTECA.eventos) {
-  if (!esFecha(e.fecha)) err(`Evento «${e.nombre}»: fecha inválida.`);
+  if (e.fecha !== null && !esFecha(e.fecha)) err(`Evento «${e.nombre}»: fecha inválida.`);
   if (!esHttps(e.url)) err(`Evento «${e.nombre}»: url inválida.`);
-  if (e.fecha < hoy.slice(0, e.fecha.length)) avi(`Evento «${e.nombre}» (${e.fecha}) ya pasó.`);
+  if (e.fecha !== null && e.fecha < hoy.slice(0, e.fecha.length)) avi(`Evento «${e.nombre}» (${e.fecha}) ya pasó.`);
 }
 for (const f of BIBLIOTECA.fuentes_datos) if (!esHttps(f.url)) err(`Fuente de datos «${f.nombre}»: url inválida.`);
 for (const t of BIBLIOTECA.glosario) if (!t.definicion?.trim()) err(`Glosario «${t.termino}»: sin definición.`);

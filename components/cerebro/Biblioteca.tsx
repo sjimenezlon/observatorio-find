@@ -35,7 +35,9 @@ export default function Biblioteca({ datos }: { datos: Datos }) {
     .filter((e) => (tipo === "todos" || e.tipo === tipo) && coincide(`${e.nombre} ${e.sigla ?? ""} ${e.que} ${e.pais}`))
     .sort((a, b) => a.tipo.localeCompare(b.tipo) || a.nombre.localeCompare(b.nombre));
   const hoy = new Date().toISOString().slice(0, 10);
-  const eventos = datos.eventos.filter((e) => coincide(`${e.nombre} ${e.ciudad ?? ""} ${e.organizador ?? ""}`)).sort((a, b) => a.fecha.localeCompare(b.fecha));
+  const eventos = datos.eventos
+    .filter((e) => coincide(`${e.nombre} ${e.ciudad ?? ""} ${e.organizador ?? ""}`))
+    .sort((a, b) => (a.fecha ?? "9999").localeCompare(b.fecha ?? "9999"));
   const fuentes = datos.fuentes_datos.filter((f) => coincide(`${f.nombre} ${f.que} ${f.acceso}`));
   const glosario = datos.glosario.filter((g) => coincide(`${g.termino} ${g.definicion}`)).sort((a, b) => a.termino.localeCompare(b.termino));
 
@@ -152,10 +154,10 @@ export default function Biblioteca({ datos }: { datos: Datos }) {
       {pestana === "eventos" ? (
         <ul className="mt-6 divide-y divide-white/8 rounded-2xl border border-white/12">
           {eventos.map((e) => (
-            <li key={e.url + e.fecha} className={`grid gap-1 px-4 py-3 text-xs sm:grid-cols-[150px_minmax(0,1fr)] ${e.fecha < hoy.slice(0, e.fecha.length) ? "opacity-50" : ""}`}>
+            <li key={e.url + (e.fecha ?? "")} className={`grid gap-1 px-4 py-3 text-xs sm:grid-cols-[150px_minmax(0,1fr)] ${e.fecha && e.fecha < hoy.slice(0, e.fecha.length) ? "opacity-50" : ""}`}>
               <span className="tabnum text-muted">
-                {fecha(e.fecha)}
-                {e.fecha_fin && e.fecha_fin !== e.fecha ? ` – ${fecha(e.fecha_fin)}` : ""}
+                {e.fecha ? fecha(e.fecha) : <span className="text-amber">{e.estado ?? "por confirmar"}</span>}
+                {e.fecha && e.fecha_fin && e.fecha_fin !== e.fecha ? ` – ${fecha(e.fecha_fin)}` : ""}
               </span>
               <span>
                 <a href={e.url} target="_blank" rel="noreferrer" className="font-semibold hover:text-lime">

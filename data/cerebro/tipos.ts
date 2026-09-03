@@ -276,9 +276,11 @@ export interface Evento {
   organizador: string | null;
   ciudad: string | null;
   pais: PaisCerebro | string;
-  fecha: string;
+  /** null = el organizador aún no publica fecha */
+  fecha: string | null;
   fecha_fin: string | null;
   url: string;
+  estado: string | null;
 }
 
 export interface FuenteDatos {
