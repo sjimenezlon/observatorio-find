@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "verificar": "tsx scripts/verificar-datos.ts",
+    "verificar": "tsx scripts/verificar-datos.ts && tsx scripts/verificar-cerebro.ts",
     "check": "npm run typecheck && npm run verificar && npm run build"
   },
   "dependencies": {

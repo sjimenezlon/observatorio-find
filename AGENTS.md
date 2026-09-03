@@ -197,6 +197,44 @@ Los commits deben ir con la identidad de GitHub de Santiago
 (`sjimenezlon@gmail.com`). Un autor que Vercel no reconoce deja el despliegue en estado
 `BLOCKED` sin logs, y parece un build colgado en cola.
 
+## 8 · El Cerebro (`/cerebro`) — la capa privada
+
+Rutas `/cerebro/*` y `/api/cerebro/*`. Es el mismo observatorio, con dos diferencias
+deliberadas y acotadas a esa carpeta:
+
+**Compuerta en el servidor.** `proxy.ts` (raíz) exige una cookie httpOnly cuyo valor es
+un HMAC de `CEREBRO_SECRET`; la clave se compara en `/api/cerebro/entrar` en tiempo
+constante contra `CEREBRO_PW`. Las dos variables viven en Vercel (producción, preview y
+desarrollo) y en `.env.local`, nunca en el código. Rotar `CEREBRO_SECRET` cierra todas
+las sesiones. Las páginas del Cerebro son estáticas con regeneración (ISR): el proxy
+decide antes de servir el HTML o el payload RSC, así que sin cookie no sale nada.
+Comprobación honesta: `curl -sI https://observatorio-find.vercel.app/cerebro` debe
+responder 307 a `/cerebro/entrar`. Que el formulario pida clave no prueba nada.
+
+Lo que la clave NO protege: los datasets curados (`data/cerebro/*.ts`) están en este
+repositorio, que es público. La compuerta es de interfaz, no de datos. No pongas ahí
+nada que no pueda ser público.
+
+**Señales vivas (excepción a la regla de «ningún dominio externo»).** `lib/cerebro/vivo/`
+consulta seis APIs abiertas —Google News RSS, App Store RSS, BCB Olinda (Pix y Meios de
+Pagamentos), Yahoo Finance + SEC EDGAR, Wikimedia Pageviews, CoinGecko— **solo desde el
+servidor y solo al regenerar la página** (cada 30–60 min). El navegador sigue sin hacer
+una sola petición externa; la CSP no cambia. Reglas para tocar esa carpeta:
+
+- Nunca `cache: "no-store"`: vuelve dinámica la página y las señales se pedirían en cada
+  visita (ya pasó; el build lo delata con `ƒ /cerebro`). Usa `revalidate`.
+- Toda carga pasa por `envolver()`: devuelve `{ ok:false, error }` y la sección lo dice.
+  Ninguna señal se rellena a mano ni con el último valor bueno.
+- Las respuestas de más de 2 MB no entran en la caché de datos de Next; se toleran porque
+  solo corren al regenerar. Reduce con `$select`/`$filter` antes de añadir otra.
+- Las señales vivas no son cifras del observatorio: se muestran con su fuente y su hora,
+  y no alimentan ningún índice.
+
+**Datasets curados.** `data/cerebro/{jugadores,inversion,paises,biblioteca}.ts` se generan
+por script desde los JSON de investigación y los verifica `scripts/verificar-cerebro.ts`
+(dentro de `npm run verificar`): fuente + URL https + fecha válida por cifra, `null` para
+lo que no se pudo verificar, códigos de país y segmento cerrados en `data/cerebro/tipos.ts`.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
