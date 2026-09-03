@@ -10,7 +10,19 @@ export default function Inversion({ datos }: { datos: Datos }) {
   const [pais, setPais] = useState<string>("todos");
   const [orden, setOrden] = useState<"fecha" | "monto">("fecha");
 
-  const serie = datos.serie_anual.map((s) => ({ ...s, anio: String(s.anio) }));
+  // Una barra por año: la primera fila con dato manda (LAVCA hasta 2024, Cuántico en 2025,
+  // Crunchbase en 1S-2026); las demás fuentes del mismo año se listan debajo, no se promedian.
+  const serie = useMemo(() => {
+    const m = new Map<string, { anio: string; vc_total_usd_m: number | null; vc_fintech_usd_m: number | null; fuente: string; url: string }>();
+    for (const s of datos.serie_anual) {
+      const k = String(s.anio);
+      const g = m.get(k) ?? { anio: k, vc_total_usd_m: null, vc_fintech_usd_m: null, fuente: s.fuente, url: s.url };
+      if (g.vc_total_usd_m === null && s.vc_total_usd_m !== null) g.vc_total_usd_m = s.vc_total_usd_m;
+      if (g.vc_fintech_usd_m === null && s.vc_fintech_usd_m !== null) g.vc_fintech_usd_m = s.vc_fintech_usd_m;
+      m.set(k, g);
+    }
+    return [...m.values()];
+  }, [datos.serie_anual]);
   const maxPais = Math.max(...datos.por_pais_2025.map((p) => p.vc_fintech_usd_m ?? p.vc_total_usd_m ?? 0), 1);
   const paisesRondas = useMemo(() => {
     const m = new Map<string, number>();
@@ -51,13 +63,18 @@ export default function Inversion({ datos }: { datos: Datos }) {
               <span className="inline-flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#78d8f5]" /> VC total</span>
               <span className="inline-flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-lime" /> VC fintech</span>
             </div>
-            <ul className="mt-3 space-y-1 text-[10.5px] text-muted">
-              {serie.map((s) => (
-                <li key={s.anio}>
-                  <a href={s.url} target="_blank" rel="noreferrer" className="hover:text-lime">
-                    {s.anio}: {s.fuente} ↗
+            <p className="mt-3 text-[11px] text-muted">
+              Una barra por año con la primera fuente que trae el dato; cuando otra fuente difiere, va debajo con su cifra. Nunca se promedian.
+            </p>
+            <ul className="mt-2 space-y-1 text-[10.5px] text-muted">
+              {datos.serie_anual.map((s, i) => (
+                <li key={`${s.anio}-${i}`}>
+                  <a href={s.url} target="_blank" rel="noreferrer" className="text-fg/80 hover:text-lime">
+                    {s.anio} · {s.fuente} ↗
                   </a>
-                  {s.nota ? ` · ${s.nota}` : ""}
+                  {s.vc_total_usd_m !== null ? ` · total ${usdM(s.vc_total_usd_m)}` : ""}
+                  {s.vc_fintech_usd_m !== null ? ` · fintech ${usdM(s.vc_fintech_usd_m)}` : ""}
+                  {s.nota ? ` · ${s.nota.length > 160 ? `${s.nota.slice(0, 160)}…` : s.nota}` : ""}
                 </li>
               ))}
             </ul>
