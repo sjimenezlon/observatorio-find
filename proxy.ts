@@ -11,21 +11,28 @@ import { COOKIE_SESION, sesionValida } from "@/lib/cerebro/sesion";
 
 const PUBLICAS = new Set(["/cerebro/entrar", "/api/cerebro/entrar"]);
 
+function privada(res: NextResponse): NextResponse {
+  // Ningún intermediario ni el propio navegador deben guardar una copia de lo que hay tras la clave.
+  res.headers.set("Cache-Control", "private, no-store");
+  res.headers.set("X-Robots-Tag", "noindex, nofollow");
+  return res;
+}
+
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  if (PUBLICAS.has(pathname)) return NextResponse.next();
+  if (PUBLICAS.has(pathname)) return privada(NextResponse.next());
 
-  if (await sesionValida(req.cookies.get(COOKIE_SESION)?.value)) return NextResponse.next();
+  if (await sesionValida(req.cookies.get(COOKIE_SESION)?.value)) return privada(NextResponse.next());
 
   if (pathname.startsWith("/api/")) {
-    return NextResponse.json({ error: "Sin sesión" }, { status: 401 });
+    return privada(NextResponse.json({ error: "Sin sesión" }, { status: 401 }));
   }
 
   const url = req.nextUrl.clone();
   url.pathname = "/cerebro/entrar";
   url.search = "";
   if (pathname !== "/cerebro") url.searchParams.set("next", pathname);
-  return NextResponse.redirect(url);
+  return privada(NextResponse.redirect(url));
 }
 
 export const config = {

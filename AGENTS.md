@@ -203,13 +203,27 @@ Rutas `/cerebro/*` y `/api/cerebro/*`. Es el mismo observatorio, con dos diferen
 deliberadas y acotadas a esa carpeta:
 
 **Compuerta en el servidor.** `proxy.ts` (raíz) exige una cookie httpOnly cuyo valor es
-un HMAC de `CEREBRO_SECRET`; la clave se compara en `/api/cerebro/entrar` en tiempo
-constante contra `CEREBRO_PW`. Las dos variables viven en Vercel (producción, preview y
-desarrollo) y en `.env.local`, nunca en el código. Rotar `CEREBRO_SECRET` cierra todas
-las sesiones. Las páginas del Cerebro son estáticas con regeneración (ISR): el proxy
-decide antes de servir el HTML o el payload RSC, así que sin cookie no sale nada.
-Comprobación honesta: `curl -sI https://observatorio-find.vercel.app/cerebro` debe
-responder 307 a `/cerebro/entrar`. Que el formulario pida clave no prueba nada.
+`<caducidad>.<HMAC-SHA256(CEREBRO_SECRET, etiqueta + caducidad)>`: cada entrada emite un
+token distinto, ninguno vale más de 30 días aunque se copie, y rotar `CEREBRO_SECRET` los
+invalida todos. En Vercel la cookie se llama `__Host-find_cerebro` (Secure, Path=/, sin
+Domain: ningún subdominio puede sobrescribirla). La clave se compara en
+`/api/cerebro/entrar` en tiempo constante contra `CEREBRO_PW`; el endpoint rechaza
+peticiones de otro origen (`Sec-Fetch-Site`/`Origin`), acota la clave a 128 caracteres,
+castiga cada fallo con medio segundo y lo deja en el registro de Vercel con IP y agente.
+El firewall de Vercel (regla «Cerebro · límite de intentos de clave», creada por API el
+3-sep-2026) corta a 10 POST por minuto y por IP a ese endpoint. Las dos variables viven
+en Vercel (producción, preview y desarrollo) y en `.env.local`, nunca en el código.
+
+Las páginas del Cerebro son estáticas con regeneración (ISR): el proxy decide antes de
+servir el HTML o el payload RSC, así que sin cookie no sale nada, y marca toda respuesta
+con `Cache-Control: private, no-store` y `X-Robots-Tag: noindex`. `app/robots.ts` excluye
+`/cerebro` y `/api/`.
+
+**Comprobación honesta:** `npm run compuerta -- https://observatorio-find.vercel.app`
+(`scripts/probar-compuerta.sh`) prueba desde fuera que sin cookie no sale HTML, ni RSC, ni
+API; que una cookie inventada no abre; que un formulario de otro origen recibe 403. Con
+`CEREBRO_PW` en el entorno prueba además la entrada y la salida. Que el formulario pida
+clave no prueba nada.
 
 Lo que la clave NO protege: los datasets curados (`data/cerebro/*.ts`) están en este
 repositorio, que es público. La compuerta es de interfaz, no de datos. No pongas ahí
