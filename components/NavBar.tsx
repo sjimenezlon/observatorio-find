@@ -12,6 +12,7 @@ export function NavBar() {
     { href: "/presentacion", label: "Presentación" },
     { href: "/roadmap", label: "Roadmap" },
     { href: "/metodologia", label: "Metodología" },
+    { href: "/cerebro", label: "Cerebro 🔒" },
   ];
 
   return (
