@@ -67,14 +67,12 @@ export async function envolver<T>(fuente: Fuente, cargar: () => Promise<T>): Pro
 
 /** Decodifica entidades XML básicas (los RSS vienen con &amp; y CDATA). */
 export function desentificar(s: string): string {
+  // Una sola pasada: cada entidad se decide de una vez y «&amp;lt;» queda como «&lt;»
+  // (texto literal), no como «<». Así no hay doble desescape.
+  const MAPA: Record<string, string> = { "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'", "&apos;": "'", "&amp;": "&" };
   return s
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&(?:lt|gt|quot|amp|apos|#39|#(\d+));/g, (m, n?: string) => (n ? String.fromCodePoint(Number(n)) : MAPA[m] ?? m))
     .trim();
 }
 
