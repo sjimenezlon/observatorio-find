@@ -341,8 +341,36 @@ export default function Home() {
         <Dashboard />
       </div>
 
-      {/* ROADMAP CTA */}
+      {/* TEST CTA */}
       <section className="border-t border-white/8">
+        <div className="mx-auto max-w-6xl px-6 pt-14">
+          <div className="card grid items-center gap-6 p-8 md:grid-cols-[1.5fr_1fr] md:p-10">
+            <div>
+              <div className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-lime">
+                Para entidades · vigente a septiembre de 2026
+              </div>
+              <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
+                ¿Qué tan lista está su entidad financiera para la IA?
+              </h2>
+              <p className="mt-3 max-w-2xl text-[15px] text-fg/80">
+                Diez afirmaciones en escala de cinco puntos, cuatro minutos y sin
+                registro. Un puntaje de 0 a 100 y, capacidad por capacidad, qué
+                proporción de sus pares en el mundo y en América Latina ya la
+                tiene, con la encuesta citada.
+              </p>
+            </div>
+            <div className="flex md:justify-end">
+              <a href="/test" className="action-primary px-6 py-3 text-sm">
+                Hacer el test
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROADMAP CTA */}
+      <section>
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div
             className="card relative overflow-hidden p-8 md:p-10"

@@ -24,6 +24,8 @@ import { INDICADORES_ICF, DIMENSIONES, COBERTURA_MINIMA } from "../data/confianz
 import { calcularICF } from "../lib/confianza";
 import { calcularICFS } from "../lib/segmentos";
 import { LATAM, LATAM_CORE } from "../data/latam";
+import { PREGUNTAS, META_TEST, DISTRIBUCIONES } from "../data/test";
+import { puntaje as puntajeTest, BANDAS } from "../lib/test";
 
 const ANIO_MAX = new Date().getFullYear() + 1;
 const ANIO_MIN = 2010;
@@ -216,6 +218,51 @@ if (META.indicadores !== INDICADORES.length) {
 }
 
 // -----------------------------------------------------------------------------
+// 9 · Test de preparación para la IA (/test): cada cita de pares con fuente,
+//     URL https, año y muestra; el instrumento completo y coherente.
+// -----------------------------------------------------------------------------
+if (PREGUNTAS.length !== META_TEST.preguntas) {
+  err(`TEST: META_TEST.preguntas = ${META_TEST.preguntas} ≠ ${PREGUNTAS.length} afirmaciones reales.`);
+}
+const KEYS_TEST = PREGUNTAS.map((p) => p.key);
+if (new Set(KEYS_TEST).size !== KEYS_TEST.length) err("TEST: hay keys repetidas.");
+PREGUNTAS.forEach((p, i) => {
+  if (p.n !== i + 1) err(`TEST «${p.key}»: n = ${p.n}, se esperaba ${i + 1}.`);
+  if (!/^#[0-9A-Fa-f]{6}$/.test(p.color)) err(`TEST «${p.key}»: color «${p.color}» no es hex de 6 dígitos.`);
+  for (const campo of ["dimension", "corto", "enunciado", "ayuda", "porque", "accion"] as const) {
+    if (!p[campo]?.trim()) err(`TEST «${p.key}»: sin ${campo}.`);
+  }
+  if (p.enunciado.length > 260) avi(`TEST «${p.key}»: enunciado de ${p.enunciado.length} caracteres; una afirmación Likert debería caber en dos líneas.`);
+  for (const ambito of ["mundo", "latam"] as const) {
+    const c = p[ambito];
+    if (c === null) continue;
+    if (typeof c.valor !== "number" || c.valor < 0 || c.valor > 100) err(`TEST «${p.key}» ${ambito}: valor ${c.valor} fuera de 0–100.`);
+    if (!c.fuente?.trim()) err(`TEST «${p.key}» ${ambito}: sin fuente.`);
+    if (!esHttps(c.url)) err(`TEST «${p.key}» ${ambito}: URL «${c.url}» no es https válida.`);
+    if (!Number.isInteger(c.anio) || c.anio < 2023 || c.anio > ANIO_MAX) err(`TEST «${p.key}» ${ambito}: año ${c.anio} fuera de 2023–${ANIO_MAX}; una encuesta más vieja no compara con 2026.`);
+    if (!c.texto?.trim()) err(`TEST «${p.key}» ${ambito}: sin texto que diga qué mide la cifra.`);
+    if (!c.muestra?.trim()) err(`TEST «${p.key}» ${ambito}: sin muestra (n y universo).`);
+  }
+});
+const sinMundo = PREGUNTAS.filter((p) => !p.mundo).length;
+if (sinMundo > 0) avi(`TEST: ${sinMundo} afirmación(es) sin dato de pares del mundo; se muestran como «sin dato».`);
+const sinLatam = PREGUNTAS.filter((p) => !p.latam).length;
+if (sinLatam > 0) avi(`TEST: ${sinLatam} afirmación(es) sin dato de pares de América Latina; se muestran como «sin dato».`);
+if (PREGUNTAS.length > 0) {
+  const todo5 = Object.fromEntries(PREGUNTAS.map((p) => [p.key, 5])) as Parameters<typeof puntajeTest>[0];
+  const todo1 = Object.fromEntries(PREGUNTAS.map((p) => [p.key, 1])) as Parameters<typeof puntajeTest>[0];
+  if (puntajeTest(todo5) !== 100 || puntajeTest(todo1) !== 0) err("TEST: el puntaje no recorre 0–100 con respuestas extremas.");
+}
+for (const d of DISTRIBUCIONES) {
+  if (!d.fuente?.trim() || !d.muestra?.trim() || !d.titulo?.trim()) err(`TEST distribución «${d.ambito}»: falta fuente, muestra o título.`);
+  if (!esHttps(d.url)) err(`TEST distribución «${d.ambito}»: URL «${d.url}» no es https válida.`);
+  if (!Number.isInteger(d.anio) || d.anio < 2023 || d.anio > ANIO_MAX) err(`TEST distribución «${d.ambito}»: año ${d.anio} fuera de rango.`);
+  const suma = d.niveles.reduce((a, n) => a + n.valor, 0);
+  if (Math.abs(suma - 100) > 2) err(`TEST distribución «${d.ambito}»: los niveles suman ${suma}, no 100.`);
+}
+if (BANDAS.length !== 4) err(`TEST: se esperaban 4 bandas, hay ${BANDAS.length}.`);
+
+// -----------------------------------------------------------------------------
 // Informe
 // -----------------------------------------------------------------------------
 const resumen = [
@@ -225,6 +272,7 @@ const resumen = [
   `${FUENTES.length} fuentes`,
   `${icf.length} economías en el ICF`,
   `${icfs.length} observaciones país×segmento`,
+  `${PREGUNTAS.length} afirmaciones del test`,
 ].join(" · ");
 
 console.log(`\nObservatorio Find ${META.version} — ${resumen}\n`);

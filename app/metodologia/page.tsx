@@ -359,6 +359,31 @@ score = 100 * (max − valor) / (max − min)`}
         </ul>
       </Section>
 
+      <Section n="9b" t="Test de preparación para la IA" id="test">
+        <p>
+          El <a href="/test" className="font-semibold text-teal hover:underline">test de preparación</a> es
+          un instrumento de autoevaluación para entidades financieras, distinto de los
+          índices: no mide países sino la organización que responde. Diez afirmaciones en
+          escala Likert de cinco puntos, una por dimensión (estrategia, valor en
+          producción, IA generativa y agentes, datos, gobierno del riesgo de modelo,
+          explicabilidad, talento, infraestructura y proveedores, fraude con IA, equidad).
+          Cada respuesta se convierte en un nivel 0–100 y el puntaje es el promedio
+          simple; cuatro bandas (Explorador, Experimentador, Escalador, Transformador).
+        </p>
+        <p>
+          La comparación con pares no es un percentil. Para cada dimensión se publica la
+          proporción de empresas que declara esa capacidad en la encuesta más reciente
+          disponible, del mundo y de América Latina, con n, año y URL (CCAF 2026,
+          Deloitte servicios financieros 2026, McKinsey 2026, Cisco 2025, Superintendencia
+          Financiera 2026, Asobancaria 2025, Felaban-PwC 2025). Mundo y LatAm no siempre
+          salen de la misma encuesta y no se comparan entre sí; cada uno se contrasta con
+          el nivel de la entidad. Donde no hay encuesta comparable se dice «sin dato».
+          Las cifras de Cisco por país son aritmética propia (suma de los dos niveles
+          superiores de preparación, promedio simple de Brasil y México) y así se declara.
+          Nada se guarda: el resultado se codifica en el enlace.
+        </p>
+      </Section>
+
       <Section n="10" t="Cómo se actualiza">
         <p>
           El seed vive en un único archivo de datos versionado. Cada actualización

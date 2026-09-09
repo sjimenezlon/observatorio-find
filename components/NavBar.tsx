@@ -7,6 +7,7 @@ export function NavBar() {
     { href: "/#indice", label: "Índice IIIF" },
     { href: "/pagos", label: "Pagos e ICF" },
     { href: "/#referentes", label: "Benchmark global" },
+    { href: "/test", label: "Test de IA" },
     { href: "/frontera", label: "Frontera" },
     { href: "/agenda", label: "Agenda" },
     { href: "/presentacion", label: "Presentación" },
