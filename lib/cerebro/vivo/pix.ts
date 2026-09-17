@@ -109,7 +109,7 @@ export async function cargarPix(): Promise<Vivo<PixVivo>> {
     // 1 · serie mensual oficial (la API devuelve ese mes y los siguientes, en orden descendente)
     const serieRes = await getJSON<{ value: FilaMPV[] }>(
       `${MPV}/MeiosdePagamentosMensalDA(AnoMes=@AnoMes)?@AnoMes='${ym(desde)}'&$format=json`,
-      { timeoutMs: 30_000, revalidate: 21_600 },
+      { timeoutMs: 18_000, revalidate: 21_600 },
     );
     const serie: MesPix[] = serieRes.value
       .map((f) => ({
@@ -133,11 +133,11 @@ export async function cargarPix(): Promise<Vivo<PixVivo>> {
     const [desgloseRes, llavesRes] = await Promise.all([
       getJSON<{ value: FilaStat[] }>(
         `${BASE}/EstatisticasTransacoesPix(Database=@Database)?@Database='${mesUltimo}'&$format=json&$select=AnoMes,QUANTIDADE,VALOR,FORMAINICIACAO,NATUREZA,PAG_PFPJ&$filter=AnoMes eq ${mesUltimo}`,
-        { timeoutMs: 90_000, revalidate: 21_600 },
+        { timeoutMs: 18_000, revalidate: 21_600 },
       ),
       getJSON<{ value: FilaChave[] }>(
         `${BASE}/ChavesPix(Data=@Data)?@Data='${corteLlaves.toISOString().slice(0, 10)}'&$format=json&$select=Data,Nome,NaturezaUsuario,TipoChave,qtdChaves,Segmento`,
-        { timeoutMs: 90_000, revalidate: 21_600 },
+        { timeoutMs: 18_000, revalidate: 21_600 },
       ),
     ]);
 

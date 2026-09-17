@@ -166,12 +166,12 @@ export const HECHOS_PAGOS: HechoPago[] = [
   {
     ambito: "colombia",
     eje: "uso",
-    valor: "44",
-    titulo: "Bre-B ya mueve 44 pagos por adulto al año",
+    valor: "70",
+    titulo: "Bre-B ya mueve 70 pagos por adulto al año",
     detalle:
-      "5 millones de transacciones diarias corrientes equivalen a 1.825 millones anualizadas: 44 por adulto. Bre-B acumuló 1.070 millones de operaciones en sus primeros ocho meses y llegó a 108 millones de llaves al 30-jun-2026, 34 millones de usuarios y más de 90.000 comercios con llave registrada.",
-    fuente: "Banco de la República · Reporte de Infraestructura Financiera 2026",
-    url: "https://www.banrep.gov.co/es/publicaciones-investigaciones/reporte-infraestructura-financiera-instrumentos-pago/2026",
+      "Casi 8 millones de pagos diarios (Prieto, Banrep, 13-sep-2026) equivalen a 2.920 millones anualizados: 70 por adulto. En mayo eran 5 millones al día (44 por adulto). El riel suma más de 110 millones de llaves y 35 millones de colombianos con al menos una; la nómina y los recaudos se regulan a fines de 2026 para 2027.",
+    fuente: "Banco de la República · Ana María Prieto en El Espectador (13-sep-2026)",
+    url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
     anio: 2026,
   },
   {

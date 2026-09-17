@@ -4,7 +4,7 @@ import Brecha from "@/components/Brecha";
 import Anclas from "@/components/Anclas";
 import MapaIndice from "@/components/MapaIndice";
 import GlobalBenchmarks from "@/components/GlobalBenchmarks";
-import { FUENTES, META, PILARES } from "@/data/dataset";
+import { FUENTES, META, NOVEDADES_CORTE, PILARES } from "@/data/dataset";
 import { DINAMICA, DINAMICA_STATS, TENDENCIAS } from "@/data/lentes";
 
 export default function Home() {
@@ -98,9 +98,9 @@ export default function Home() {
           <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { n: "01", t: "Dashboards", d: "Seis preguntas de decisión", h: "/dashboards" },
-              { n: "02", t: "Diagnóstico", d: "Mapa y ranking por país", h: "#mapa" },
-              { n: "03", t: "Escenarios", d: "Pesos y simulador en vivo", h: "#indice" },
-              { n: "04", t: "Confianza", d: "Pagos e ICF para 21 economías", h: "/pagos" },
+              { n: "02", t: "Índice y escenarios", d: "Ranking, pesos y simulador", h: "#indice" },
+              { n: "03", t: "Pagos e ICF", d: "Confianza en 21 economías", h: "/pagos" },
+              { n: "04", t: "Test de IA", d: "Preparación de su entidad", h: "/test" },
             ].map((item) => (
               <a key={item.n} href={item.h} className="quick-route group">
                 <span className="font-mono text-[9px] text-teal">{item.n}</span>
@@ -117,8 +117,53 @@ export default function Home() {
         </div>
       </header>
 
+      <section className="border-b border-white/8 bg-[#24166f]/40">
+        <div className="mx-auto max-w-6xl px-6 py-5">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-lime">
+                Qué cambió en {META.version}
+              </div>
+              <p className="mt-1 text-sm text-fg/80">
+                Corte de {META.curado}. Los deltas ya son comparables con agosto.
+              </p>
+            </div>
+            <nav aria-label="Saltar en la página" className="flex flex-wrap gap-1.5">
+              {[
+                { href: "#senales", label: "Señales" },
+                { href: "#mapa", label: "Mapa" },
+                { href: "#indice", label: "Índice" },
+                { href: "#datos", label: "Indicadores" },
+              ].map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  className="rounded-full border border-white/12 px-3 py-1 text-[11px] text-white/70 transition hover:border-lime/40 hover:text-lime"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {NOVEDADES_CORTE.map((n) => (
+              <a
+                key={n.texto}
+                href={n.href}
+                className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-lime/35"
+              >
+                <div className="font-mono text-lg font-semibold tracking-tight text-lime">
+                  {n.cifra}
+                </div>
+                <p className="mt-1 text-[12px] leading-snug text-fg/75">{n.texto}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ANCLAS */}
-      <section className="border-b border-white/8 bg-white/[0.02]">
+      <section id="senales" className="border-b border-white/8 bg-white/[0.02]">
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-teal">
             El contexto, en cifras verificadas
@@ -173,7 +218,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-px bg-white/8">
                 {[
                   { k: "502", l: "pagos inmediatos por adulto al año en Brasil", c: "#E8825A" },
-                  { k: "44", l: "en Colombia: el riel es nuevo, no maduro", c: "#E8825A" },
+                  { k: "70", l: "en Colombia: el riel aceleró, todavía lejos de Brasil", c: "#E8825A" },
                   { k: "6 de 10", l: "créditos de la región son informales", c: "#1FC9A0" },
                   { k: "último", l: "lugar de Colombia en confianza (ICF) entre 16 países medibles", c: "#FF7A9E" },
                 ].map((x) => (

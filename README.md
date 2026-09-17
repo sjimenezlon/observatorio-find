@@ -22,8 +22,8 @@ de ser de este observatorio.
 Los tres normalizan min–max **relativo al panel medido**: un puntaje solo tiene sentido
 frente a los otros países del mismo corte, no como escala absoluta.
 
-**Ranking IMIAF, corte de julio de 2026 (pesos iguales):**
-Brasil 85,9 · Chile 60,7 · Argentina 48,4 · México 32,6 · Perú 25,2 · Colombia 19,6.
+**Ranking IMIAF, corte de septiembre de 2026 (pesos iguales):**
+Brasil 85,9 · Chile 60,7 · Argentina 48,5 · México 32,4 · Perú 25,0 · Colombia 19,8.
 
 ## Tres hallazgos
 
@@ -86,4 +86,4 @@ Código MIT · Datos CC BY 4.0. Los datos de terceros conservan la licencia de s
 original. Ver [LICENSE](./LICENSE).
 
 > Observatorio Find · IA Financiera LATAM (2026). Universidad EAFIT.
-> Índice IMIAF v4.2, corte de julio de 2026. https://observatorio-find.vercel.app
+> Índice IMIAF v4.4, corte de septiembre de 2026. https://observatorio-find.vercel.app

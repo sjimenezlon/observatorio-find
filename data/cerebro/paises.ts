@@ -390,13 +390,13 @@ export const PAISES_CEREBRO: Pais[] = [
       "operador": "Banco de la República",
       "lanzamiento": "2025-10",
       "usuarios_m": 35,
-      "llaves_m": 108,
+      "llaves_m": 110,
       "tx_mes_m": null,
-      "tx_dia_m": 5,
-      "fecha_dato": "2026-06",
-      "detalle": "Más de 108 M de llaves al 24-jun-2026, ~35 M de usuarios y >1.000 M de transacciones acumuladas en 8 meses (~5 M/día corrientes; el pico de 5,2 M no es promedio); a 6 meses (abr-2026) Banrep reportó 34 M de usuarios, 670 M de tx y COP 105 billones.",
-      "fuente": "La República / Banco de la República (30-jun-2026)",
-      "url": "https://www.larepublica.co/especiales/revolucion-de-los-pagos-que-conecta-al-pais/el-despliegue-de-bre-b-desde-su-lanzamiento-ya-tiene-108-millones-de-llaves-registradas-4425135"
+      "tx_dia_m": 8,
+      "fecha_dato": "2026-09",
+      "detalle": "Casi 8 M de pagos diarios (Prieto, Banrep, 13-sep-2026), >110 M de llaves y 35 M de colombianos con al menos una; ~250 participantes. En mayo el emisor hablaba de 5 M/día. La nómina y los recaudos se regulan a fines de 2026 para 2027.",
+      "fuente": "Ana María Prieto, Banrep · El Espectador (13-sep-2026)",
+      "url": "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/"
     },
     "cripto": {
       "regimen": "sin marco",
@@ -425,7 +425,7 @@ export const PAISES_CEREBRO: Pais[] = [
       "url": "https://api.worldbank.org/v2/country/COL/indicator/account.t.d?source=28&format=json&mrv=1"
     },
     "poblacion_adulta_m": 42.7,
-    "notas": "Bre-B (oct-2025) superó los 108 M de llaves y los 1.000 M de operaciones en menos de un año, y las finanzas abiertas pasaron a ser obligatorias (Decreto 0368/2026). El vacío sigue en cripto: el PL 510/2025 fue archivado el 20-jun-2026 y el sector opera sin marco integral."
+    "notas": "Bre-B (oct-2025) procesa casi 8 M de pagos diarios y suma más de 110 M de llaves a sep-2026; las finanzas abiertas son obligatorias (Decreto 0368/2026) y la SFC sacó a comentarios el cronograma de estándares el 31-ago-2026. El vacío sigue en cripto: el PL 510/2025 fue archivado el 20-jun-2026."
   },
   {
     "code": "AR",
@@ -487,12 +487,12 @@ export const PAISES_CEREBRO: Pais[] = [
       "lanzamiento": "2020-12",
       "usuarios_m": null,
       "llaves_m": null,
-      "tx_mes_m": 731.5,
+      "tx_mes_m": 777.2,
       "tx_dia_m": null,
-      "fecha_dato": "2026-03",
-      "detalle": "731,5 M de transferencias inmediatas en pesos en mar-2026 (+25,6 % i.a.) por $82,2 billones; 99,6 M de pagos con QR interoperable (+66,9 %); 69,6 M de cuentas de pago (CVU).",
-      "fuente": "BCRA · Informe de Pagos Minoristas marzo 2026 (30-abr-2026)",
-      "url": "https://www.bcra.gob.ar/publicaciones/informe-de-pagos-minoristas-marzo-de-2026/"
+      "fecha_dato": "2026-07",
+      "detalle": "777,2 M de transferencias inmediatas «push» en pesos en jul-2026 (+22,2 % i.a.) por $99,5 billones; 115,9 M de pagos QR interoperables; 46,6 M de transferencias «pull».",
+      "fuente": "BCRA · Informe Mensual de Pagos Minoristas julio 2026",
+      "url": "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-07.pdf"
     },
     "cripto": {
       "regimen": "regulado",
@@ -513,7 +513,7 @@ export const PAISES_CEREBRO: Pais[] = [
       "url": "https://api.worldbank.org/v2/country/ARG/indicator/account.t.d?source=28&format=json&mrv=1"
     },
     "poblacion_adulta_m": 36.2,
-    "notas": "Argentina es el ecosistema de pagos QR/transferencias más intenso de la región en relación con su población (731 M de transferencias inmediatas al mes) y en 2026 completó el 'Big Bang regulatorio' de la CNV (RG 1150, tokenización con sandbox hasta 2027). El open finance nace por decreto (353/2025) pero en clave voluntaria."
+    "notas": "Argentina es el ecosistema de pagos QR/transferencias más intenso de la región en relación con su población (777 M de transferencias inmediatas al mes en jul-2026) y en 2026 completó el 'Big Bang regulatorio' de la CNV (RG 1150, tokenización con sandbox hasta 2027). El open finance nace por decreto (353/2025) pero en clave voluntaria."
   },
   {
     "code": "CL",
@@ -1801,6 +1801,24 @@ export const PAISES_CEREBRO: Pais[] = [
 ];
 
 export const HITOS: Hito[] = [
+  {
+    "fecha": "2026-09-13",
+    "pais": "CO",
+    "tipo": "riel",
+    "titulo": "Bre-B procesa casi 8 millones de pagos diarios",
+    "detalle": "Ana María Prieto (Banrep) cifra el nivel corriente en casi 8 M/día, >110 M de llaves y 35 M de colombianos con al menos una. La nómina y los recaudos se regulan a fines de 2026 para 2027.",
+    "fuente": "El Espectador · Banrep",
+    "url": "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/"
+  },
+  {
+    "fecha": "2026-08-31",
+    "pais": "CO",
+    "tipo": "regulacion",
+    "titulo": "SFC saca a comentarios el cronograma de finanzas abiertas",
+    "detalle": "Proyecto de carta circular: portabilidad de crédito de consumo a 8 meses, hipotecario a 16 y comercial a 24. Comentarios hasta el 15-sep-2026.",
+    "fuente": "Superintendencia Financiera de Colombia",
+    "url": "https://www.superfinanciera.gov.co/publicaciones/10116237/proyecto-de-carta-circular-agosto-31-de-2026/"
+  },
   {
     "fecha": "2026-09-01",
     "pais": "CO",

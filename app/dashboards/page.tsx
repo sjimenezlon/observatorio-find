@@ -38,7 +38,7 @@ export default function DashboardsPage() {
             </div>
 
             <aside className="technical-panel p-5">
-              <div className="data-label text-muted">Portfolio / release 2026.08</div>
+              <div className="data-label text-muted">Portfolio / release 2026.09</div>
               <div className="mt-4 grid grid-cols-3 gap-3">
                 {[
                   ["06", "tableros"],

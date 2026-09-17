@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NavBar } from "@/components/NavBar";
 import { INDICADORES, PILARES, FUENTES, META } from "@/data/dataset";
 
 export const metadata: Metadata = {
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 
 export default function Metodologia() {
   return (
+    <>
+    <NavBar />
     <main className="mx-auto max-w-3xl px-6 py-16">
       <a href="/" className="text-sm text-teal hover:underline">
         ← Volver al observatorio
@@ -112,10 +115,10 @@ export default function Metodologia() {
         </p>
         <pre className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
 {`Brasil     87.800 M tx/año (PIX, BCB, 1S-2026 anualizado)      ÷ 175 M adultos = 502
-Argentina   8.772 M tx/año (731 M/mes, BCRA mar-2026)           ÷  37 M adultos = 237
+Argentina   9.326 M tx/año (777,2 M/mes, BCRA jul-2026)         ÷  37 M adultos = 252
 Perú        3.156 M tx/año (263 M/mes interoperables, BCRP)      ÷  26,5 M       = 119
 México      7.300 M tx/año (SPEI usuarios finales, Banxico 2025) ÷ 100 M        =  73
-Colombia    1.825 M tx/año (5 M/día corrientes, Banrep)          ÷  41,5 M      =  44
+Colombia    2.920 M tx/año (~8 M/día corrientes, Banrep sep-2026) ÷ 41,5 M     =  70
 Chile       sin riel de pagos inmediatos → n/d`}
         </pre>
         <p className="mt-3">
@@ -393,18 +396,15 @@ score = 100 * (max − valor) / (max − min)`}
         </p>
         <p>
           Desde el corte de {META.curado}, el tablero muestra la variación del
-          IIIF de cada país frente al corte anterior (con pesos iguales).{" "}
+          IIIF de cada país frente a agosto de 2026 (con pesos iguales).{" "}
           <b className="text-fg">
-            Atención en esta versión: el corte anterior se calculó con cinco
-            pilares, sin Pagos.
+            Los dos cortes ya se calcularon con los seis pilares: el Δ es
+            variación de datos, no de método.
           </b>{" "}
-          Los deltas de {META.version} mezclan por tanto cambio de datos y cambio
-          de metodología, y sirven como referencia de posición, no como variación
-          limpia. El próximo corte ya será comparable pilar a pilar. Como la
-          normalización es relativa al grupo, un país puede bajar de puntaje aunque
-          mejore en términos absolutos, si sus pares mejoran más rápido. El
-          simulador “¿Y si…?” usa exactamente el mismo motor de cálculo sobre
-          valores hipotéticos definidos por el usuario.
+          Como la normalización es relativa al grupo, un país puede bajar de
+          puntaje aunque mejore en términos absolutos, si sus pares mejoran más
+          rápido. El simulador “¿Y si…?” usa exactamente el mismo motor de
+          cálculo sobre valores hipotéticos definidos por el usuario.
         </p>
       </Section>
 
@@ -417,6 +417,50 @@ score = 100 * (max − valor) / (max − min)`}
         </p>
 
         <div className="mt-4 space-y-3">
+          <div className="card p-4" style={{ borderColor: "rgba(31,201,160,0.35)" }}>
+            <div className="mb-2 text-sm font-bold text-teal">
+              Nuevo en el corte de septiembre
+            </div>
+            <ul className="space-y-2.5 text-sm text-muted">
+              <li>
+                <b className="text-fg">Bre-B: 44 → 70 pagos por adulto.</b> La
+                directora de Sistemas de Pago del Banco de la República cifró el
+                nivel corriente en casi 8 millones de pagos diarios (13-sep-2026),
+                frente a 2,5 millones en noviembre de 2025 y a los 5 millones que
+                usaba el corte de agosto. Se anualiza ese nivel —no un pico de un
+                solo día— y se divide por 41,5 millones de adultos. También se
+                actualizan llaves (&gt;110 millones) y el anuncio de nómina y
+                recaudos para 2027.
+              </li>
+              <li>
+                <b className="text-fg">
+                  Argentina: 237 → 252 pagos por adulto.
+                </b>{" "}
+                El Informe Mensual de Pagos Minoristas de julio de 2026 del BCRA
+                reporta 777,2 millones de transferencias inmediatas «push» en
+                pesos (+22,2% i.a.). Misma aritmética que en marzo: mes × 12 ÷ 37
+                millones de adultos.
+              </li>
+              <li>
+                <b className="text-fg">RWA: US$34.000 M → US$38.500 M.</b> Lectura
+                del dashboard de rwa.xyz el 17-sep-2026 (distributed asset value,
+                sin stablecoins).
+              </li>
+              <li>
+                <b className="text-fg">VC LATAM Q2-2026.</b> Se reemplaza la
+                señal de late-stage del primer trimestre por el corte de Crunchbase
+                del 20-jul-2026: US$1.360 M en la región (+47% i.a.), US$991 M
+                late-stage y México US$944 M frente a Brasil US$350 M.
+              </li>
+              <li>
+                <b className="text-fg">Open Finance Colombia.</b> La SFC publicó
+                el 31-ago-2026 el proyecto de cronograma de estándares (comentarios
+                hasta el 15-sep). No se mueve el puntaje construido: sigue siendo
+                proyecto, no cronograma definitivo.
+              </li>
+            </ul>
+          </div>
+
           <div className="card p-4" style={{ borderColor: "rgba(31,201,160,0.35)" }}>
             <div className="mb-2 text-sm font-bold text-teal">
               Nuevo en el corte de agosto
@@ -478,7 +522,7 @@ score = 100 * (max − valor) / (max − min)`}
 
           <div className="card p-4">
             <div className="mb-2 text-sm font-bold text-teal">
-              Confirmado vigente a agosto de 2026
+              Confirmado vigente a septiembre de 2026
             </div>
             <ul className="space-y-1.5 text-sm text-muted">
               <li>
@@ -510,10 +554,11 @@ score = 100 * (max − valor) / (max − min)`}
         </div>
 
         <p className="mt-4">
-          Ninguna de las tres correcciones cambió el orden del ranking: Colombia
-          seguía y sigue última de los seis en el IIIF y última de las
-          dieciséis medibles en el ICF. Se corrigieron igual, porque el objetivo
-          no es sostener una conclusión sino sostener el método que la produce.
+          Las correcciones de julio no cambiaron el orden del ranking. El corte
+          de septiembre actualiza el nivel de los rieles de Colombia y Argentina
+          y deja los deltas comparables con agosto; el orden se recalcula con el
+          mismo motor. Se publica igual, porque el objetivo no es sostener una
+          conclusión sino sostener el método que la produce.
         </p>
       </Section>
 
@@ -541,6 +586,7 @@ score = 100 * (max − valor) / (max − min)`}
         </a>
       </div>
     </main>
+    </>
   );
 }
 

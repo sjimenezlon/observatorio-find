@@ -463,7 +463,18 @@ function RankingIndice({
           </tbody>
         </table>
       </div>
-      {!SNAPSHOT_COMPARABLE && (
+      {SNAPSHOT_COMPARABLE ? (
+        <p className="mt-3 text-[11px] leading-relaxed text-muted">
+          <b className="text-fg">Sobre la columna Δ:</b> ambos cortes se
+          calcularon con los seis pilares. La normalización es relativa al grupo:
+          un país puede mejorar en un indicador y apenas mover el IIIF si sigue
+          último en esa barra. El detalle está en{" "}
+          <a href="/metodologia" className="text-teal underline">
+            metodología
+          </a>
+          .
+        </p>
+      ) : (
         <p className="mt-3 text-[11px] leading-relaxed text-muted">
           <b className="text-amber">Sobre la columna Δ:</b> el corte anterior se
           calculó con cinco pilares, sin Pagos. Los deltas de esta versión mezclan

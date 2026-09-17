@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Find · Inteligencia financiera latinoamericana",
     description:
-      "Tres índices propios, fuentes trazables y metodología abierta. Corte agosto de 2026.",
+      "Tres índices propios, fuentes trazables y metodología abierta. Corte septiembre de 2026.",
     url: "/",
     siteName: "Observatorio Find",
     locale: "es_CO",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Find · Inteligencia financiera latinoamericana",
-    description: "Datos abiertos, índices auditables y benchmark regional. Corte agosto de 2026.",
+    description: "Datos abiertos, índices auditables y benchmark regional. Corte septiembre de 2026.",
     images: ["/og-find-agosto-2026.png"],
   },
 };
