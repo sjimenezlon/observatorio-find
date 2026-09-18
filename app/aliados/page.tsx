@@ -43,7 +43,7 @@ const HALLAZGOS = [
   {
     n: "01",
     t: "El riel doméstico está resuelto; el cruce de frontera, no",
-    d: "Brasil hace 502 pagos inmediatos por adulto al año y Argentina 237 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
+    d: "Brasil hace 502 pagos inmediatos por adulto al año y Argentina 252 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
   },
   {
     n: "02",

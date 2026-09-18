@@ -1,6 +1,6 @@
 // =============================================================================
 // Observatorio Find · IA Financiera LATAM
-// Dataset verificado y citable — seed v4 (curado a agosto de 2026)
+// Dataset verificado y citable — seed v4 (curado a septiembre de 2026)
 //
 // Metodología abierta: cada indicador declara su fuente, año y dirección.
 // Los valores "construido" son índices cualitativos del Observatorio,
@@ -218,15 +218,15 @@ export const INDICADORES: Indicador[] = [
     fuente: "Observatorio Find · cálculo sobre datos de bancos centrales",
     url: "https://www.bis.org/statistics/payment_stats/commentary2604.pdf",
     anio: 2026,
-    valores: { CO: 44, MX: 73, BR: 502, CL: null, PE: 119, AR: 237 },
+    valores: { CO: 70, MX: 73, BR: 502, CL: null, PE: 119, AR: 252 },
     overrides: {
       BR: {
-        nota: "PIX: 43.900 millones de transacciones en el 1S-2026 (+19,3% i.a., BCB) → 87.800 M anualizados ÷ 175 M de adultos = 502. El Red Book del BIS reporta 298 pagos inmediatos por habitante en 2024, el más alto del mundo: Brasil casi duplicó ese registro en año y medio. Récord diario: 313,3 M de transferencias el 5-dic-2025.",
+        nota: "PIX: 43.900 millones de transacciones en el 1S-2026 (+19,3% i.a., BCB) → 87.800 M anualizados ÷ 175 M de adultos = 502. El Red Book del BIS reporta 298 pagos inmediatos por habitante en 2024, el más alto del mundo: Brasil casi duplicó ese registro en año y medio. Récord diario: 313,3 M de transferencias el 5-dic-2025. Sin serie mensual oficial más reciente recuperada al 17-sep-2026: se conserva el semestre cerrado.",
         url: "https://dadosabertos.bcb.gov.br/dataset/pix",
       },
       AR: {
-        nota: "731 M de transferencias inmediatas al mes (BCRA, mar-2026) → 8.772 M al año ÷ 37 M de adultos = 237. El BIS ubicó a Argentina 3ª del mundo en pagos inmediatos por habitante en 2024 (149) con el mayor crecimiento global (+71%).",
-        url: "https://www.bcra.gob.ar/publicaciones/informe-de-pagos-minoristas-marzo-de-2026/",
+        nota: "777,2 M de transferencias inmediatas «push» en pesos en julio de 2026 (BCRA) → 9.326 M al año ÷ 37 M de adultos = 252. El BIS ubicó a Argentina 3ª del mundo en pagos inmediatos por habitante en 2024 (149) con el mayor crecimiento global (+71%).",
+        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-07.pdf",
       },
       PE: {
         nota: "263 M de transacciones interoperables al mes (BCRP, dic-2025) → 3.156 M al año ÷ 26,5 M de adultos = 119. Perímetro más amplio del BCRP: el reporte oficial habla de 655 pagos digitales por adulto en 2025 (+45,8%) contando todos los medios, no solo el riel inmediato.",
@@ -237,12 +237,12 @@ export const INDICADORES: Indicador[] = [
         url: "https://www.banxico.org.mx/",
       },
       CO: {
-        nota: "Bre-B: 5 M de transacciones diarias (Banrep, may-2026, tras triplicarse desde 1,5 M en siete meses) → 1.825 M anualizados ÷ 41,5 M de adultos = 44. Corregido en la auditoría del 26-jul-2026: el corte anterior anualizaba el pico de un solo día (5,2 M el 31-ene-2026), lo que sobreestimaba el riel. El acumulado son 1.070 M de operaciones en ocho meses.",
-        url: "https://www.banrep.gov.co/es/publicaciones-investigaciones/reporte-infraestructura-financiera-instrumentos-pago/2026",
+        nota: "Bre-B: casi 8 M de pagos diarios (Ana María Prieto, directora de Sistemas de Pago del Banrep, 13-sep-2026) → 2.920 M anualizados ÷ 41,5 M de adultos = 70. Es el nivel corriente que ella contrapone a 2,5 M/día en nov-2025 — no un pico de un solo día. En mayo el emisor hablaba de 5 M/día (44 por adulto); en once meses el riel pasó de arranque a uso cotidiano. Sigue sin interoperabilidad transfronteriza.",
+        url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
       },
       CL: {
-        nota: "Chile no tiene riel de pagos inmediatos: el esquema interoperable de alias y QR del BCCh entra a consulta regulatoria en Q3-2026. Con el perímetro amplio (tarjetas + prepago + transferencias) Chile registró 382 pagos por persona en 2025.",
-        url: "https://www.bcentral.cl/en/areas/financial-policy/informe-de-sistemas-de-pago",
+        nota: "Chile no tiene riel de pagos inmediatos: el Informe de Sistemas de Pago de agosto de 2026 confirma que la consulta de alias/QR y APIs para llevar las TEF al comercio sigue pendiente («próximamente»). Con el perímetro amplio (tarjetas + prepago + transferencias) Chile registró 382 pagos por persona en 2025; el 77% del consumo de los hogares ya se paga con tarjeta y ~10% de las TEF va a comercios.",
+        url: "https://www.bcentral.cl/contenido/-/detalle/publicaciones/politica-financiera/informe-de-sistemas-de-pago-agosto-2026",
       },
     },
   },
@@ -257,31 +257,31 @@ export const INDICADORES: Indicador[] = [
     fuente: "Observatorio Find · construcción propia sobre datos de bancos centrales",
     url: "https://www.bis.org/topic/payments.htm",
     anio: 2026,
-    valores: { CO: 75, MX: 58, BR: 97, CL: 52, PE: 68, AR: 78 },
+    valores: { CO: 78, MX: 58, BR: 97, CL: 52, PE: 68, AR: 80 },
     overrides: {
       BR: {
         nota: "PIX (2020): +170M de usuarios; 43,9 mil millones de transacciones en el 1S-2026 (+19,3% i.a.) y R$16 billones movidos (+26% i.a. en valor); Pix Automático consolidándose.",
         url: "https://dadosabertos.bcb.gov.br/dataset/pix",
       },
       CO: {
-        nota: "Bre-B (oct-2025): 108M de llaves al 30-jun-2026, 34M de usuarios (abr-2026) y más de 90.000 comercios con llave registrada (abr-2026); 5M de operaciones diarias y 1.070M acumuladas en ocho meses. Sin interoperabilidad transfronteriza.",
-        url: "https://www.banrep.gov.co/es/noticias/seis-meses-bre-b-acumula-34-millones-usuarios",
+        nota: "Bre-B (oct-2025): casi un año de operación, ~8 M de pagos diarios, más de 110 M de llaves, 35 M de colombianos con al menos una llave y ~250 participantes (Prieto, Banrep, 13-sep-2026). La norma de nómina y recaudos se define a fines de 2026 para operar en 2027. Sin interoperabilidad transfronteriza.",
+        url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
       },
       MX: {
         nota: "SPEI 24/7 robusto (7.300M de operaciones en 2025), pero CoDi estancado y DiMo ~12M de usuarios; la Circular 9/2026 de Banxico estandariza la experiencia móvil con plazo 14-dic-2026.",
         url: "https://www.dimo.org.mx/",
       },
       AR: {
-        nota: "Transferencias 3.0 (2021): 731M de transferencias inmediatas/mes; 100M de pagos QR mensuales (+66% i.a., BCRA mar-2026).",
-        url: "https://www.bcra.gob.ar/publicaciones/informe-de-pagos-minoristas-marzo-de-2026/",
+        nota: "Transferencias 3.0 (2021): 777,2 M de transferencias inmediatas «push» en pesos en jul-2026 (+22,2% i.a.) y 115,9 M de pagos QR interoperables (BCRA).",
+        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-07.pdf",
       },
       PE: {
-        nota: "Yape/Plin: 263M de transacciones interoperables/mes a dic-2025 (fase 1 +50% i.a., QR 47M +76%); TAPP, el riel público del BCRP, en pruebas para fines de 2026.",
-        url: "https://www.bcrp.gob.pe/docs/Publicaciones/reporte-del-sistema-nacional-de-pagos/2026/marzo/rspf-marzo-2026.html",
+        nota: "Yape/Plin: 263M de transacciones interoperables/mes a dic-2025 (fase 1 +50% i.a., QR 47M +76%). El BCRP publicó el 15-jul-2026 el Reglamento del Servicio de Pagos Inmediatos con Alias (QR y alias en moneda nacional). TAPP, el riel público, sigue en pruebas para fines de 2026.",
+        url: "https://busquedas.elperuano.pe/dispositivo/NL/2534807-1",
       },
       CL: {
-        nota: "TEF masivas pero solo 10% va a comercios; el BCCh anunció en may-2026 un esquema interoperable de alias/QR con consulta regulatoria en Q3-2026.",
-        url: "https://www.bcentral.cl/en/areas/financial-policy/informe-de-sistemas-de-pago",
+        nota: "TEF masivas pero solo ~10% va a comercios. El Informe de Sistemas de Pago de agosto de 2026 mantiene la consulta de alias/QR, APIs y confirmación inmediata como pendiente; también anuncia consulta de un marco para stablecoins locales hacia fines de 2026.",
+        url: "https://www.bcentral.cl/contenido/-/detalle/publicaciones/politica-financiera/informe-de-sistemas-de-pago-agosto-2026",
       },
     },
   },
@@ -514,7 +514,8 @@ export const INDICADORES: Indicador[] = [
         nota: "Ocho años sin reglas para datos transaccionales del Art. 76; en dic-2025 se presentó un amparo por omisión regulatoria contra CNBV, SHCP y Banxico.",
       },
       CO: {
-        nota: "Salto regulatorio: el Decreto 0368 (abr-2026) volvió obligatorias las finanzas abiertas; la SFC publica el cronograma de estándares antes de oct-2026 y se cumple en 2027-2028.",
+        nota: "Salto regulatorio: el Decreto 0368 (abr-2026) volvió obligatorias las finanzas abiertas. El 31-ago-2026 la SFC sacó a comentarios el proyecto de cronograma de estándares (plazo 15-sep-2026): portabilidad de crédito de consumo a 8 meses, hipotecario a 16 y comercial a 24; el resto se escala hasta iniciación de pagos. Aún es proyecto, no cronograma definitivo.",
+        url: "https://www.superfinanciera.gov.co/publicaciones/10116237/proyecto-de-carta-circular-agosto-31-de-2026/",
       },
       PE: {
         nota: "La SBS publicó su hoja de ruta oficial en feb-2026: regulación 2026-2027, open banking 2027-2029 y open finance pleno desde 2029.",
@@ -678,16 +679,16 @@ export const ANCLAS: Ancla[] = [
     anio: 2025,
   },
   {
-    valor: "+158%",
-    label: "creció la inversión late-stage en LATAM en Q1-2026 (US$761M): los fondos globales volvieron, y México superó a Brasil por segunda vez desde el 2T-2012.",
-    fuente: "Crunchbase News · LATAM Q1 2026",
-    url: "https://news.crunchbase.com/venture/global-vcs-boost-late-stage-boom-latin-america-q1-2026/",
+    valor: "US$1.360M",
+    label: "levantó LATAM en Q2-2026 (+47% i.a.): US$991M late-stage (+84%) y México US$944M frente a Brasil US$350M — tercer trimestre seguido en que México lidera.",
+    fuente: "Crunchbase News · LATAM Q2 2026",
+    url: "https://news.crunchbase.com/venture/mexico-leads-latin-america-funding-q2-2026/",
     anio: 2026,
   },
   {
-    valor: "US$34.000M",
-    label: "en activos del mundo real (RWA) tokenizados on-chain, excluyendo stablecoins: ~2,7 veces el nivel de hace un año (~US$11,8B).",
-    fuente: "rwa.xyz · dashboard en vivo (corte 10-jul-2026)",
+    valor: "US$38.500M",
+    label: "en activos del mundo real (RWA) tokenizados on-chain, excluyendo stablecoins: ~3,3 veces el nivel de hace un año (~US$11,8B).",
+    fuente: "rwa.xyz · dashboard en vivo (corte 17-sep-2026)",
     url: "https://app.rwa.xyz/",
     anio: 2026,
   },
@@ -746,9 +747,9 @@ export const FUENTES: FuenteRef[] = [
     nota: "VC 2025 por país con metodología homogénea (equity) y participación fintech (61% del capital, 29% de los deals).",
   },
   {
-    nombre: "Crunchbase News · LATAM (2025 y Q1-2026)",
-    url: "https://news.crunchbase.com/venture/global-vcs-boost-late-stage-boom-latin-america-q1-2026/",
-    nota: "VC LATAM 2025 (US$4.100M, +14%) y Q1-2026 (US$1.030M; late-stage +158%).",
+    nombre: "Crunchbase News · LATAM (2025, Q1 y Q2-2026)",
+    url: "https://news.crunchbase.com/venture/mexico-leads-latin-america-funding-q2-2026/",
+    nota: "VC LATAM 2025 (US$4.100M, +14%), Q1-2026 (US$1.030M; late-stage +158%) y Q2-2026 (US$1.360M, +47% i.a.; late-stage US$991M, +84%; México US$944M vs Brasil US$350M).",
   },
   {
     nombre: "Basel Institute on Governance · Basel AML Index 2025 (14ª ed.)",
@@ -773,7 +774,7 @@ export const FUENTES: FuenteRef[] = [
   {
     nombre: "rwa.xyz · Tokenized RWA dashboard",
     url: "https://app.rwa.xyz/",
-    nota: "Valor en vivo de activos del mundo real tokenizados on-chain (~US$34B al 10-jul-2026, excl. stablecoins).",
+    nota: "Valor en vivo de activos del mundo real tokenizados on-chain (~US$38,5B al 17-sep-2026, excl. stablecoins).",
   },
   {
     nombre: "Bitso · Stablecoin Conference 2026",
@@ -808,7 +809,7 @@ export const FUENTES: FuenteRef[] = [
   {
     nombre: "Bancos centrales (rieles instantáneos)",
     url: "https://www.banrep.gov.co/es/bre-b",
-    nota: "Banco de la República (Bre-B: 5M tx/día y 108M de llaves a jun-2026), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 43.900M tx en 1S-2026), BCRP (263M tx interoperables/mes; 655 pagos digitales por adulto en 2025), BCRA (731M transferencias inmediatas/mes), BCCh (382 pagos por persona en 2025, esquema de alias/QR en consulta). Insumos del indicador de pagos inmediatos por adulto.",
+    nota: "Banco de la República (Bre-B: ~8M tx/día y >110M de llaves a sep-2026), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 43.900M tx en 1S-2026), BCRP (263M tx interoperables/mes; Reglamento de alias 15-jul-2026), BCRA (777,2M transferencias inmediatas en jul-2026), BCCh (Informe de Sistemas de Pago ago-2026: consulta de alias/QR aún pendiente). Insumos del indicador de pagos inmediatos por adulto.",
   },
   {
     nombre: "Marcos regulatorios oficiales",
@@ -823,21 +824,44 @@ export const FUENTES: FuenteRef[] = [
 // -----------------------------------------------------------------------------
 
 export const SNAPSHOT_ANTERIOR: { fecha: string; scores: Record<CC, number> } = {
-  fecha: "jul-2026 · 5 pilares",
-  scores: { BR: 87.5, CL: 62.3, AR: 40.8, MX: 32.9, CO: 26.6, PE: 17.5 },
+  fecha: "ago-2026",
+  scores: { BR: 85.9, CL: 60.7, AR: 48.4, MX: 32.6, CO: 19.6, PE: 25.2 },
 };
 
-// El corte anterior se calculó SIN el pilar de Pagos. Los deltas mezclan, por
-// tanto, cambio de datos y cambio de metodología: se muestran como referencia
-// de posición, no como variación limpia. Así se advierte en /metodologia.
-export const SNAPSHOT_COMPARABLE = false;
+// Ambos cortes se calcularon con los seis pilares. Los deltas de v4.4 ya son
+// variación de datos, no de método. La normalización sigue siendo relativa:
+// un país puede bajar de puntaje aunque mejore en términos absolutos.
+export const SNAPSHOT_COMPARABLE = true;
 
 export const META = {
-  version: "v4.3",
-  curado: "agosto de 2026",
-  auditoria: "5 de agosto de 2026",
+  version: "v4.4",
+  curado: "septiembre de 2026",
+  auditoria: "17 de septiembre de 2026",
   marca: "Observatorio Find",
   institucion: "Universidad EAFIT",
   pilares: PILARES.length,
   indicadores: INDICADORES.length,
 };
+
+export const NOVEDADES_CORTE: { cifra: string; texto: string; href: string }[] = [
+  {
+    cifra: "70",
+    texto: "pagos Bre-B por adulto al año (eran 44). Sigue última: México tiene 73",
+    href: "/pagos",
+  },
+  {
+    cifra: "252",
+    texto: "pagos inmediatos por adulto en Argentina (BCRA, julio 2026)",
+    href: "/pagos",
+  },
+  {
+    cifra: "US$38.500M",
+    texto: "RWA tokenizados on-chain al 17-sep-2026, sin stablecoins",
+    href: "#senales",
+  },
+  {
+    cifra: "Δ limpio",
+    texto: "los deltas vs agosto ya comparan seis pilares con seis pilares",
+    href: "/metodologia#auditoria",
+  },
+];

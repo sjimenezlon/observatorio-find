@@ -10,7 +10,7 @@
 // observatorio ya verificó en su corte de julio de 2026:
 //   · cripto: el PL 510/2025 no está "en trámite" — fue archivado el 20-jun-2026
 //     por tránsito de legislatura, el cuarto intento fallido.
-//   · pagos: Bre-B pasó de 5 M de transacciones diarias a 5,2 M el 31-ene-2026.
+//   · pagos: Bre-B pasó de 5 M de transacciones diarias (may-2026) a ~8 M (sep-2026).
 //
 // El índice cualitativo de madurez por área es interpretación del autor: ilustra
 // brechas relativas, no es una métrica oficial.
