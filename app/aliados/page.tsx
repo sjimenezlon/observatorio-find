@@ -43,7 +43,7 @@ const HALLAZGOS = [
   {
     n: "01",
     t: "El riel doméstico está resuelto; el cruce de frontera, no",
-    d: "Brasil hace 502 pagos inmediatos por adulto al año y Argentina 252 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
+    d: "Brasil hace 503 pagos inmediatos por adulto al año y Argentina 253 — dos de los tres primeros puestos del mundo en pagos inmediatos por habitante son latinoamericanos (BIS). Ninguno de los seis países tiene interoperabilidad transfronteriza nativa, y Project Nexus del BIS no tiene ningún participante latinoamericano.",
   },
   {
     n: "02",
@@ -53,7 +53,7 @@ const HALLAZGOS = [
   {
     n: "03",
     t: "El freno del pago digital no es el miedo a la tecnología",
-    d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en pagar con tarjeta o celular. La desconfianza no está en el riel: está en la institución del otro lado. Seis de cada diez latinoamericanos que se endeudaron no usaron el sistema formal.",
+    d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en pagar con tarjeta o celular. La desconfianza no está en el riel: está en la institución del otro lado. En la economía latinoamericana típica, seis de cada diez personas que se endeudaron no lo hicieron con una entidad financiera formal.",
   },
   {
     n: "04",

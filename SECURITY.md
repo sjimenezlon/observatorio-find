@@ -55,7 +55,7 @@ Corregir a la vista es parte del método: las correcciones se publican en
 | --- | --- |
 | Código en `main` | Protegida por *ruleset*: sin push directo, sin force-push, sin borrado. Todo entra por PR. |
 | Calidad de lo que entra | CI obligatorio: tipos, integridad del dataset y build de producción. Un PR que falle no se puede fusionar. |
-| Cadena de suministro | `npm ci` sobre `package-lock.json`; Dependabot semanal para npm y para las propias GitHub Actions; alertas y parches automáticos activos. |
+| Cadena de suministro | `npm ci` sobre `package-lock.json`; Dependabot semanal para npm y para las propias GitHub Actions; alertas y parches automáticos activos. El CI corre `npm audit --omit=dev --audit-level=high`: una vulnerabilidad alta o crítica en una dependencia de producción bloquea el merge. |
 | Análisis estático | CodeQL (`security-extended`) en cada PR y semanalmente. |
 | Secretos | *Secret scanning* con *push protection*: GitHub rechaza el push si detecta una credencial. `.gitignore` bloquea `.env*`, `.vercel/`, llaves y certificados. |
 | Permisos de CI | `permissions: contents: read` por defecto; `security-events: write` solo en el job de CodeQL. `persist-credentials: false` en cada checkout. |

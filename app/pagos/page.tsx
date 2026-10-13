@@ -162,7 +162,7 @@ export default function PagosPage() {
             {[
               {
                 t: "El riel doméstico está resuelto; el cruce de frontera, no",
-                d: "Brasil hace 502 pagos inmediatos por adulto al año y Argentina 252. Ninguno de los seis países tiene interoperabilidad transfronteriza nativa: la única oferta estructurada de la región es Pix Internacional, y la interconexión multilateral de rieles (Project Nexus del BIS) no tiene ningún participante latinoamericano.",
+                d: "Brasil hace 503 pagos inmediatos por adulto al año y Argentina 253. Ninguno de los seis países tiene interoperabilidad transfronteriza nativa: la única oferta estructurada de la región es Pix Internacional, y la interconexión multilateral de rieles (Project Nexus del BIS) no tiene ningún participante latinoamericano.",
               },
               {
                 t: "El costo de cruzar sigue por encima de la meta",
@@ -170,7 +170,7 @@ export default function PagosPage() {
               },
               {
                 t: "La confianza es el cuello de botella, no la tecnología",
-                d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en la tecnología. Pero 6 de cada 10 latinoamericanos que se endeudaron no usaron el sistema formal. El problema no es que la gente no confíe en el celular: es que no confía en la institución del otro lado.",
+                d: "En Colombia, el 94% de quienes siguen pagando en efectivo lo hace por costumbre y solo el 2,7% por desconfianza en la tecnología. Pero en la economía latinoamericana típica, 6 de cada 10 personas que se endeudaron no lo hicieron con una entidad financiera formal. El problema no es que la gente no confíe en el celular: es que no confía en la institución del otro lado.",
               },
             ].map((c) => (
               <div key={c.t} className="card p-5">

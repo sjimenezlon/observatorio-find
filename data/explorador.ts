@@ -182,6 +182,10 @@ export interface EntradaBitacora {
 
 /** Resumen de /metodologia#auditoria. Al publicar un corte nuevo, actualizar ambos. */
 export const BITACORA: EntradaBitacora[] = [
+  { fecha: "13 oct 2026", texto: "Chainalysis 2026: Brasil 1º, México 11º, Argentina sale del top 20", indicador: "chainalysis", pilar: "tokenizacion" },
+  { fecha: "13 oct 2026", texto: "Método: fuera del top 20 cripto cuenta como puesto 21, ya no se omite", indicador: "chainalysis", pilar: "tokenizacion" },
+  { fecha: "13 oct 2026", texto: "Bre-B: 69 pagos por adulto con el promedio oficial del Banrep", indicador: "pagosadulto", pilar: "pagos" },
+  { fecha: "13 oct 2026", texto: "Chile pasa de 348 a 374 fintechs locales (Radar 2026)", indicador: "fintechs", pilar: "adopcion" },
   { fecha: "17 sep 2026", texto: "Bre-B sube de 44 a 70 pagos por adulto al año", indicador: "pagosadulto", pilar: "pagos" },
   { fecha: "17 sep 2026", texto: "Argentina sube de 237 a 252 pagos inmediatos por adulto", indicador: "pagosadulto", pilar: "pagos" },
   { fecha: "17 sep 2026", texto: "RWA tokenizados: de US$34.000 M a US$38.500 M", indicador: "regulacion", pilar: "tokenizacion" },

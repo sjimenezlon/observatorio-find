@@ -120,6 +120,17 @@ export interface Indicador {
   anio: number;
   valores: Record<CC, number | null>;
   overrides?: Partial<Record<CC, Override>>;
+  /**
+   * Valor censurado: el país está fuera de lo que la fuente publica (p. ej. fuera
+   * del top 20 de un ranking) y el valor de `valores` es la cota que entra al
+   * cálculo. La interfaz muestra este texto en lugar del número.
+   */
+  cotas?: Partial<Record<CC, string>>;
+}
+
+/** Texto a mostrar para un valor censurado (o null si el valor es un dato directo). */
+export function cotaDe(ind: Indicador, cc: CC): string | null {
+  return ind.cotas?.[cc] ?? null;
 }
 
 // -----------------------------------------------------------------------------
@@ -199,7 +210,7 @@ export const INDICADORES: Indicador[] = [
     valores: { CO: 26.1, MX: 26.0, BR: 60.2, CL: null, PE: 32.7, AR: 60.2 },
     overrides: {
       CL: {
-        nota: "Chile no fue encuestado en el módulo de pagos digitales del Findex 2024: es un vacío de la fuente, no un cero. El dato más reciente comparable es de 2021.",
+        nota: "Chile no fue encuestado en el módulo de pagos digitales del Findex 2024: es un vacío de la fuente, no un cero. La serie merchant.pay no tiene dato para Chile en ninguna ronda del Findex.",
       },
       CO: {
         nota: "26,1% frente a 49,2% que hizo o recibió algún pago digital: menos de la mitad del uso digital de Colombia llega al comercio. La brecha más ancha de los seis.",
@@ -218,15 +229,15 @@ export const INDICADORES: Indicador[] = [
     fuente: "Observatorio Find · cálculo sobre datos de bancos centrales",
     url: "https://www.bis.org/statistics/payment_stats/commentary2604.pdf",
     anio: 2026,
-    valores: { CO: 70, MX: 73, BR: 502, CL: null, PE: 119, AR: 252 },
+    valores: { CO: 69, MX: 73, BR: 503, CL: null, PE: 119, AR: 253 },
     overrides: {
       BR: {
-        nota: "PIX: 43.900 millones de transacciones en el 1S-2026 (+19,3% i.a., BCB) → 87.800 M anualizados ÷ 175 M de adultos = 502. El Red Book del BIS reporta 298 pagos inmediatos por habitante en 2024, el más alto del mundo: Brasil casi duplicó ese registro en año y medio. Récord diario: 313,3 M de transferencias el 5-dic-2025. Sin serie mensual oficial más reciente recuperada al 17-sep-2026: se conserva el semestre cerrado.",
+        nota: "PIX: 43.996 millones de transacciones en el 1S-2026 (+19,3% i.a., BCB, Estadísticas de Pagos Minoristas) → 87.992 M anualizados ÷ 175 M de adultos = 503. En los 12 meses a agosto de 2026 el riel sumó 89.208 M. El Red Book del BIS reporta 298 pagos inmediatos por habitante en 2024, el más alto del mundo (medido por habitante, no por adulto). Récord diario: 313,3 M de transferencias el 5-dic-2025. Se usa el semestre cerrado; la serie mensual oficial está en la API Olinda del BCB (MeiosdePagamentosMensalDA).",
         url: "https://dadosabertos.bcb.gov.br/dataset/pix",
       },
       AR: {
-        nota: "777,2 M de transferencias inmediatas «push» en pesos en julio de 2026 (BCRA) → 9.326 M al año ÷ 37 M de adultos = 252. El BIS ubicó a Argentina 3ª del mundo en pagos inmediatos por habitante en 2024 (149) con el mayor crecimiento global (+71%).",
-        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-07.pdf",
+        nota: "779 M de transferencias inmediatas «push» en pesos en agosto de 2026 (+20,3% i.a., BCRA) → 9.348 M al año ÷ 37 M de adultos = 253. El BIS ubicó a Argentina 3ª del mundo en pagos inmediatos por habitante en 2024 (149) con el mayor crecimiento global (+71%).",
+        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-08.pdf",
       },
       PE: {
         nota: "263 M de transacciones interoperables al mes (BCRP, dic-2025) → 3.156 M al año ÷ 26,5 M de adultos = 119. Perímetro más amplio del BCRP: el reporte oficial habla de 655 pagos digitales por adulto en 2025 (+45,8%) contando todos los medios, no solo el riel inmediato.",
@@ -237,8 +248,8 @@ export const INDICADORES: Indicador[] = [
         url: "https://www.banxico.org.mx/",
       },
       CO: {
-        nota: "Bre-B: casi 8 M de pagos diarios (Ana María Prieto, directora de Sistemas de Pago del Banrep, 13-sep-2026) → 2.920 M anualizados ÷ 41,5 M de adultos = 70. Es el nivel corriente que ella contrapone a 2,5 M/día en nov-2025 — no un pico de un solo día. En mayo el emisor hablaba de 5 M/día (44 por adulto); en once meses el riel pasó de arranque a uso cotidiano. Sigue sin interoperabilidad transfronteriza.",
-        url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
+        nota: "Bre-B: 7,88 M de pagos diarios en promedio entre el 13-sep y el 12-oct-2026 (236,5 M en 30 días, tablero de indicadores MOL del Banrep) → 2.877 M anualizados ÷ 41,5 M de adultos = 69. Es promedio, no pico: en agosto el promedio era ~7,1 M/día y el pico diario de octubre rozó 10,4 M. En su primer año (6-oct-2025 a 12-oct-2026) el riel acumuló 1.849 M de transacciones; en mayo de 2026 corría a 5 M/día (44 por adulto). Sigue sin interoperabilidad transfronteriza.",
+        url: "https://www.banrep.gov.co/es/bre-b/indicadores-mol",
       },
       CL: {
         nota: "Chile no tiene riel de pagos inmediatos: el Informe de Sistemas de Pago de agosto de 2026 confirma que la consulta de alias/QR y APIs para llevar las TEF al comercio sigue pendiente («próximamente»). Con el perímetro amplio (tarjetas + prepago + transferencias) Chile registró 382 pagos por persona en 2025; el 77% del consumo de los hogares ya se paga con tarjeta y ~10% de las TEF va a comercios.",
@@ -260,23 +271,23 @@ export const INDICADORES: Indicador[] = [
     valores: { CO: 78, MX: 58, BR: 97, CL: 52, PE: 68, AR: 80 },
     overrides: {
       BR: {
-        nota: "PIX (2020): +170M de usuarios; 43,9 mil millones de transacciones en el 1S-2026 (+19,3% i.a.) y R$16 billones movidos (+26% i.a. en valor); Pix Automático consolidándose.",
+        nota: "PIX (2020): +170M de usuarios; 44,0 mil millones de transacciones en el 1S-2026 (+19,3% i.a.) y R$20,2 billones movidos (+27,7% i.a. en valor); Pix Automático consolidándose.",
         url: "https://dadosabertos.bcb.gov.br/dataset/pix",
       },
       CO: {
-        nota: "Bre-B (oct-2025): casi un año de operación, ~8 M de pagos diarios, más de 110 M de llaves, 35 M de colombianos con al menos una llave y ~250 participantes (Prieto, Banrep, 13-sep-2026). La norma de nómina y recaudos se define a fines de 2026 para operar en 2027. Sin interoperabilidad transfronteriza.",
-        url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
+        nota: "Bre-B (oct-2025): un año de operación, ~7,9 M de pagos diarios en promedio, más de 116 M de llaves, más de 36 M de usuarios y 245 entidades participantes, más de 172 de ellas cooperativas (Banrep, 6-oct-2026). La norma de nómina y recaudos se define a fines de 2026 para operar en 2027. Sin interoperabilidad transfronteriza.",
+        url: "https://www.banrep.gov.co/es/noticias/bre-b-cumple-un-anio-en-colombia",
       },
       MX: {
-        nota: "SPEI 24/7 robusto (7.300M de operaciones en 2025), pero CoDi estancado y DiMo ~12M de usuarios; la Circular 9/2026 de Banxico estandariza la experiencia móvil con plazo 14-dic-2026.",
+        nota: "SPEI 24/7 robusto (7.300M de operaciones en 2025), pero CoDi y DiMo con baja adopción (DiMo reportaba ~11 M de usuarios activos a nov-2024, último dato público hallado); la Circular 9/2026 de Banxico estandariza la experiencia móvil con plazo 14-dic-2026.",
         url: "https://www.dimo.org.mx/",
       },
       AR: {
-        nota: "Transferencias 3.0 (2021): 777,2 M de transferencias inmediatas «push» en pesos en jul-2026 (+22,2% i.a.) y 115,9 M de pagos QR interoperables (BCRA).",
-        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-07.pdf",
+        nota: "Transferencias 3.0 (2021): 779 M de transferencias inmediatas «push» en pesos en ago-2026 (+20,3% i.a.) y 117,2 M de pagos QR interoperables (BCRA).",
+        url: "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/Informes/informe-mensual-pagos-minoristas-2026-08.pdf",
       },
       PE: {
-        nota: "Yape/Plin: 263M de transacciones interoperables/mes a dic-2025 (fase 1 +50% i.a., QR 47M +76%). El BCRP publicó el 15-jul-2026 el Reglamento del Servicio de Pagos Inmediatos con Alias (QR y alias en moneda nacional). TAPP, el riel público, sigue en pruebas para fines de 2026.",
+        nota: "Yape/Plin: 263M de transacciones interoperables/mes a dic-2025 (fase 1 +51% i.a., fase 2 +87%, QR +76%). El BCRP publicó el 15-jul-2026 el Reglamento del Servicio de Pagos Inmediatos con Alias (QR y alias en moneda nacional). TAPP, el riel público, sigue en pruebas para fines de 2026.",
         url: "https://busquedas.elperuano.pe/dispositivo/NL/2534807-1",
       },
       CL: {
@@ -320,13 +331,13 @@ export const INDICADORES: Indicador[] = [
         nota: "Pix Internacional es la primera oferta estructurada de pagos transfronterizos que sale de la región: comercios de Chile, Uruguay, Paraguay, Perú, Bolivia, Colombia, Argentina y México ya aceptan Pix de visitantes brasileños. El BIS estudia interconectar rieles como Pix y UPI vía Project Nexus.",
       },
       MX: {
-        nota: "El corredor EE.UU.–México es el de mayor volumen del mundo: remesas por 3,5% del PIB a un costo de 2,65%. Pero el valor promedio de un pago inmediato mexicano es de US$2.566 (BIS) — el segundo más alto del mundo: SPEI sigue siendo un riel mayorista de facto, no minorista.",
+        nota: "El corredor EE.UU.–México es el de mayor volumen del mundo: remesas por 3,5% del PIB (2025) a un costo de 2,65% (2023). Pero el valor promedio de un pago inmediato mexicano es de US$2.566 (BIS) — el segundo más alto del mundo: SPEI sigue siendo un riel mayorista de facto, no minorista.",
       },
       AR: {
-        nota: "Sin acuerdo bilateral de interoperabilidad, pero con el mayor uso de stablecoins de la región como riel transfronterizo de facto; el valor promedio de su pago inmediato es de US$73, el patrón más minorista de LatAm después de India.",
+        nota: "Sin acuerdo bilateral de interoperabilidad, pero con el mayor uso de stablecoins de la región como riel transfronterizo de facto; el valor promedio de su pago inmediato es de US$73, el más bajo de las jurisdicciones latinoamericanas del Red Book del BIS (solo Suecia, US$49, e India, US$21, registran menos).",
       },
       PE: {
-        nota: "Comercios peruanos ya aceptan Pix de brasileños; TAPP nace con la interoperabilidad doméstica como prioridad y sin agenda transfronteriza publicada. El costo de enviar remesas al Perú (3,57%) es el más alto de los seis y supera la meta ODS de 3%.",
+        nota: "Comercios peruanos ya aceptan Pix de brasileños; TAPP nace con la interoperabilidad doméstica como prioridad y sin agenda transfronteriza publicada. El costo de enviar remesas al Perú (3,57%, 2023) es el más alto de los cuatro con dato (Argentina y Chile sin medición) y supera la meta ODS de 3%.",
       },
       CL: {
         nota: "Recibe Pix en comercios, pero sin riel inmediato propio no hay nada que conectar del lado chileno. Remesas casi inexistentes (0,03% del PIB).",
@@ -348,7 +359,7 @@ export const INDICADORES: Indicador[] = [
     fuente: "Finnovista · Fintech Radar 2025",
     url: "https://www.finnosummit.com/en/content/finnovista-fintech-radar/",
     anio: 2025,
-    valores: { CO: 410, MX: 795, BR: 1728, CL: 348, PE: 193, AR: 383 },
+    valores: { CO: 410, MX: 795, BR: 1728, CL: 374, PE: 193, AR: 383 },
     overrides: {
       BR: {
         fuente: "Distrito · plataforma de datos",
@@ -360,11 +371,16 @@ export const INDICADORES: Indicador[] = [
         fuente: "Finnovista · Fintech Radar México 2026",
         url: "https://www.finnosummit.com/en/radar/the-mexican-fintech-sector-enters-a-new-phase-ai-and-stablecoins-redefine-payments-in-2026/",
         anio: 2026,
-        nota: "Radar México 2026 (feb-2026): 795 locales + 316 extranjeras; leve caída vs 803 de 2025 por consolidación. 77% ya usa IA.",
+        nota: "Radar México 2026 (feb-2026): 795 locales + 316 extranjeras; +1,8% frente a 781 de 2025 (cifra ajustada por Finnovista). 77% ya usa IA.",
       },
-      CO: { nota: "Radar Colombia 2025; la edición 2026 está en levantamiento (publicación ~2S-2026)." },
-      CL: { anio: 2024, nota: "Finnovista Radar Chile VI edición (2024); sin edición nueva a jul-2026." },
-      PE: { anio: 2024, nota: "Finnovista Radar Perú 2024; sin edición nueva a jul-2026." },
+      CO: { nota: "Radar Colombia 2025; la convocatoria del Radar 2026 abrió en junio y a oct-2026 el informe no se ha publicado." },
+      CL: {
+        anio: 2026,
+        fuente: "Finnovista · Fintech Radar Chile 2026 (con FinteChile)",
+        url: "https://www.finnosummit.com/en/16-of-foreign-fintechs-operating-in-chile-come-from-mexico/",
+        nota: "374 fintechs locales y 540 en total con extranjeras; el 16% de las extranjeras viene de México. En 2024 eran 348.",
+      },
+      PE: { anio: 2024, nota: "Finnovista Radar Perú 2024; sin edición nueva a oct-2026." },
       AR: {
         anio: 2024,
         nota: "Finnovista Radar Argentina 2024. La Cámara Argentina Fintech cuenta 939 empresas del sector (Mapa Fintech 2025, metodología distinta).",
@@ -384,10 +400,10 @@ export const INDICADORES: Indicador[] = [
     valores: { CO: 224, MX: 980, BR: 2032, CL: 249, PE: 35, AR: 172 },
     overrides: {
       BR: {
-        nota: "US$2.032M en 363 deals (Crunchbase reporta US$2.100M). En 2026, CloudWalk sumó US$1.100M en deuda.",
+        nota: "US$2.032M en 363 deals (Crunchbase reporta US$2.100M). En 2026 CloudWalk captó R$5.500 M (~US$1.000 M) en deuda vía el FIDC Bela II.",
       },
       MX: {
-        nota: "US$980M en 86 deals (Crunchbase: US$1.100M, +53%). En Q1-2026 México superó a Brasil en VC por segunda vez desde el 2T-2012; Plata levantó US$405M (valoración US$5.000M).",
+        nota: "US$980M en 86 deals (Crunchbase: US$1.100M, +53%). En Q1-2026 México superó a Brasil en VC por segunda vez desde el 2T-2012; en abril de 2026 (Q2) Plata levantó US$405M (valoración US$5.000M).",
       },
       CO: {
         nota: "Equity puro. Con venture debt, el Colombia Tech Report (KPMG) suma US$857M en 131 transacciones (−8,9% vs 2024); fintech captó el 60% de ese capital y Bogotá el 81%.",
@@ -425,7 +441,7 @@ export const INDICADORES: Indicador[] = [
     fuente: "World Bank · Global Findex 2025, series con21 y con22 (datos 2024)",
     url: "https://www.worldbank.org/en/publication/globalfindex",
     anio: 2024,
-    valores: { CO: 4.4, MX: 3.7, BR: 2.7, CL: null, PE: 2.2, AR: 2.3 },
+    valores: { CO: 4.4, MX: 3.7, BR: 2.7, CL: null, PE: 2.3, AR: 2.3 },
     overrides: {
       CO: {
         nota: "El 22,0% de los adultos recibió una solicitud de dinero por teléfono o SMS y el 0,97% envió el dinero: la conversión más alta de los seis. Recibir el intento es casi universal en la región; caer, no.",
@@ -442,20 +458,23 @@ export const INDICADORES: Indicador[] = [
     key: "chainalysis",
     pilar: "tokenizacion",
     label: "Adopción cripto (ranking)",
-    desc: "Posición en el Chainalysis Global Crypto Adoption Index (1 = mayor adopción mundial). Menor es mejor.",
+    desc: "Posición en el Chainalysis Global Crypto Adoption Index (1 = mayor adopción mundial). Menor es mejor. Los países fuera del top 20 público entran al cálculo como puesto 21 (cota) y se muestran como «>20».",
     unidad: "ranking",
     direccion: "lower",
-    fuente: "Chainalysis · Global Crypto Adoption Index 2025",
-    url: "https://www.chainalysis.com/blog/2025-global-crypto-adoption-index/",
-    anio: 2025,
-    valores: { CO: null, MX: 14, BR: 5, CL: null, PE: null, AR: 20 },
+    fuente: "Chainalysis · Global Crypto Adoption Index 2026 (23-sep-2026, período jul-2025–jun-2026)",
+    url: "https://www.chainalysis.com/blog/2026-global-crypto-adoption-index/",
+    anio: 2026,
+    // Fuera del top 20 público = puesto 21 (cota). Antes se omitía como n/d, lo que
+    // premiaba salir del ranking: Argentina subía 7,5 puntos al caer del 20º al >20.
+    valores: { CO: 21, MX: 11, BR: 1, CL: 21, PE: 21, AR: 21 },
+    cotas: { CO: ">20", CL: ">20", PE: ">20", AR: ">20" },
     overrides: {
-      BR: { nota: "5º del mundo; recibió US$318,8 mil M en cripto jul-2024–jun-2025 (+110%), más del 90% en stablecoins." },
-      AR: { nota: "20º del mundo; volumen recibido US$93,9 mil M en jul-2024–jun-2025." },
-      MX: { anio: 2024, nota: "Rank 14 en el índice 2024; fuera del top 20 en 2025 (volumen US$71,2 mil M)." },
-      CO: { nota: "Fuera del top 20 público; volumen recibido US$44,2 mil M (jul-2024–jun-2025)." },
-      PE: { nota: "Fuera del top 20 público; volumen recibido US$28,0 mil M." },
-      CL: { nota: "Fuera del top 20 público; volumen recibido US$23,8 mil M." },
+      BR: { nota: "1º del mundo en 2026 (era 5º en 2025); economía cripto de US$252,5 mil M (−1,6%), la mayor de LATAM. Metodología nueva de cuatro factores (flujos de servicios, P2P, transfronterizos y saldos): los montos no se comparan con el «valor recibido» de 2025." },
+      AR: { nota: "Fuera del top 20 público en 2026 (era 20º en 2025); economía cripto de US$88,5 mil M (+15,3%), la segunda de LATAM.", url: "https://www.chainalysis.com/blog/latin-america-crypto-adoption-2026/" },
+      MX: { nota: "11º del mundo en 2026; US$77,6 mil M (+25,5%), 61% en stablecoins; 5º del mundo en flujos transfronterizos.", url: "https://www.chainalysis.com/blog/latin-america-crypto-adoption-2026/" },
+      CO: { nota: "Fuera del top 20 público; US$29,1 mil M (+13,8%), quinta economía cripto de LATAM.", url: "https://www.chainalysis.com/blog/latin-america-crypto-adoption-2026/" },
+      PE: { nota: "Fuera del top 20 público; Chainalysis no publica su volumen en 2026." },
+      CL: { nota: "Fuera del top 20 público; Chainalysis no publica su volumen en 2026." },
     },
   },
   {
@@ -472,10 +491,10 @@ export const INDICADORES: Indicador[] = [
     valores: { CO: 45, MX: 62, BR: 93, CL: 85, PE: 40, AR: 85 },
     overrides: {
       BR: {
-        nota: "Resoluções BCB 519–521 ya en vigor en 2026: PLD/FT desde febrero, régimen cambiario de stablecoins desde mayo y autorización obligatoria de VASPs antes del 30-oct-2026.",
+        nota: "Resoluções BCB 519–521 vigentes desde el 2-feb-2026 (las partes cambiarias de stablecoins de la 521, desde el 4-may-2026). Los VASP en operación tienen hasta el 30-oct-2026 para solicitar la autorización; la Res. BCB 589 (23-sep-2026) movió al 6-nov-2026 la prohibición de operar con contrapartes no autorizadas y exige prueba de reservas desde el 1-ene-2027.",
       },
       CL: {
-        nota: "Ley Fintec 21.521 operativa: la CMF licencia exchanges y custodios; en 2026 debutan las primeras plataformas cripto reguladas para retail.",
+        nota: "Ley Fintec 21.521 y NCG 502 vigentes: la CMF registra y autoriza a exchanges y custodios de activos virtuales.",
       },
       AR: {
         nota: "Registro PSAV operativo (RG 1058/2025) y tokenización ampliada: la RG 1150/2026 suma valores tokenizables y prorroga el sandbox hasta dic-2027.",
@@ -486,7 +505,7 @@ export const INDICADORES: Indicador[] = [
       CO: {
         nota: "Retroceso: el PL 510/2025 de PSAV fue archivado el 20-jun-2026 por tránsito de legislatura — cuarto intento fallido. Solo queda registro ante UIAF y SARLAFT.",
       },
-      PE: { nota: "Solo régimen antilavado (Res. SBS 02648-2024); la Ley Marco de Criptoactivos sigue estancada en comisión." },
+      PE: { nota: "Solo régimen antilavado (Res. SBS 02648-2024); la Ley Marco de Criptoactivos tiene dictamen de la Comisión de Economía desde jun-2023, pero sigue sin votarse en el pleno." },
     },
   },
 
@@ -539,7 +558,7 @@ export const INDICADORES: Indicador[] = [
     valores: { CO: 62, MX: 85, BR: 85, CL: 80, PE: 50, AR: 42 },
     overrides: {
       MX: { nota: "Ley Fintech (2018) + sandbox 'Modelos Novedosos' + nueva ley de datos (2025)." },
-      CL: { nota: "Ley Fintec 21.521 (2023) + régimen cripto NCG 502 + datos (Ley 21.719); sin sandbox formal." },
+      CL: { nota: "Ley Fintec 21.521 (2023) + NCG 502 (registro y autorización de servicios fintech, cripto incluido) + Ley 21.719 de datos (rige desde el 1-dic-2026); sin sandbox formal." },
       BR: { nota: "Sin ley fintech única, pero con sandbox (BCB/CVM), LGPD y cripto integral (Lei 14.478)." },
       CO: { nota: "Sandbox laArenera (SFC) + Ley 1581 de datos; sin ley fintech integral." },
       PE: { nota: "Sandbox de la SBS + Ley 29.733 de datos; sin ley fintech integral." },
@@ -666,10 +685,10 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "6 de cada 10",
-    corto: "latinoamericanos que se endeudaron lo hicieron por fuera del sistema formal.",
+    corto: "personas que se endeudaron en la economía latinoamericana típica no lo hicieron con una entidad financiera formal.",
     emisor: "Global Findex 2025",
     label:
-      "latinoamericanos que se endeudaron NO usaron el sistema formal: fueron a la familia, al prestamista o al 'gota a gota'. La confianza no se resuelve abriendo cuentas.",
+      "personas que se endeudaron en la economía latinoamericana típica no lo hicieron con un banco ni con otra entidad financiera formal (promedio simple de 21 economías: 38,8% formal). La confianza no se resuelve abriendo cuentas.",
     fuente: "Global Findex 2025 · cálculo del Observatorio sobre 21 economías",
     url: "https://www.worldbank.org/en/publication/globalfindex",
     anio: 2024,
@@ -696,7 +715,7 @@ export const ANCLAS: Ancla[] = [
     valor: "US$1.360M",
     corto: "levantó la región en el segundo trimestre de 2026, 47% más que un año antes.",
     emisor: "Crunchbase News",
-    label: "levantó LATAM en Q2-2026 (+47% i.a.): US$991M late-stage (+84%) y México US$944M frente a Brasil US$350M — tercer trimestre seguido en que México lidera.",
+    label: "levantó LATAM en Q2-2026 (+47% i.a.): US$991M late-stage (+84%) y México US$944M frente a Brasil US$350M — tercer trimestre del último año en que México lidera.",
     fuente: "Crunchbase News · LATAM Q2 2026",
     url: "https://news.crunchbase.com/venture/mexico-leads-latin-america-funding-q2-2026/",
     anio: 2026,
@@ -705,7 +724,7 @@ export const ANCLAS: Ancla[] = [
     valor: "US$38.500M",
     corto: "en activos del mundo real (RWA) tokenizados on-chain, sin contar stablecoins.",
     emisor: "rwa.xyz",
-    label: "en activos del mundo real (RWA) tokenizados on-chain, excluyendo stablecoins: ~3,3 veces el nivel de hace un año (~US$11,8B).",
+    label: "en activos del mundo real (RWA) tokenizados y distribuidos on-chain, excluyendo stablecoins (métrica «Distributed Asset Value» de rwa.xyz, leída el 17-sep-2026).",
     fuente: "rwa.xyz · dashboard en vivo (corte 17-sep-2026)",
     url: "https://app.rwa.xyz/",
     anio: 2026,
@@ -721,9 +740,9 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "3,68×",
-    corto: "le cuesta a las entidades de la región cada unidad de dinero perdida por fraude.",
+    corto: "le cuesta a las entidades de Argentina, Brasil, Colombia y México cada unidad de dinero perdida por fraude.",
     emisor: "LexisNexis",
-    label: "cuesta a las entidades financieras de LATAM cada peso/real perdido por fraude, con las tácticas impulsadas por IA como eje del nuevo estudio.",
+    label: "cuesta a las entidades financieras de Argentina, Brasil, Colombia y México cada peso o real perdido por fraude, con las tácticas impulsadas por IA como eje del nuevo estudio.",
     fuente: "LexisNexis · True Cost of Fraud LATAM 2026 (121 ejecutivos)",
     url: "https://risk.lexisnexis.com/global/en/about-us/press-room/press-release/20260511-tcof-mexico",
     anio: 2026,
@@ -831,7 +850,7 @@ export const FUENTES: FuenteRef[] = [
   {
     nombre: "Bancos centrales (rieles instantáneos)",
     url: "https://www.banrep.gov.co/es/bre-b",
-    nota: "Banco de la República (Bre-B: ~8M tx/día y >110M de llaves a sep-2026), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 43.900M tx en 1S-2026), BCRP (263M tx interoperables/mes; Reglamento de alias 15-jul-2026), BCRA (777,2M transferencias inmediatas en jul-2026), BCCh (Informe de Sistemas de Pago ago-2026: consulta de alias/QR aún pendiente). Insumos del indicador de pagos inmediatos por adulto.",
+    nota: "Banco de la República (Bre-B: 7,9M tx/día promedio y >116M de llaves a oct-2026), Banxico (SPEI: 7.300M de operaciones en 2025), BCB (PIX: 43.996M tx en 1S-2026), BCRP (263M tx interoperables/mes; Reglamento de alias 15-jul-2026), BCRA (779M transferencias inmediatas en ago-2026), BCCh (Informe de Sistemas de Pago ago-2026: consulta de alias/QR aún pendiente). Insumos del indicador de pagos inmediatos por adulto.",
   },
   {
     nombre: "Marcos regulatorios oficiales",
@@ -846,19 +865,19 @@ export const FUENTES: FuenteRef[] = [
 // -----------------------------------------------------------------------------
 
 export const SNAPSHOT_ANTERIOR: { fecha: string; scores: Record<CC, number> } = {
-  fecha: "ago-2026",
-  scores: { BR: 85.9, CL: 60.7, AR: 48.4, MX: 32.6, CO: 19.6, PE: 25.2 },
+  fecha: "sep-2026",
+  scores: { BR: 85.9, CL: 60.7, AR: 48.5, MX: 32.4, CO: 19.8, PE: 25.0 },
 };
 
-// Ambos cortes se calcularon con los seis pilares. Los deltas de v4.4 ya son
-// variación de datos, no de método. La normalización sigue siendo relativa:
-// un país puede bajar de puntaje aunque mejore en términos absolutos.
-export const SNAPSHOT_COMPARABLE = true;
+// El corte v4.5 cambia el método del ranking cripto (fuera del top 20 = cota 21,
+// antes n/d): los deltas frente a septiembre mezclan dato y método. La
+// normalización sigue siendo relativa: un país puede bajar aunque mejore.
+export const SNAPSHOT_COMPARABLE = false;
 
 export const META = {
-  version: "v4.4",
-  curado: "septiembre de 2026",
-  auditoria: "17 de septiembre de 2026",
+  version: "v4.5",
+  curado: "octubre de 2026",
+  auditoria: "13 de octubre de 2026",
   marca: "Observatorio Find",
   institucion: "Universidad EAFIT",
   pilares: PILARES.length,
@@ -867,23 +886,23 @@ export const META = {
 
 export const NOVEDADES_CORTE: { cifra: string; texto: string; href: string }[] = [
   {
-    cifra: "70",
-    texto: "pagos Bre-B por adulto al año (eran 44). Sigue última: México tiene 73",
+    cifra: "1º",
+    texto: "Brasil encabeza el índice de adopción cripto 2026 de Chainalysis; México 11º y Argentina sale del top 20",
+    href: "/indice#datos",
+  },
+  {
+    cifra: "69",
+    texto: "pagos Bre-B por adulto con el promedio oficial del Banrep (7,88 M/día). Colombia sigue última",
     href: "/pagos",
   },
   {
-    cifra: "252",
-    texto: "pagos inmediatos por adulto en Argentina (BCRA, julio 2026)",
-    href: "/pagos",
+    cifra: "374",
+    texto: "fintechs locales en Chile según el Radar 2026 de Finnovista (eran 348)",
+    href: "/indice#datos",
   },
   {
-    cifra: "US$38.500M",
-    texto: "RWA tokenizados on-chain al 17-sep-2026, sin stablecoins",
-    href: "#senales",
-  },
-  {
-    cifra: "Δ limpio",
-    texto: "los deltas vs agosto ya comparan seis pilares con seis pilares",
-    href: "/metodologia#auditoria",
+    cifra: "2-dic-2027",
+    texto: "nueva fecha del AI Act para el scoring crediticio (Reglamento UE 2026/1744)",
+    href: "/frontera",
   },
 ];

@@ -20,6 +20,8 @@ import { LATAM } from "@/data/latam";
 
 export interface DatoPais {
   valor: number | null;
+  /** Texto de un valor censurado («>20»); si existe, se muestra en lugar del número. */
+  cota?: string;
   norm: number | null;
   anio: number;
   fuente: string;
@@ -101,6 +103,7 @@ export function datosInicio(): DatosInicio {
       const o = ind.overrides?.[p.code];
       paises[p.code] = {
         valor: ind.valores[p.code],
+        cota: ind.cotas?.[p.code],
         norm: norm[p.code],
         anio: o?.anio ?? ind.anio,
         fuente: o?.fuente ?? ind.fuente,

@@ -110,9 +110,9 @@ export const HECHOS_PAGOS: HechoPago[] = [
     ambito: "latam",
     eje: "confianza",
     valor: "61%",
-    titulo: "Seis de cada diez créditos de la región son informales",
+    titulo: "Seis de cada diez personas que se endeudan en la región lo hacen fuera de la banca formal",
     detalle:
-      "De cada 100 adultos latinoamericanos que se endeudaron, solo 38,8 lo hicieron con una entidad formal. El resto fue a la familia, al prestamista o al 'gota a gota'. Es la medición más clara de que la confianza no se resuelve abriendo cuentas.",
+      "En la economía latinoamericana típica (promedio simple de 21), de cada 100 adultos que se endeudaron solo 38,8 lo hicieron con un banco u otra entidad financiera formal; el resto acudió a familia, tienda, dinero móvil o prestamistas informales. Es la medición más clara de que la confianza no se resuelve abriendo cuentas.",
     fuente: "Global Findex 2025 · fin22a ÷ borrow.any.t.d, promedio del panel (21)",
     url: "https://www.worldbank.org/en/publication/globalfindex",
     anio: 2024,
@@ -166,12 +166,12 @@ export const HECHOS_PAGOS: HechoPago[] = [
   {
     ambito: "colombia",
     eje: "uso",
-    valor: "70",
-    titulo: "Bre-B ya mueve 70 pagos por adulto al año",
+    valor: "69",
+    titulo: "Bre-B ya mueve 69 pagos por adulto al año",
     detalle:
-      "Casi 8 millones de pagos diarios (Prieto, Banrep, 13-sep-2026) equivalen a 2.920 millones anualizados: 70 por adulto. En mayo eran 5 millones al día (44 por adulto). El riel suma más de 110 millones de llaves y 35 millones de colombianos con al menos una; la nómina y los recaudos se regulan a fines de 2026 para 2027.",
-    fuente: "Banco de la República · Ana María Prieto en El Espectador (13-sep-2026)",
-    url: "https://www.elespectador.com/economia/bre-b-y-las-llaves-lo-que-viene-para-el-sistema-que-transformo-los-pagos-en-colombia/",
+      "7,88 millones de pagos diarios en promedio entre el 13-sep y el 12-oct-2026 equivalen a 2.877 millones anualizados: 69 por adulto. En mayo eran 5 millones al día (44 por adulto). En su primer año el riel movió 1.849 millones de transacciones; suma más de 116 millones de llaves, más de 36 millones de usuarios y 245 entidades. La nómina y los recaudos se regulan a fines de 2026 para 2027.",
+    fuente: "Banco de la República · tablero de indicadores MOL de Bre-B (12-oct-2026)",
+    url: "https://www.banrep.gov.co/es/bre-b/indicadores-mol",
     anio: 2026,
   },
   {

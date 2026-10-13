@@ -423,7 +423,7 @@ function KpiGrid({ indicators, country, color }: { indicators: Indicador[]; coun
               <span className="font-mono text-[9px] text-muted">{override?.anio ?? indicator.anio}</span>
             </div>
             <div className="mt-3 font-mono text-2xl font-semibold tracking-[-0.04em]" style={{ color }}>
-              {fmt(value, indicator.unidad)}
+              {indicator.cotas?.[country] ?? fmt(value, indicator.unidad)}
             </div>
             <div className="mt-2 min-h-4 font-mono text-[9px] uppercase tracking-[0.08em]">
               {delta === null ? (
@@ -555,7 +555,7 @@ function Heatmap({ indicators, color }: { indicators: Indicador[]; color: string
                         style={{ background: score === null ? "rgba(11,11,18,0.025)" : `${color}${alpha}` }}
                         title={score === null ? "Sin dato" : `Puntaje normalizado: ${score}/100`}
                       >
-                        {value === null ? "n/d" : fmt(value, indicator.unidad)}
+                        {indicator.cotas?.[country.code] ?? (value === null ? "n/d" : fmt(value, indicator.unidad))}
                       </span>
                     </td>
                   );

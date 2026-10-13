@@ -204,14 +204,14 @@ export const MEDIDAS: Medida[] = [
   },
   {
     jurisdiccion: "Unión Europea", flag: "🇪🇺", regulador: "Unión Europea",
-    estatus: "En curso", fecha: "Desde 2-ago-2026",
+    estatus: "En curso", fecha: "Aplica desde 2-dic-2027",
     ejes: ["Crédito","Innovación"],
     categorias: ["Tecnología y datos","Protección al consumidor"],
     riesgos: ["Sesgo algorítmico","Falta de explicabilidad","Gobernanza de modelos algorítmicos"],
-    titulo: "AI Act — scoring crediticio de alto riesgo",
-    cambio: "El scoring y las decisiones de préstamo se clasifican como IA de alto riesgo (Anexo III). Desde el 2 ago 2026 aplican obligaciones de gobernanza de datos, supervisión humana y documentación; sanciones hasta 3% de la facturación global.",
-    impacto: "Modelos de crédito más auditables y menos sesgados; sube el costo de cumplimiento para prestamistas digitales.",
-    url: "https://euaicompass.com/eu-ai-act-for-financial-services.html", fuente: "EU AI Compass / RegulatoryAI",
+    titulo: "AI Act — scoring crediticio de alto riesgo (aplazado)",
+    cambio: "El scoring y las decisiones de préstamo son IA de alto riesgo (Anexo III). El Reglamento (UE) 2026/1744 del 8-jul-2026 («Digital Omnibus» de IA) aplazó sus obligaciones de gobernanza de datos, supervisión humana y documentación del 2-ago-2026 al 2-dic-2027; para la IA de alto riesgo del Anexo I la fecha pasa al 2-ago-2028. Sanciones hasta 3% de la facturación global.",
+    impacto: "Dieciséis meses más de margen para los prestamistas digitales; la auditabilidad de los modelos de crédito y su costo de cumplimiento llegan igual, pero en 2027.",
+    url: "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng", fuente: "EUR-Lex · Reglamento (UE) 2026/1744",
   },
   {
     jurisdiccion: "Unión Europea", flag: "🇪🇺", regulador: "UE · ESMA · EBA",
@@ -408,13 +408,6 @@ export const PERIODOS = ["2º sem. 2026","2027","2028","2029 y más allá","Sin 
 
 export const HITOS: Hito[] = [
   {
-    periodo: "2º sem. 2026", fecha: "2 ago 2026", jurisdiccion: "Unión Europea", flag: "🇪🇺",
-    certeza: "Fijado", ejes: ["Crédito","Innovación"],
-    titulo: "AI Act — obligaciones de alto riesgo para el scoring crediticio",
-    que: "Entran en vigor gobernanza de datos, supervisión humana y documentación para modelos de scoring y decisiones de préstamo.",
-    url: "https://euaicompass.com/eu-ai-act-for-financial-services.html", fuente: "EU AI Compass",
-  },
-  {
     periodo: "2º sem. 2026", fecha: "20 nov 2026", jurisdiccion: "Unión Europea", flag: "🇪🇺",
     certeza: "Fijado", ejes: ["Crédito"],
     titulo: "CCD2 — aplica la nueva Directiva de Crédito al Consumo",
@@ -455,6 +448,13 @@ export const HITOS: Hito[] = [
     titulo: "CFPB — regla 1033 revisada de open banking",
     que: "Tras el ANPR de ago 2025, el CFPB debe publicar una versión revisada; texto y fecha aún inciertos.",
     url: "https://www.cozen.com/news-resources/publications/2026/section-1033-compliance-date-open-banking-rule-enjoined-and-under-reconsideration", fuente: "Cozen O'Connor",
+  },
+  {
+    periodo: "2027", fecha: "2 dic 2027", jurisdiccion: "Unión Europea", flag: "🇪🇺",
+    certeza: "Fijado", ejes: ["Crédito","Innovación"],
+    titulo: "AI Act — obligaciones de alto riesgo para el scoring crediticio",
+    que: "Tras el aplazamiento del Reglamento (UE) 2026/1744 (antes era el 2-ago-2026), entran en vigor gobernanza de datos, supervisión humana y documentación para modelos de scoring y decisiones de préstamo (Anexo III). La IA de alto riesgo del Anexo I queda para el 2-ago-2028.",
+    url: "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng", fuente: "EUR-Lex",
   },
   {
     periodo: "2027", fecha: "~ene 2027", jurisdiccion: "EE.UU.", flag: "🇺🇸",

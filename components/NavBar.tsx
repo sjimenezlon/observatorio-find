@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import BotonIdioma from "@/components/idioma/BotonIdioma";
 
 const PRINCIPALES = [
   { href: "/dashboards", label: "Dashboards" },
@@ -19,7 +20,7 @@ const MAS = [
   { href: "/cerebro", label: "Cerebro" },
 ];
 
-/** `extras`: controles que una página agrega a la barra (la portada pone EN y sonido). */
+/** `extras`: controles que una página agrega a la barra (la portada pone el sonido). */
 export function NavBar({ extras }: { extras?: React.ReactNode } = {}) {
   const ruta = usePathname();
   const [abierto, setAbierto] = useState(false);
@@ -98,6 +99,7 @@ export function NavBar({ extras }: { extras?: React.ReactNode } = {}) {
           </li>
         </ul>
 
+        <BotonIdioma />
         {extras}
 
         <button

@@ -27,5 +27,11 @@ export function cifraConUnidad(ind: IndicadorInicio, v: number | null): string {
   return v === null ? "n/d" : cifra(v, ind.unidad) + sufijo(ind.unidad);
 }
 
+/** Valor de un país listo para mostrar: respeta las cotas («>20»). */
+export function valorPais(ind: IndicadorInicio, cc: keyof IndicadorInicio["paises"]): string {
+  const d = ind.paises[cc];
+  return d.cota ?? cifraConUnidad(ind, d.valor);
+}
+
 export const sinTildes = (s: string) =>
   s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");

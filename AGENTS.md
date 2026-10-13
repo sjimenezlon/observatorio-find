@@ -164,6 +164,20 @@ en el código. Ver `SECURITY.md`.
 
 ---
 
+## 5b · Inglés y valores censurados
+
+**Inglés.** El botón EN de la barra traduce el DOM en el navegador con diccionarios en
+`components/idioma/` (`en-prototipo`, `en-portada`, `en-sitio`). Lo que no esté en un
+diccionario se queda en español. Después de un corte nuevo o de cambiar textos:
+`npm run build && npx next start -p 3000` y, en otra terminal, `npm run textos-en`;
+traduce lo que salga en `scripts/salida/textos-sin-traducir.json` hacia `en-sitio.json`.
+Los bloques `<pre>` de fórmulas llevan `data-noi18n` y no se traducen.
+
+**Valores censurados.** Si la fuente solo dice que el país está «peor que el último
+publicado» (p. ej. fuera del top 20 de Chainalysis), el valor entra como cota (21) y se
+declara en `cotas` del indicador (`{ AR: ">20" }`); la interfaz muestra la cota. Nunca se
+deja como `null`: omitirlo premia empeorar.
+
 ## 6 · Mapa del repositorio
 
 ```

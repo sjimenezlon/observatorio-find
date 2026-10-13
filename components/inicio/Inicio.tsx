@@ -190,7 +190,7 @@ function FichaIndicador({ indKey, onClose }: { indKey: string | null; onClose: (
   const pl = datos.pilares.find((p) => p.key === m.pilar)!;
   const d = m.paises[pais];
   const nombrePais = datos.paises.find((p) => p.code === pais)!.nombre;
-  const filas = datos.paises.map((p) => ({ ...p, v: m.paises[p.code].valor }));
+  const filas = datos.paises.map((p) => ({ ...p, v: m.paises[p.code].valor, cota: m.paises[p.code].cota }));
   const max = Math.max(...filas.filter((f) => f.v !== null).map((f) => Math.abs(f.v!))) || 1;
 
   async function copiar(texto: string, ok: string) {
@@ -246,8 +246,8 @@ function FichaIndicador({ indKey, onClose }: { indKey: string | null; onClose: (
           </div>
           <div className="bigval">
             <b className="tab-n">
-              {cifra(d.valor, m.unidad)}
-              {d.valor !== null && <span style={{ fontSize: 22 }}>{sufijo(m.unidad)}</span>}
+              {d.cota ?? cifra(d.valor, m.unidad)}
+              {d.valor !== null && !d.cota && <span style={{ fontSize: 22 }}>{sufijo(m.unidad)}</span>}
             </b>
             <span className="chip">
               {nombrePais} · {d.anio}
@@ -280,7 +280,7 @@ function FichaIndicador({ indKey, onClose }: { indKey: string | null; onClose: (
                       <>
                         <rect x="110" y={y + 6} width={Math.max(w, 3)} height="24" rx="12" fill={yo ? "#5538FC" : "#C9C0FF"} />
                         <text x={118 + w} y={y + 23} fontSize="13" fontWeight="700" fill="#0B0B12">
-                          {cifraConUnidad(m, f.v)}
+                          {f.cota ?? cifraConUnidad(m, f.v)}
                         </text>
                       </>
                     )}
