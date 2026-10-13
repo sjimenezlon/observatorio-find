@@ -66,8 +66,8 @@ export default function MapaIndice() {
             className="rounded-full border px-3.5 py-1.5 text-xs font-semibold transition"
             style={{
               background: capa === "imiaf" ? "rgba(31,201,160,0.18)" : "transparent",
-              borderColor: capa === "imiaf" ? "#1FC9A0" : "rgba(255,255,255,0.14)",
-              color: capa === "imiaf" ? "#1FC9A0" : "#8fa9a1",
+              borderColor: capa === "imiaf" ? "#12866B" : "rgba(11,11,18,0.14)",
+              color: capa === "imiaf" ? "#12866B" : "#4A4A5C",
             }}
           >
             IIIF (índice completo)
@@ -81,8 +81,8 @@ export default function MapaIndice() {
                 className="rounded-full border px-3.5 py-1.5 text-xs font-medium transition"
                 style={{
                   background: on ? `${pl.color}22` : "transparent",
-                  borderColor: on ? pl.color : "rgba(255,255,255,0.14)",
-                  color: on ? pl.color : "#8fa9a1",
+                  borderColor: on ? pl.color : "rgba(11,11,18,0.14)",
+                  color: on ? pl.color : "#4A4A5C",
                 }}
               >
                 {pl.corto}
@@ -106,7 +106,7 @@ export default function MapaIndice() {
                     dx="0"
                     dy="0"
                     stdDeviation="4"
-                    floodColor="#eaf3ef"
+                    floodColor="#0B0B12"
                     floodOpacity="0.35"
                   />
                 </filter>
@@ -115,8 +115,8 @@ export default function MapaIndice() {
                 <path
                   key={i}
                   d={d}
-                  fill="rgba(255,255,255,0.045)"
-                  stroke="rgba(255,255,255,0.09)"
+                  fill="rgba(11,11,18,0.045)"
+                  stroke="rgba(11,11,18,0.09)"
                   strokeWidth={0.8}
                 />
               ))}
@@ -129,7 +129,7 @@ export default function MapaIndice() {
                     d={p.d}
                     fill={fill}
                     fillOpacity={on ? Math.min(1, opacity + 0.15) : opacity}
-                    stroke={on ? "#eaf3ef" : "rgba(10,44,40,0.9)"}
+                    stroke={on ? "#0B0B12" : "rgba(10,44,40,0.9)"}
                     strokeWidth={on ? 1.8 : 0.9}
                     filter={on ? "url(#glowPais)" : undefined}
                     className="cursor-pointer"
@@ -154,7 +154,7 @@ export default function MapaIndice() {
                       textAnchor="middle"
                       fontSize={15}
                       fontWeight={800}
-                      fill="#eaf3ef"
+                      fill="#0B0B12"
                       style={{ paintOrder: "stroke", stroke: "rgba(10,44,40,0.75)", strokeWidth: 3 }}
                     >
                       {p.cc}
@@ -165,7 +165,7 @@ export default function MapaIndice() {
                       textAnchor="middle"
                       fontSize={13}
                       fontWeight={700}
-                      fill="#eaf3ef"
+                      fill="#0B0B12"
                       style={{ paintOrder: "stroke", stroke: "rgba(10,44,40,0.75)", strokeWidth: 3 }}
                     >
                       {s === null ? "n/d" : Math.round(s)}
@@ -177,7 +177,7 @@ export default function MapaIndice() {
             {/* tooltip que sigue el cursor */}
             {hover && tip && (
               <div
-                className="pointer-events-none absolute z-10 rounded-xl border border-white/15 bg-[#0e3b36] px-3 py-2 shadow-xl"
+                className="pointer-events-none absolute z-10 rounded-xl border border-white/15 bg-panel px-3 py-2 shadow-xl"
                 style={{
                   left: Math.min(tip.x + 14, (contRef.current?.clientWidth ?? 400) - 170),
                   top: Math.max(tip.y - 54, 8),
@@ -265,7 +265,7 @@ export default function MapaIndice() {
                   {deltaSel !== 0 && (
                     <span
                       className="tabnum ml-1 font-semibold"
-                      style={{ color: deltaSel > 0 ? "#1FC9A0" : "#ff8fa3" }}
+                      style={{ color: deltaSel > 0 ? "#12866B" : "#ff8fa3" }}
                     >
                       {deltaSel > 0 ? "▲" : "▼"}
                       {Math.abs(deltaSel)}

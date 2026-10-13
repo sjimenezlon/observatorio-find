@@ -15,8 +15,8 @@ import { SEGMENTOS, FilaSegmento, FAMILIAS, FamiliaSeg } from "@/data/segmentos"
 export type DimSeg = "declarada" | "revelada" | "profundidad";
 
 export const DIMS_SEG: { key: DimSeg; label: string; color: string; peso: number }[] = [
-  { key: "declarada", label: "Declarada", color: "#E8B452", peso: 25 },
-  { key: "revelada", label: "Revelada", color: "#1FC9A0", peso: 45 },
+  { key: "declarada", label: "Declarada", color: "#A86B00", peso: 25 },
+  { key: "revelada", label: "Revelada", color: "#12866B", peso: 45 },
   { key: "profundidad", label: "Profundidad", color: "#9B8CF0", peso: 30 },
 ];
 

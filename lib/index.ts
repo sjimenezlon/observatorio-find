@@ -119,8 +119,8 @@ export function calcularIndice(
 
 // Banda cualitativa de madurez a partir del puntaje compuesto.
 export function banda(indice: number): { label: string; color: string } {
-  if (indice >= 75) return { label: "Avanzado", color: "#1FC9A0" };
-  if (indice >= 55) return { label: "En consolidación", color: "#9FCE2E" };
-  if (indice >= 40) return { label: "Emergente", color: "#E8B452" };
-  return { label: "Incipiente", color: "#6C5CD6" };
+  if (indice >= 75) return { label: "Avanzado", color: "#1F8A4C" };
+  if (indice >= 55) return { label: "En consolidación", color: "#5538FC" };
+  if (indice >= 40) return { label: "Emergente", color: "#B4530A" };
+  return { label: "Incipiente", color: "#3A3A48" };
 }

@@ -5,11 +5,11 @@ import { PAISES, PILARES, INDICADORES, CC } from "@/data/dataset";
 import { calcularIndice, normalizarIndicador, banda } from "@/lib/index";
 
 const COLORS: Record<CC, string> = {
-  CO: "#1FC9A0",
-  MX: "#9FCE2E",
+  CO: "#12866B",
+  MX: "#5E7F12",
   BR: "#6C5CD6",
-  CL: "#5BD0E0",
-  PE: "#E8B452",
+  CL: "#1A8597",
+  PE: "#A86B00",
   AR: "#FF8FA3",
 };
 

@@ -4,16 +4,16 @@ import { useMemo, useState } from "react";
 import { MEDIDAS } from "@/data/frontera";
 
 const ESTATUS: Record<string, { color: string; desc: string }> = {
-  Vigente: { color: "#1FC9A0", desc: "en aplicación" },
-  "En curso": { color: "#E8B452", desc: "adoptado con transición, o en proceso activo" },
-  Propuesto: { color: "#5BD0E0", desc: "iniciativa sin aprobar" },
-  Revertido: { color: "#FF7A9E", desc: "anulado o desregulado" },
+  Vigente: { color: "#12866B", desc: "en aplicación" },
+  "En curso": { color: "#A86B00", desc: "adoptado con transición, o en proceso activo" },
+  Propuesto: { color: "#1A8597", desc: "iniciativa sin aprobar" },
+  Revertido: { color: "#C23A62", desc: "anulado o desregulado" },
 };
 
 const EJE_COLOR: Record<string, string> = {
-  Innovación: "#5BD0E0",
-  Inclusión: "#1FC9A0",
-  Crédito: "#E8B452",
+  Innovación: "#1A8597",
+  Inclusión: "#12866B",
+  Crédito: "#A86B00",
 };
 
 const ORDEN_ESTATUS = ["Vigente", "En curso", "Propuesto", "Revertido"];
@@ -250,7 +250,7 @@ function Fila({
       </span>
       {items.map((i) => {
         const on = activo === i;
-        const col = colores?.[i] ?? "#1FC9A0";
+        const col = colores?.[i] ?? "#12866B";
         return (
           <button
             key={i}

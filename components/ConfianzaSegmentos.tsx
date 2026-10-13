@@ -60,7 +60,7 @@ export default function ConfianzaSegmentos() {
   return (
     <section id="segmentos" className="border-b border-white/8">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#FF7A9E" }}>
+        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#C23A62" }}>
           ICF-S · confianza por segmento
         </div>
         <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
@@ -149,14 +149,14 @@ export default function ConfianzaSegmentos() {
                           left: neg ? undefined : "50%",
                           right: neg ? "50%" : undefined,
                           width: `${(Math.abs(b.brecha ?? 0) / maxBrecha) * 50}%`,
-                          background: neg ? "#1FC9A0" : fam.color,
+                          background: neg ? "#12866B" : fam.color,
                           opacity: on ? 1 : 0.72,
                         }}
                       />
                     </span>
                     <span
                       className="tabnum w-[52px] shrink-0 text-right text-[11px] font-bold"
-                      style={{ color: neg ? "#1FC9A0" : fam.color }}
+                      style={{ color: neg ? "#12866B" : fam.color }}
                     >
                       {(b.brecha ?? 0) > 0 ? "+" : ""}
                       {fmt(b.brecha)}

@@ -36,7 +36,7 @@ export const FOCOS: Foco[] = [
     key: "desarrollo",
     nombre: "Finanzas para el desarrollo",
     corto: "Desarrollo",
-    color: "#B79CED",
+    color: "#7B5BD6",
     mision:
       "Investigación cuantitativa y metodologías de medición para entender qué condiciones hacen que el acceso financiero se traduzca en bienestar real, en contextos de alta informalidad y desigualdad.",
     lineas: [
@@ -57,7 +57,7 @@ export const FOCOS: Foco[] = [
     key: "sostenibles",
     nombre: "Finanzas sostenibles y climáticas",
     corto: "Sostenibles",
-    color: "#1FC9A0",
+    color: "#12866B",
     mision:
       "Instrumentos, métricas y marcos regulatorios que permiten al sector financiero latinoamericano gestionar el riesgo climático, movilizar capital hacia economías bajas en carbono y medir el impacto con honestidad.",
     lineas: [
@@ -72,7 +72,7 @@ export const FOCOS: Foco[] = [
     key: "conductuales",
     nombre: "Finanzas conductuales",
     corto: "Conductuales",
-    color: "#5BD0E0",
+    color: "#1A8597",
     mision:
       "Cómo toman decisiones financieras las personas en América Latina: qué sesgos operan, qué diseños las ayudan y cuáles las perjudican, con énfasis en poblaciones de primer acceso al sistema formal.",
     lineas: [
@@ -90,7 +90,7 @@ export const FOCOS: Foco[] = [
     key: "emergentes",
     nombre: "Finanzas emergentes",
     corto: "Emergentes",
-    color: "#FF5FA2",
+    color: "#C2306F",
     mision:
       "Las tecnologías que están transformando la forma de hacer finanzas —ecosistemas fintech, infraestructura de pagos, activos digitales e inteligencia artificial— para entender qué funciona, para quién y bajo qué condiciones. Dentro de este foco vive fintech: el segmento que el IIIF ya mide.",
     lineas: [
@@ -114,7 +114,7 @@ export const FOCOS: Foco[] = [
     key: "seguras",
     nombre: "Finanzas seguras",
     corto: "Seguras",
-    color: "#9FCE2E",
+    color: "#5E7F12",
     mision:
       "Las condiciones regulatorias, tecnológicas e institucionales que permiten que la innovación financiera opere con integridad, supervisión efectiva y protección real para todos los actores.",
     lineas: [
@@ -380,17 +380,17 @@ export const AGENDA: IndicadorAgenda[] = [
 export const ESTADOS: Record<Estado, { label: string; color: string; desc: string }> = {
   operando: {
     label: "Ya opera en el IIIF",
-    color: "#1FC9A0",
+    color: "#12866B",
     desc: "El IIIF ya lo mide (o tiene un proxy directo) con fuente pública citada.",
   },
   "proximo-corte": {
     label: "Entra en un corte próximo",
-    color: "#9FCE2E",
+    color: "#5E7F12",
     desc: "Fuente pública identificada; falta homologar y cargar al dataset.",
   },
   "por-construir": {
     label: "Por construir — investigación del Centro",
-    color: "#E8B452",
+    color: "#A86B00",
     desc: "Requiere levantamiento propio, protocolos o alianzas: es agenda de investigación.",
   },
 };

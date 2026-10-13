@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 const pagos = INDICADORES.filter((i) => i.pilar === "pagos");
-const CORAL = "#E8825A";
+const CORAL = "#C2552C";
 
 export default function PagosPage() {
   return (
@@ -124,8 +124,8 @@ export default function PagosPage() {
                         className="shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
                         style={
                           i.construido
-                            ? { background: "rgba(232,180,82,0.16)", color: "#E8B452" }
-                            : { background: "rgba(31,201,160,0.14)", color: "#1FC9A0" }
+                            ? { background: "rgba(232,180,82,0.16)", color: "#A86B00" }
+                            : { background: "rgba(31,201,160,0.14)", color: "#12866B" }
                         }
                       >
                         {i.construido ? "construido" : "primaria"}
@@ -195,7 +195,7 @@ export default function PagosPage() {
               Metodología del pilar y del ICF
             </a>
             <a
-              href="/#datos"
+              href="/indice#datos"
               className="rounded-full border border-teal/40 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
             >
               Explorar los indicadores

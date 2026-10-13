@@ -597,13 +597,13 @@ export interface Tendencia {
 }
 
 export const EJES_TENDENCIA: Record<string, { label: string; color: string }> = {
-  tech: { label: "Tecnología", color: "#1FC9A0" },
-  infra: { label: "Infraestructura", color: "#5BD0E0" },
-  reg: { label: "Regulación", color: "#E8B452" },
-  modelo: { label: "Modelo de negocio", color: "#E8825A" },
-  cap: { label: "Capital", color: "#9FCE2E" },
+  tech: { label: "Tecnología", color: "#12866B" },
+  infra: { label: "Infraestructura", color: "#1A8597" },
+  reg: { label: "Regulación", color: "#A86B00" },
+  modelo: { label: "Modelo de negocio", color: "#C2552C" },
+  cap: { label: "Capital", color: "#5E7F12" },
   geo: { label: "Geografía", color: "#9B8CF0" },
-  prop: { label: "Propósito / impacto", color: "#FF7A9E" },
+  prop: { label: "Propósito / impacto", color: "#C23A62" },
 };
 
 export const TIPOS_TENDENCIA: Record<string, { label: string; desc: string }> = {

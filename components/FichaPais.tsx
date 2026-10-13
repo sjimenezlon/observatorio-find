@@ -14,11 +14,11 @@ import { PAISES, PILARES, INDICADORES, CC, SNAPSHOT_ANTERIOR } from "@/data/data
 import { calcularIndice, normalizarIndicador, banda } from "@/lib/index";
 
 const COLORS: Record<CC, string> = {
-  CO: "#1FC9A0",
-  MX: "#9FCE2E",
+  CO: "#12866B",
+  MX: "#5E7F12",
   BR: "#6C5CD6",
-  CL: "#5BD0E0",
-  PE: "#E8B452",
+  CL: "#1A8597",
+  PE: "#A86B00",
   AR: "#FF8FA3",
 };
 
@@ -84,8 +84,8 @@ export default function FichaPais() {
               className="rounded-full border px-3.5 py-1.5 text-sm font-medium transition"
               style={{
                 background: on ? `${COLORS[p.code]}22` : "transparent",
-                borderColor: on ? COLORS[p.code] : "rgba(255,255,255,0.14)",
-                color: on ? COLORS[p.code] : "#8fa9a1",
+                borderColor: on ? COLORS[p.code] : "rgba(11,11,18,0.14)",
+                color: on ? COLORS[p.code] : "#4A4A5C",
               }}
             >
               {p.flag} {p.nombre}
@@ -124,7 +124,7 @@ export default function FichaPais() {
                 {delta !== 0 && (
                   <span
                     className="tabnum ml-1.5 font-semibold"
-                    style={{ color: delta > 0 ? "#1FC9A0" : "#ff8fa3" }}
+                    style={{ color: delta > 0 ? "#12866B" : "#ff8fa3" }}
                   >
                     {delta > 0 ? "▲" : "▼"}
                     {Math.abs(delta)} vs {SNAPSHOT_ANTERIOR.fecha}
@@ -137,21 +137,21 @@ export default function FichaPais() {
           <div className="mt-4 h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} outerRadius="70%">
-                <PolarGrid stroke="rgba(255,255,255,0.12)" />
+                <PolarGrid stroke="rgba(11,11,18,0.12)" />
                 <PolarAngleAxis
                   dataKey="pilar"
-                  tick={{ fill: "#eaf3ef", fontSize: 12 }}
+                  tick={{ fill: "#0B0B12", fontSize: 12 }}
                 />
                 <PolarRadiusAxis
                   domain={[0, 100]}
-                  tick={{ fill: "#8fa9a1", fontSize: 9 }}
+                  tick={{ fill: "#4A4A5C", fontSize: 9 }}
                   axisLine={false}
                 />
                 <Radar
                   name="Promedio regional"
                   dataKey="promedio"
-                  stroke="#8fa9a1"
-                  fill="#8fa9a1"
+                  stroke="#4A4A5C"
+                  fill="#4A4A5C"
                   fillOpacity={0.08}
                   strokeDasharray="4 4"
                   strokeWidth={1.5}
@@ -166,10 +166,10 @@ export default function FichaPais() {
                 />
                 <Tooltip
                   contentStyle={{
-                    background: "#0e3b36",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(11,11,18,0.12)",
                     borderRadius: 12,
-                    color: "#eaf3ef",
+                    color: "#0B0B12",
                   }}
                 />
               </RadarChart>

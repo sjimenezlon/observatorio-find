@@ -54,7 +54,8 @@ Las correcciones se publican con fecha, cifra anterior, cifra nueva y razón en
 
 ## Rutas
 
-`/` ranking, mapa y anclas · `/presentacion` qué es y qué hace ·
+`/` portada: héroe 3D, señales, dial, explorador de indicadores y perfiles ·
+`/indice` ranking IIIF, pesos, mapa, duelo y simulador · `/presentacion` qué es y qué hace ·
 `/pagos` pilar de pagos y confianza · `/frontera` radar regulatorio y prospectiva ·
 `/agenda` los 20 indicadores por construir · `/roadmap` hoja de ruta Colombia ·
 `/metodologia` cómo se calcula todo, con la auditoría

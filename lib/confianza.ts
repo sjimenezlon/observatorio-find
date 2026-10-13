@@ -138,10 +138,10 @@ export function calcularICF(
 
 /** Banda cualitativa del ICF (relativa al panel regional). */
 export function bandaICF(icf: number): { label: string; color: string } {
-  if (icf >= 70) return { label: "Confianza alta", color: "#1FC9A0" };
-  if (icf >= 50) return { label: "Confianza media", color: "#9FCE2E" };
-  if (icf >= 32) return { label: "Confianza frágil", color: "#E8B452" };
-  return { label: "Confianza baja", color: "#F0736A" };
+  if (icf >= 70) return { label: "Confianza alta", color: "#1F8A4C" };
+  if (icf >= 50) return { label: "Confianza media", color: "#5538FC" };
+  if (icf >= 32) return { label: "Confianza frágil", color: "#B4530A" };
+  return { label: "Confianza baja", color: "#B42318" };
 }
 
 /** Promedio simple del panel medible, para usar como referencia regional. */

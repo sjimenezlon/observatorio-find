@@ -168,7 +168,9 @@ en el código. Ver `SECURITY.md`.
 
 ```
 app/                 Rutas. Cada page.tsx es servidor salvo que diga lo contrario.
-  page.tsx           Home: hero, anclas, pilares, ranking, mapa, fuentes
+  page.tsx           Portada (rediseño v4.4): héroe 3D, señales, dial, bitácora,
+                     explorador con ficha, perfiles. Estilos en app/inicio.css (.v44)
+  indice/            Ranking IIIF, pesos, mapa, duelo, simulador, benchmark, fuentes
   presentacion/      Qué es y qué hace el observatorio (deck público)
   aliados/           Interledger Foundation: por qué es el aliado natural
   pagos/             Pilar de pagos + ICF + panel LATAM
@@ -179,6 +181,8 @@ app/                 Rutas. Cada page.tsx es servidor salvo que diga lo contrari
 
 components/          Interfaz. Los que llevan "use client" son los interactivos.
 data/                EL ACTIVO. Cifras verificadas con fuente. Trátalo con cuidado.
+                     explorador.ts: capa editorial de la portada (textos de uso,
+                     perfiles, bitácora). Sin cifras de indicadores.
 lib/                 Motores de índice: index.ts (IMIAF), confianza.ts (ICF),
                      segmentos.ts (ICF-S).
 scripts/             verificar-datos.ts — el guardián de la integridad.

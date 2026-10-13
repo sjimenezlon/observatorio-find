@@ -39,11 +39,11 @@ import Duelo from "@/components/Duelo";
 import FichaPais from "@/components/FichaPais";
 
 const COLORS: Record<CC, string> = {
-  CO: "#1FC9A0",
-  MX: "#9FCE2E",
+  CO: "#12866B",
+  MX: "#5E7F12",
   BR: "#6C5CD6",
-  CL: "#5BD0E0",
-  PE: "#E8B452",
+  CL: "#1A8597",
+  PE: "#A86B00",
   AR: "#FF8FA3",
 };
 
@@ -113,8 +113,8 @@ function ActorLens({
               className="flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition"
               style={{
                 background: on ? "rgba(31,201,160,0.16)" : "transparent",
-                borderColor: on ? "#1FC9A0" : "rgba(255,255,255,0.14)",
-                color: on ? "#1FC9A0" : "#8fa9a1",
+                borderColor: on ? "#12866B" : "rgba(11,11,18,0.14)",
+                color: on ? "#12866B" : "#4A4A5C",
               }}
             >
               <span className="text-base">{a.emoji}</span>
@@ -178,7 +178,7 @@ function RankingIndice({
   }));
   const top3 = filas.slice(0, 3);
   const medallas = ["🥇", "🥈", "🥉"];
-  const bandColors = ["#1FC9A0", "#9FCE2E", "#E8B452", "#6C5CD6"];
+  const bandColors = [95, 60, 45, 10].map((v) => banda(v).color);
   const gid = (hex: string) => "grad" + hex.replace("#", "");
   // evolución vs. el corte anterior — solo comparable con pesos iguales
   const pesosDefault = PILARES.every((pl) => pesos[pl.key] === PESOS_DEFAULT[pl.key]);
@@ -234,7 +234,7 @@ function RankingIndice({
                   <span
                     className="tabnum ml-2 text-xs font-semibold"
                     style={{
-                      color: deltaAnterior(f.code) > 0 ? "#1FC9A0" : "#ff8fa3",
+                      color: deltaAnterior(f.code) > 0 ? "#12866B" : "#ff8fa3",
                     }}
                   >
                     {deltaAnterior(f.code) > 0 ? "▲" : "▼"}
@@ -277,17 +277,17 @@ function RankingIndice({
                   type="category"
                   dataKey="name"
                   width={120}
-                  tick={{ fill: "#eaf3ef", fontSize: 13 }}
+                  tick={{ fill: "#0B0B12", fontSize: 13 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <Tooltip
-                  cursor={{ fill: "rgba(255,255,255,0.04)" }}
+                  cursor={{ fill: "rgba(11,11,18,0.04)" }}
                   contentStyle={{
-                    background: "#0e3b36",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(11,11,18,0.12)",
                     borderRadius: 12,
-                    color: "#eaf3ef",
+                    color: "#0B0B12",
                   }}
                   formatter={(v) => [`${v} / 100`, "IIIF"]}
                 />
@@ -298,7 +298,7 @@ function RankingIndice({
                   <LabelList
                     dataKey="indice"
                     position="right"
-                    fill="#eaf3ef"
+                    fill="#0B0B12"
                     fontSize={13}
                     fontWeight={700}
                   />
@@ -347,8 +347,8 @@ function RankingIndice({
                   className="rounded-full border px-3 py-1 text-xs font-medium transition"
                   style={{
                     background: on ? "rgba(159,206,46,0.18)" : "transparent",
-                    borderColor: on ? "#9FCE2E" : "rgba(255,255,255,0.14)",
-                    color: on ? "#9FCE2E" : "#8fa9a1",
+                    borderColor: on ? "#5E7F12" : "rgba(11,11,18,0.14)",
+                    color: on ? "#5E7F12" : "#4A4A5C",
                   }}
                 >
                   {pr.label}
@@ -436,10 +436,10 @@ function RankingIndice({
                       style={{
                         color:
                           deltaAnterior(f.code) > 0
-                            ? "#1FC9A0"
+                            ? "#12866B"
                             : deltaAnterior(f.code) < 0
                               ? "#ff8fa3"
-                              : "#8fa9a1",
+                              : "#4A4A5C",
                       }}
                     >
                       {deltaAnterior(f.code) > 0
@@ -544,8 +544,8 @@ function Comparador() {
               className="rounded-full px-3.5 py-1.5 text-sm font-medium transition border"
               style={{
                 background: on ? `${COLORS[p.code]}22` : "transparent",
-                borderColor: on ? COLORS[p.code] : "rgba(255,255,255,0.14)",
-                color: on ? COLORS[p.code] : "#8fa9a1",
+                borderColor: on ? COLORS[p.code] : "rgba(11,11,18,0.14)",
+                color: on ? COLORS[p.code] : "#4A4A5C",
               }}
             >
               {p.flag} {p.nombre}
@@ -558,14 +558,14 @@ function Comparador() {
         <div className="h-[420px]">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={data} outerRadius="72%">
-              <PolarGrid stroke="rgba(255,255,255,0.12)" />
+              <PolarGrid stroke="rgba(11,11,18,0.12)" />
               <PolarAngleAxis
                 dataKey="pilar"
-                tick={{ fill: "#eaf3ef", fontSize: 13 }}
+                tick={{ fill: "#0B0B12", fontSize: 13 }}
               />
               <PolarRadiusAxis
                 domain={[0, 100]}
-                tick={{ fill: "#8fa9a1", fontSize: 10 }}
+                tick={{ fill: "#4A4A5C", fontSize: 10 }}
                 axisLine={false}
               />
               {sel.map((c) => (
@@ -581,10 +581,10 @@ function Comparador() {
               ))}
               <Tooltip
                 contentStyle={{
-                  background: "#0e3b36",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(11,11,18,0.12)",
                   borderRadius: 12,
-                  color: "#eaf3ef",
+                  color: "#0B0B12",
                 }}
               />
             </RadarChart>
@@ -637,8 +637,8 @@ function ExploradorPilar() {
                 className="rounded-full px-3.5 py-1.5 text-sm font-medium transition border"
                 style={{
                   background: on ? `${pl.color}22` : "transparent",
-                  borderColor: on ? pl.color : "rgba(255,255,255,0.14)",
-                  color: on ? pl.color : "#8fa9a1",
+                  borderColor: on ? pl.color : "rgba(11,11,18,0.14)",
+                  color: on ? pl.color : "#4A4A5C",
                 }}
               >
                 {pl.corto}
@@ -654,7 +654,7 @@ function ExploradorPilar() {
               className="rounded-full px-3 py-1 font-medium transition"
               style={{
                 background: modo === m ? "rgba(31,201,160,0.2)" : "transparent",
-                color: modo === m ? "#1FC9A0" : "#8fa9a1",
+                color: modo === m ? "#12866B" : "#4A4A5C",
               }}
             >
               {m === "crudo" ? "Valor crudo" : "Normalizado 0–100"}
@@ -729,18 +729,18 @@ function IndicadorCard({
               tickLine={false}
             />
             <YAxis
-              tick={{ fill: "#8fa9a1", fontSize: 10 }}
+              tick={{ fill: "#4A4A5C", fontSize: 10 }}
               axisLine={false}
               tickLine={false}
               domain={modo === "norm" ? [0, 100] : ["auto", "auto"]}
             />
             <Tooltip
-              cursor={{ fill: "rgba(255,255,255,0.04)" }}
+              cursor={{ fill: "rgba(11,11,18,0.04)" }}
               contentStyle={{
-                background: "#0e3b36",
-                border: "1px solid rgba(255,255,255,0.12)",
+                background: "#ffffff",
+                border: "1px solid rgba(11,11,18,0.12)",
                 borderRadius: 12,
-                color: "#eaf3ef",
+                color: "#0B0B12",
               }}
               formatter={(v) => [
                 v === null || v === undefined
@@ -763,7 +763,7 @@ function IndicadorCard({
               <LabelList
                 dataKey={modo === "crudo" ? "crudo" : "norm"}
                 position="top"
-                fill="#eaf3ef"
+                fill="#0B0B12"
                 fontSize={10}
                 formatter={(v) => (v === null || v === undefined ? "n/d" : v)}
               />

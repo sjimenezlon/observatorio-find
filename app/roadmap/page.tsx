@@ -166,7 +166,7 @@ export default function Roadmap() {
           </p>
           <div className="mt-5 flex flex-wrap justify-center gap-3">
             <a
-              href="/#indice"
+              href="/indice"
               className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
             >
               Ver el índice

@@ -11,13 +11,13 @@ import { PilarKey } from "./dataset";
 export type Tag = PilarKey | "transversal" | "seguras";
 
 export const TAG_META: Record<Tag, { label: string; color: string }> = {
-  inclusion: { label: "Inclusión & scoring", color: "#1FC9A0" },
-  pagos: { label: "Pagos", color: "#E8825A" },
-  adopcion: { label: "Adopción de IA", color: "#9FCE2E" },
+  inclusion: { label: "Inclusión & scoring", color: "#12866B" },
+  pagos: { label: "Pagos", color: "#C2552C" },
+  adopcion: { label: "Adopción de IA", color: "#5E7F12" },
   fraude: { label: "Fraude & AML", color: "#6C5CD6" },
-  tokenizacion: { label: "Tokenización", color: "#5BD0E0" },
-  regulacion: { label: "Regulación", color: "#E8B452" },
-  transversal: { label: "Transversal", color: "#E8B452" },
+  tokenizacion: { label: "Tokenización", color: "#1A8597" },
+  regulacion: { label: "Regulación", color: "#A86B00" },
+  transversal: { label: "Transversal", color: "#A86B00" },
   seguras: { label: "Gobernanza & certificación", color: "#FF8FA3" },
 };
 
@@ -63,7 +63,7 @@ export const HORIZONTES: Horizonte[] = [
     nombre: "Cimientos",
     rango: "0–6 meses",
     lema: "Ordenar la casa de datos y ganar quick wins",
-    color: "#9FCE2E",
+    color: "#5E7F12",
     acciones: [
       {
         tag: "transversal",
@@ -112,7 +112,7 @@ export const HORIZONTES: Horizonte[] = [
     nombre: "Escala con control",
     rango: "6–18 meses",
     lema: "Producto aplicado con dato e interlocución regulatoria",
-    color: "#1FC9A0",
+    color: "#12866B",
     acciones: [
       {
         tag: "inclusion",

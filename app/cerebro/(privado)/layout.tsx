@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CerebroLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main>
+    <main className="tema-oscuro">
       <NavBar />
       <CerebroNav />
       {children}

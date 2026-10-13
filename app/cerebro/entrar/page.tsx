@@ -21,7 +21,7 @@ export default async function EntrarPage({
   if (await sesionValida(jar.get(COOKIE_SESION)?.value)) redirect(destinoSeguro(next));
 
   return (
-    <main>
+    <main className="tema-oscuro">
       <NavBar />
       <header className="hero-grid relative overflow-clip border-b border-white/8">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
