@@ -34,7 +34,7 @@ export default function TendenciasMapa() {
   return (
     <section id="tendencias" className="border-b border-white/8">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#E8825A" }}>
+        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#C2552C" }}>
           Mapa prospectivo · hacia dónde van las fintechs 2026–2030
         </div>
         <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
@@ -65,8 +65,8 @@ export default function TendenciasMapa() {
                   className="rounded-full border px-2.5 py-1 text-[11px] font-medium transition"
                   style={{
                     background: on ? `${v.color}22` : "transparent",
-                    borderColor: on ? v.color : "rgba(255,255,255,0.12)",
-                    color: on ? v.color : "#8fa9a1",
+                    borderColor: on ? v.color : "rgba(11,11,18,0.12)",
+                    color: on ? v.color : "#4A4A5C",
                   }}
                 >
                   {v.label}
@@ -87,8 +87,8 @@ export default function TendenciasMapa() {
                   className="rounded-full border px-2.5 py-1 text-[11px] font-medium transition"
                   style={{
                     background: on ? "rgba(31,201,160,0.18)" : "transparent",
-                    borderColor: on ? "#1FC9A0" : "rgba(255,255,255,0.12)",
-                    color: on ? "#1FC9A0" : "#8fa9a1",
+                    borderColor: on ? "#12866B" : "rgba(11,11,18,0.12)",
+                    color: on ? "#12866B" : "#4A4A5C",
                   }}
                 >
                   {h}
@@ -109,30 +109,30 @@ export default function TendenciasMapa() {
             >
               {/* cuadrantes */}
               <rect x={px(50)} y={py(100)} width={px(100) - px(50)} height={py(50) - py(100)} fill="rgba(31,201,160,0.05)" />
-              <line x1={px(50)} y1={M.t} x2={px(50)} y2={H - M.b} stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" />
-              <line x1={M.l} y1={py(50)} x2={W - M.r} y2={py(50)} stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" />
-              <line x1={M.l} y1={H - M.b} x2={W - M.r} y2={H - M.b} stroke="rgba(255,255,255,0.16)" />
-              <line x1={M.l} y1={M.t} x2={M.l} y2={H - M.b} stroke="rgba(255,255,255,0.16)" />
+              <line x1={px(50)} y1={M.t} x2={px(50)} y2={H - M.b} stroke="rgba(11,11,18,0.08)" strokeDasharray="3 3" />
+              <line x1={M.l} y1={py(50)} x2={W - M.r} y2={py(50)} stroke="rgba(11,11,18,0.08)" strokeDasharray="3 3" />
+              <line x1={M.l} y1={H - M.b} x2={W - M.r} y2={H - M.b} stroke="rgba(11,11,18,0.16)" />
+              <line x1={M.l} y1={M.t} x2={M.l} y2={H - M.b} stroke="rgba(11,11,18,0.16)" />
 
               {[0, 25, 50, 75, 100].map((t) => (
-                <text key={`x${t}`} x={px(t)} y={H - M.b + 14} textAnchor="middle" style={{ fontSize: 9, fill: "#8fa9a1" }}>
+                <text key={`x${t}`} x={px(t)} y={H - M.b + 14} textAnchor="middle" style={{ fontSize: 9, fill: "#4A4A5C" }}>
                   {t}
                 </text>
               ))}
               {[0, 25, 50, 75, 100].map((t) => (
-                <text key={`y${t}`} x={M.l - 6} y={py(t) + 3} textAnchor="end" style={{ fontSize: 9, fill: "#8fa9a1" }}>
+                <text key={`y${t}`} x={M.l - 6} y={py(t) + 3} textAnchor="end" style={{ fontSize: 9, fill: "#4A4A5C" }}>
                   {t}
                 </text>
               ))}
-              <text x={(W + M.l) / 2} y={H - 6} textAnchor="middle" style={{ fontSize: 10, fill: "#8fa9a1", fontWeight: 600 }}>
+              <text x={(W + M.l) / 2} y={H - 6} textAnchor="middle" style={{ fontSize: 10, fill: "#4A4A5C", fontWeight: 600 }}>
                 adopción / madurez · emergente → consolidado
               </text>
-              <text x={13} y={(H - M.b + M.t) / 2} textAnchor="middle" transform={`rotate(-90 13 ${(H - M.b + M.t) / 2})`} style={{ fontSize: 10, fill: "#8fa9a1", fontWeight: 600 }}>
+              <text x={13} y={(H - M.b + M.t) / 2} textAnchor="middle" transform={`rotate(-90 13 ${(H - M.b + M.t) / 2})`} style={{ fontSize: 10, fill: "#4A4A5C", fontWeight: 600 }}>
                 impacto transformacional →
               </text>
 
               {visibles.map((t) => {
-                const c = EJES_TENDENCIA[t.eje]?.color ?? "#8fa9a1";
+                const c = EJES_TENDENCIA[t.eje]?.color ?? "#4A4A5C";
                 const on = sel === t.nombre;
                 return (
                   <g
@@ -147,7 +147,7 @@ export default function TendenciasMapa() {
                       r={r(t.magnitud)}
                       fill={c}
                       fillOpacity={on ? 0.9 : 0.5}
-                      stroke={on ? "#eaf3ef" : "#0a2c28"}
+                      stroke={on ? "#0B0B12" : "#0a2c28"}
                       strokeWidth={on ? 2 : 1.5}
                     />
                     <text

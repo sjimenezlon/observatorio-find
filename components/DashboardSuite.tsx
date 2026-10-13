@@ -58,7 +58,7 @@ const SUITE: DashboardSpec[] = [
     status: "Publicado",
     cadence: "Trimestral",
     audience: "Policy makers · desarrollo · banca",
-    color: "#1FC9A0",
+    color: "#12866B",
     description:
       "Acceso, uso digital y exclusión. El promedio nacional se abre por género, ingreso y territorio para mostrar quién sigue quedando afuera.",
     question: "¿La cuenta se convirtió en uso financiero real y para quién?",
@@ -83,7 +83,7 @@ const SUITE: DashboardSpec[] = [
     status: "Cobertura parcial",
     cadence: "Semestral",
     audience: "Inversionistas · founders · banca",
-    color: "#9FCE2E",
+    color: "#5E7F12",
     description:
       "Densidad del ecosistema y capital disponible para innovar. Se separa lo comparable de las señales de mercado todavía fragmentadas.",
     question: "¿Dónde existe masa crítica y dónde solo hay volumen transitorio?",
@@ -108,7 +108,7 @@ const SUITE: DashboardSpec[] = [
     status: "Publicado",
     cadence: "Trimestral",
     audience: "Reguladores · fintechs · multilaterales",
-    color: "#E8B452",
+    color: "#A86B00",
     description:
       "Compara apertura de datos, marco fintech y reglas de activos digitales con rúbricas explícitas y trazabilidad legal por país.",
     question: "¿La regulación habilita innovación con salvaguardas o crea espera?",
@@ -132,7 +132,7 @@ const SUITE: DashboardSpec[] = [
     status: "En estructuración",
     cadence: "Anual",
     audience: "Inversionistas · reguladores · aseguradoras",
-    color: "#5BD0E0",
+    color: "#1A8597",
     description:
       "Contrato de datos para medir exposición, transición y brecha de financiamiento climático sin asignar puntajes antes de contar con evidencia comparable.",
     question: "¿Quién financia la transición y quién concentra el riesgo físico?",
@@ -207,8 +207,8 @@ const CC_TO_ISO3: Record<CC, string> = {
 };
 
 const STATUS_COPY: Record<CoverageState, { label: string; color: string; mark: string }> = {
-  live: { label: "Publicado", color: "#1FC9A0", mark: "●" },
-  partial: { label: "Parcial", color: "#E8B452", mark: "◐" },
+  live: { label: "Publicado", color: "#12866B", mark: "●" },
+  partial: { label: "Parcial", color: "#A86B00", mark: "◐" },
   gap: { label: "Brecha", color: "#91AAA3", mark: "○" },
 };
 
@@ -230,8 +230,8 @@ function average(indicator: Indicador) {
 }
 
 function statusColor(status: DashboardSpec["status"]) {
-  if (status === "Publicado") return "#1FC9A0";
-  if (status === "Cobertura parcial") return "#E8B452";
+  if (status === "Publicado") return "#12866B";
+  if (status === "Cobertura parcial") return "#A86B00";
   return "#91AAA3";
 }
 
@@ -285,8 +285,8 @@ export default function DashboardSuite() {
                 onClick={() => selectDashboard(dashboard.id)}
                 className="group rounded-xl border p-4 text-left transition hover:-translate-y-0.5"
                 style={{
-                  borderColor: selected ? dashboard.color : "rgba(255,255,255,0.09)",
-                  background: selected ? `${dashboard.color}12` : "rgba(255,255,255,0.018)",
+                  borderColor: selected ? dashboard.color : "rgba(11,11,18,0.09)",
+                  background: selected ? `${dashboard.color}12` : "rgba(11,11,18,0.018)",
                 }}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -342,15 +342,15 @@ export default function DashboardSuite() {
             </div>
 
             <div className="grid min-w-[280px] grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/8 bg-white/8">
-              <div className="bg-[#0a2926] p-4">
+              <div className="bg-panel p-4">
                 <div className="data-label text-muted">Actualización</div>
                 <div className="mt-1 text-sm font-semibold">{active.cadence}</div>
               </div>
-              <div className="bg-[#0a2926] p-4">
+              <div className="bg-panel p-4">
                 <div className="data-label text-muted">Cobertura live</div>
                 <div className="mt-1 text-sm font-semibold">{coverage.live}/{active.coverage.length}</div>
               </div>
-              <div className="col-span-2 bg-[#0a2926] p-4">
+              <div className="col-span-2 bg-panel p-4">
                 <div className="data-label text-muted">Público principal</div>
                 <div className="mt-1 text-xs font-semibold leading-relaxed">{active.audience}</div>
               </div>
@@ -429,7 +429,7 @@ function KpiGrid({ indicators, country, color }: { indicators: Indicador[]; coun
               {delta === null ? (
                 <span className="text-muted">sin dato comparable</span>
               ) : (
-                <span style={{ color: positive ? "#1FC9A0" : "#E8B452" }}>
+                <span style={{ color: positive ? "#12866B" : "#A86B00" }}>
                   {delta >= 0 ? "+" : ""}{delta.toFixed(1)} vs promedio simple
                 </span>
               )}
@@ -491,17 +491,17 @@ function BenchmarkPanel({
       <div className="mt-4 h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ left: 8, right: 54, top: 4, bottom: 4 }}>
-            <CartesianGrid horizontal={false} stroke="rgba(255,255,255,0.06)" />
+            <CartesianGrid horizontal={false} stroke="rgba(11,11,18,0.06)" />
             <XAxis type="number" hide />
-            <YAxis dataKey="label" type="category" width={112} axisLine={false} tickLine={false} tick={{ fill: "#eef7f3", fontSize: 11 }} />
+            <YAxis dataKey="label" type="category" width={112} axisLine={false} tickLine={false} tick={{ fill: "#0B0B12", fontSize: 11 }} />
             <Tooltip
-              cursor={{ fill: "rgba(255,255,255,0.035)" }}
-              contentStyle={{ background: "#0e3b36", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, color: "#eef7f3" }}
+              cursor={{ fill: "rgba(11,11,18,0.035)" }}
+              contentStyle={{ background: "#ffffff", border: "1px solid rgba(11,11,18,0.12)", borderRadius: 10, color: "#0B0B12" }}
               formatter={(value) => [fmt(Number(value), metric.unidad), metric.label]}
             />
             <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={22}>
               {data.map((item, index) => <Cell key={item.code} fill={index === 0 ? color : `${color}77`} />)}
-              <LabelList dataKey="value" position="right" fill="#eef7f3" fontSize={11} formatter={(value) => fmt(Number(value), metric.unidad)} />
+              <LabelList dataKey="value" position="right" fill="#0B0B12" fontSize={11} formatter={(value) => fmt(Number(value), metric.unidad)} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -552,7 +552,7 @@ function Heatmap({ indicators, color }: { indicators: Indicador[]; color: string
                     <td key={country.code} className="p-1 text-center">
                       <span
                         className="block rounded-md px-1 py-2 font-mono text-[9px] text-fg"
-                        style={{ background: score === null ? "rgba(255,255,255,0.025)" : `${color}${alpha}` }}
+                        style={{ background: score === null ? "rgba(11,11,18,0.025)" : `${color}${alpha}` }}
                         title={score === null ? "Sin dato" : `Puntaje normalizado: ${score}/100`}
                       >
                         {value === null ? "n/d" : fmt(value, indicator.unidad)}
@@ -695,7 +695,7 @@ function CoverageMatrix({ items, color }: { items: CoverageItem[]; color: string
         {items.map((item) => {
           const status = STATUS_COPY[item.state];
           return (
-            <div key={item.label} className="flex items-start gap-3 bg-[#0a2926] p-4">
+            <div key={item.label} className="flex items-start gap-3 bg-panel p-4">
               <span className="mt-0.5 font-mono text-xs" style={{ color: status.color }}>{status.mark}</span>
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">

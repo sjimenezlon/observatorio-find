@@ -143,7 +143,7 @@ export default function Agenda() {
                 {f.proxiesIMIAF.map((p) => (
                   <a
                     key={p.key}
-                    href="/#pilares"
+                    href="/indice#pilares"
                     className="rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[12px] font-medium text-teal transition hover:bg-teal/20"
                   >
                     {p.label} ✓

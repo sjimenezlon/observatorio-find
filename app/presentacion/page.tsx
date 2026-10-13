@@ -121,7 +121,7 @@ const METODO = [
 
 const HALLAZGOS = [
   {
-    color: "#E8825A",
+    color: "#C2552C",
     kicker: "Madurez ≠ confianza",
     t: "Colombia construyó el riel y no logró que se use",
     d: `Queda ${puestoColombia}ª de ${PAISES.length} en el IIIF y ${puestoColombiaICF}ª de ${icf.length} en el ICF, con una de las regulaciones de finanzas abiertas más ambiciosas de la región. Tener infraestructura y marco normativo no produce confianza por sí solo.`,
@@ -129,7 +129,7 @@ const HALLAZGOS = [
     cta: "Ver el ICF",
   },
   {
-    color: "#1FC9A0",
+    color: "#12866B",
     kicker: "El freno no es el miedo",
     t: "La desconfianza casi no se declara: se revela en el uso",
     d: "Solo el 2,7% de los colombianos que pagan en efectivo dice desconfiar de pagar con tarjeta o celular; el 94% lo hace por costumbre. El freno está en el hábito y en la aceptación del comercio. Por eso el ICF pesa más lo revelado que lo declarado.",
@@ -145,7 +145,7 @@ const HALLAZGOS = [
     cta: "Ver el panel LATAM",
   },
   {
-    color: "#9FCE2E",
+    color: "#5E7F12",
     kicker: "Segmentos",
     t: "El problema de confianza colombiano tiene género, ingreso y territorio",
     d: `Sobre ${icfs.length} observaciones país×segmento, Colombia es el único país del panel con las tres brechas por encima de 19 puntos a la vez: género +19,0 · ingreso +21,8 · territorio +22,7. Su 60% más rico está en el promedio regional; su población rural, por debajo de casi cualquier segmento de cualquier otro país.`,
@@ -153,7 +153,7 @@ const HALLAZGOS = [
     cta: "Ver el ICF-S",
   },
   {
-    color: "#5BD0E0",
+    color: "#1A8597",
     kicker: "Regulación",
     t: "La región adopta como nadie y no escribe casi ninguna regla",
     d: "De las 32 medidas regulatorias que están definiendo el futuro de estos rieles, ninguna es colombiana y solo una es brasileña. América Latina lidera el mundo en pagos inmediatos por habitante y no tiene autoría sobre las normas que van a gobernarlos.",
@@ -161,7 +161,7 @@ const HALLAZGOS = [
     cta: "Ver el radar regulatorio",
   },
   {
-    color: "#B79CED",
+    color: "#7B5BD6",
     kicker: "Inclusión de papel",
     t: "96,3% con producto financiero frente a 57,1% que dice tener cuenta",
     d: "39 puntos de diferencia entre los registros de la Superintendencia y lo que la gente declara en la encuesta del Findex. No es que una fuente esté equivocada: la brecha es el hallazgo. Hay cuentas abiertas que su titular no reconoce como suyas.",
@@ -367,7 +367,7 @@ export default function Presentacion() {
             {[
               {
                 sigla: "IIIF",
-                color: "#1FC9A0",
+                color: "#12866B",
                 nombre: "Índice de Madurez de IA Financiera",
                 pregunta: "¿Qué tan madura es la infraestructura financiera del país?",
                 alcance: `${PILARES.length} pilares · ${INDICADORES.length} indicadores · ${PAISES.length} países`,
@@ -375,7 +375,7 @@ export default function Presentacion() {
               },
               {
                 sigla: "ICF",
-                color: "#E8825A",
+                color: "#C2552C",
                 nombre: "Índice de Confianza Financiera",
                 pregunta: "¿Confía la gente lo suficiente como para usarla?",
                 alcance: `${DIMENSIONES.length} dimensiones · ${INDICADORES_ICF.length} indicadores · ${icf.length} economías rankeadas`,
@@ -383,7 +383,7 @@ export default function Presentacion() {
               },
               {
                 sigla: "ICF-S",
-                color: "#9FCE2E",
+                color: "#5E7F12",
                 nombre: "Confianza por segmento",
                 pregunta: "¿Confía toda la gente por igual?",
                 alcance: `${icfs.length} observaciones país×segmento`,
@@ -721,7 +721,7 @@ export default function Presentacion() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="/#datos"
+                href="/indice#datos"
                 className="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-[#06231f] transition hover:bg-teal-d"
               >
                 Explorar los indicadores

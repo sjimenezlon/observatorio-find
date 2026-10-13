@@ -182,11 +182,11 @@ export interface Tendencia {
 }
 
 export const TENDENCIAS: Tendencia[] = [
-  { tema: "Regulación", nota: "El punto de dolor y la conversación de fondo entre todos los actores.", color: "#E8B452" },
+  { tema: "Regulación", nota: "El punto de dolor y la conversación de fondo entre todos los actores.", color: "#A86B00" },
   { tema: "Prevención de fraude", nota: "Rieles instantáneos colapsan las ventanas de respuesta.", color: "#6C5CD6" },
-  { tema: "Scoring alternativo", nota: "Datos del presente para incluir a los invisibles del crédito.", color: "#1FC9A0" },
-  { tema: "Tokenización & stablecoins", nota: "De experimento a infraestructura: RWA on-chain ~US$38,5B (17-sep-2026) y pagos con stablecoins +81% i.a. (Bitso, H1-2026).", color: "#5BD0E0" },
-  { tema: "Adopción de IA", nota: "De copilotos a agentes: ya son el 31% de los nuevos casos de uso en los grandes bancos.", color: "#9FCE2E" },
+  { tema: "Scoring alternativo", nota: "Datos del presente para incluir a los invisibles del crédito.", color: "#12866B" },
+  { tema: "Tokenización & stablecoins", nota: "De experimento a infraestructura: RWA on-chain ~US$38,5B (17-sep-2026) y pagos con stablecoins +81% i.a. (Bitso, H1-2026).", color: "#1A8597" },
+  { tema: "Adopción de IA", nota: "De copilotos a agentes: ya son el 31% de los nuevos casos de uso en los grandes bancos.", color: "#5E7F12" },
   { tema: "Sostenibilidad & ESG", nota: "En Colombia ~22% de la cartera bancaria ya es sostenible; 76% integra ASG.", color: "#2dd4a7" },
 ];
 

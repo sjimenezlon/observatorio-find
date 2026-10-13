@@ -8,7 +8,7 @@ import {
   FUENTES_BRECHA,
 } from "@/data/brechasColombia";
 
-const CORAL = "#E8825A";
+const CORAL = "#C2552C";
 
 export default function BrechasColombia() {
   const [abierta, setAbierta] = useState<string | null>(AREAS_BRECHA[0].area);
@@ -47,7 +47,7 @@ export default function BrechasColombia() {
 
                   {[
                     { ...p.oferta, tipo: "Oferta · registros", color: CORAL },
-                    { ...p.demanda, tipo: "Demanda · encuesta", color: "#1FC9A0" },
+                    { ...p.demanda, tipo: "Demanda · encuesta", color: "#12866B" },
                   ].map((lado) => (
                     <div key={lado.tipo} className="mb-3">
                       <div className="mb-1 flex items-baseline justify-between gap-2">
@@ -97,7 +97,7 @@ export default function BrechasColombia() {
               <div className="mb-1 flex items-center justify-between">
                 <span
                   className="tabnum text-xl font-extrabold leading-none"
-                  style={{ color: c.ambito === "mundo" ? "#5BD0E0" : CORAL }}
+                  style={{ color: c.ambito === "mundo" ? "#1A8597" : CORAL }}
                 >
                   {c.valor}
                 </span>
@@ -156,7 +156,7 @@ export default function BrechasColombia() {
                     className="w-[52px] shrink-0 rounded-full px-2 py-0.5 text-center text-[9px] font-bold uppercase tracking-wider"
                     style={{
                       background: a.prioridad === "ALTA" ? "rgba(255,122,158,0.16)" : "rgba(232,180,82,0.16)",
-                      color: a.prioridad === "ALTA" ? "#FF7A9E" : "#E8B452",
+                      color: a.prioridad === "ALTA" ? "#C23A62" : "#A86B00",
                     }}
                   >
                     {a.prioridad}

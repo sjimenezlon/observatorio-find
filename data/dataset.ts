@@ -49,21 +49,21 @@ export const PILARES: Pilar[] = [
     key: "inclusion",
     nombre: "Inclusión & scoring",
     corto: "Inclusión",
-    color: "#1FC9A0",
+    color: "#12866B",
     desc: "Tenencia de cuenta, acceso a crédito formal, pagos digitales y equidad de género. Es el caso de uso del scoring con datos alternativos.",
   },
   {
     key: "pagos",
     nombre: "Pagos",
     corto: "Pagos",
-    color: "#E8825A",
+    color: "#C2552C",
     desc: "Intensidad y calidad del uso de los rieles de pago: cuántas transacciones inmediatas hace cada adulto, si esos pagos llegan al comercio, cuánto efectivo resiste y si el riel cruza la frontera.",
   },
   {
     key: "adopcion",
     nombre: "Adopción de IA & ecosistema",
     corto: "Adopción IA",
-    color: "#9FCE2E",
+    color: "#5E7F12",
     desc: "Densidad del ecosistema fintech y capital de riesgo que financia la adopción de IA en servicios financieros.",
   },
   {
@@ -77,14 +77,14 @@ export const PILARES: Pilar[] = [
     key: "tokenizacion",
     nombre: "Tokenización & cripto-activos",
     corto: "Tokenización",
-    color: "#5BD0E0",
+    color: "#1A8597",
     desc: "Adopción de cripto-activos y madurez del marco regulatorio para tokenización de activos del mundo real (RWA).",
   },
   {
     key: "regulacion",
     nombre: "Regulación & cumplimiento",
     corto: "Regulación",
-    color: "#E8B452",
+    color: "#A86B00",
     desc: "Apertura de datos (Open Finance), marco fintech, sandbox y protección de datos: las reglas que habilitan o frenan la innovación y protegen al usuario.",
   },
 ];
@@ -634,6 +634,10 @@ export const BENCHMARKS: Benchmark[] = [
 export interface Ancla {
   valor: string;
   label: string;
+  /** Versión breve para la portada (misma cifra, sin contexto). */
+  corto?: string;
+  /** Emisor en una o dos palabras, para la etiqueta de la tarjeta. */
+  emisor?: string;
   fuente: string;
   url: string;
   anio: number;
@@ -642,6 +646,8 @@ export interface Ancla {
 export const ANCLAS: Ancla[] = [
   {
     valor: "81% / 14%",
+    corto: "de las firmas financieras encuestadas adopta IA en algún nivel y 14% se considera transformacional.",
+    emisor: "Cambridge CCAF",
     label:
       "de las firmas financieras encuestadas ya adopta IA en algún nivel, pero solo 14% se considera transformacional: la brecha global ya es de ejecución, no de acceso a la tecnología.",
     fuente: "Cambridge CCAF · Global AI in Financial Services Report 2026",
@@ -650,6 +656,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "242 vs 579",
+    corto: "pagos sin efectivo por habitante al año en economías emergentes frente a avanzadas.",
+    emisor: "BIS",
     label:
       "pagos sin efectivo por habitante al año: economías emergentes contra avanzadas. La brecha ya no es de acceso, es de frecuencia — y dos de los tres primeros puestos del mundo en pagos inmediatos son latinoamericanos.",
     fuente: "BIS · CPMI Brief No 12, estadísticas Red Book 2024",
@@ -658,6 +666,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "6 de cada 10",
+    corto: "latinoamericanos que se endeudaron lo hicieron por fuera del sistema formal.",
+    emisor: "Global Findex 2025",
     label:
       "latinoamericanos que se endeudaron NO usaron el sistema formal: fueron a la familia, al prestamista o al 'gota a gota'. La confianza no se resuelve abriendo cuentas.",
     fuente: "Global Findex 2025 · cálculo del Observatorio sobre 21 economías",
@@ -666,6 +676,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "31%",
+    corto: "de los nuevos casos de uso de IA en los 50 mayores bancos del mundo ya son agénticos.",
+    emisor: "Evident AI Index",
     label: "de los nuevos casos de uso de IA en los 50 mayores bancos del mundo ya son agénticos: récord en Q1-2026, el doble que el trimestre anterior.",
     fuente: "Evident AI Index · Banking Use Case Trends Q1 2026",
     url: "https://evidentinsights.com/insights/banking-use-case-trends-q1-2026",
@@ -673,6 +685,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "61%",
+    corto: "de la inversión de VC en la región fue a fintech en 2025, con 29% de las operaciones.",
+    emisor: "Cuántico VP",
     label: "de la inversión de VC en LATAM fue a fintech en 2025 (con solo el 29% de los deals).",
     fuente: "Cuántico VP · Latin America VC Report 2026",
     url: "https://reports.cuanticovp.com/latin-america-vc-report-2026/",
@@ -680,6 +694,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "US$1.360M",
+    corto: "levantó la región en el segundo trimestre de 2026, 47% más que un año antes.",
+    emisor: "Crunchbase News",
     label: "levantó LATAM en Q2-2026 (+47% i.a.): US$991M late-stage (+84%) y México US$944M frente a Brasil US$350M — tercer trimestre seguido en que México lidera.",
     fuente: "Crunchbase News · LATAM Q2 2026",
     url: "https://news.crunchbase.com/venture/mexico-leads-latin-america-funding-q2-2026/",
@@ -687,6 +703,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "US$38.500M",
+    corto: "en activos del mundo real (RWA) tokenizados on-chain, sin contar stablecoins.",
+    emisor: "rwa.xyz",
     label: "en activos del mundo real (RWA) tokenizados on-chain, excluyendo stablecoins: ~3,3 veces el nivel de hace un año (~US$11,8B).",
     fuente: "rwa.xyz · dashboard en vivo (corte 17-sep-2026)",
     url: "https://app.rwa.xyz/",
@@ -694,6 +712,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "81%",
+    corto: "crecieron los pagos con stablecoins de Bitso Business en la región en el primer semestre de 2026.",
+    emisor: "Bitso",
     label: "crecieron los pagos con stablecoins procesados por Bitso Business en LATAM en el primer semestre de 2026; más del 60% de sus nuevos clientes institucionales son bancos y entidades financieras.",
     fuente: "Bitso · Stablecoin Conference 2026",
     url: "https://www.coindesk.com/press-release/2026/06/23/bitso-unveils-the-hybrid-finance-era-as-stablecoins-reshape-global-payments",
@@ -701,6 +721,8 @@ export const ANCLAS: Ancla[] = [
   },
   {
     valor: "3,68×",
+    corto: "le cuesta a las entidades de la región cada unidad de dinero perdida por fraude.",
+    emisor: "LexisNexis",
     label: "cuesta a las entidades financieras de LATAM cada peso/real perdido por fraude, con las tácticas impulsadas por IA como eje del nuevo estudio.",
     fuente: "LexisNexis · True Cost of Fraud LATAM 2026 (121 ejecutivos)",
     url: "https://risk.lexisnexis.com/global/en/about-us/press-room/press-release/20260511-tcof-mexico",

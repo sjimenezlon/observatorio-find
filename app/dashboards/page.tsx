@@ -71,7 +71,7 @@ export default function DashboardsPage() {
           <span>Observatorio Find · Universidad EAFIT · {META.version}</span>
           <div className="flex gap-4">
             <a className="hover:text-teal" href="/metodologia">Metodología</a>
-            <a className="hover:text-teal" href="/#datos">Evidencia del IIIF</a>
+            <a className="hover:text-teal" href="/indice#datos">Evidencia del IIIF</a>
           </div>
         </div>
       </footer>

@@ -151,7 +151,7 @@ export const PREGUNTAS: Pregunta[] = [
       muestra: "38 de 38 entidades bancarias encuestadas en Colombia, año 2025",
       nota: "Bancos, en general más grandes que una compañía de financiamiento; en el inventario de modelos de crédito de la SFC la IA generativa es el 4,0 %",
     },
-    color: "#78d8f5",
+    color: "#1A8597",
   },
   {
     key: "datos",
@@ -183,7 +183,7 @@ export const PREGUNTAS: Pregunta[] = [
       muestra: "8.039 líderes de empresas de 500+ empleados en 30 mercados; Brasil y México son los únicos latinoamericanos",
       nota: "Aritmética del Observatorio sobre los cuatro niveles publicados por Cisco",
     },
-    color: "#a99bff",
+    color: "#6C5CD6",
   },
   {
     key: "gobierno",
@@ -214,7 +214,7 @@ export const PREGUNTAS: Pregunta[] = [
       anio: 2025,
       muestra: "Más de 95 líderes de bancos en 17 países de América Latina, levantamiento 25-ago a 12-sep-2025",
     },
-    color: "#ffc15c",
+    color: "#A86B00",
   },
   {
     key: "explicabilidad",

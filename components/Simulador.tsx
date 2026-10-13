@@ -12,11 +12,11 @@ import {
 } from "@/lib/index";
 
 const COLORS: Record<CC, string> = {
-  CO: "#1FC9A0",
-  MX: "#9FCE2E",
+  CO: "#12866B",
+  MX: "#5E7F12",
   BR: "#6C5CD6",
-  CL: "#5BD0E0",
-  PE: "#E8B452",
+  CL: "#1A8597",
+  PE: "#A86B00",
   AR: "#FF8FA3",
 };
 
@@ -264,7 +264,7 @@ export default function Simulador({ pesos }: { pesos: Pesos }) {
                   {hayEscenario && dIndice !== 0 && (
                     <span
                       className="tabnum text-xs font-semibold"
-                      style={{ color: dIndice > 0 ? "#1FC9A0" : "#ff8fa3" }}
+                      style={{ color: dIndice > 0 ? "#12866B" : "#ff8fa3" }}
                     >
                       {dIndice > 0 ? "+" : ""}
                       {dIndice}

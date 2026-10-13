@@ -29,29 +29,29 @@ import {
   type Respuestas,
 } from "@/lib/test";
 
-const COLOR_TU = "#f0ff29";
-const COLOR_MUNDO = "#ffffff";
-const COLOR_LATAM = "#78d8f5";
+const COLOR_TU = "#7A63FF";
+const COLOR_MUNDO = "#8C8CA0";
+const COLOR_LATAM = "#1FA3B8";
 
 const LECTURA: Record<Lectura, { label: string; color: string; desc: string }> = {
   brecha: {
     label: "Brecha",
-    color: "#ffb4b4",
+    color: "#E5603A",
     desc: "La mayoría de pares ya declara esta capacidad y la entidad todavía no.",
   },
   linea: {
     label: "En línea",
-    color: "#cfd4ff",
+    color: "#7A63FF",
     desc: "El nivel de la entidad es coherente con lo que declaran sus pares.",
   },
   ventaja: {
     label: "Ventaja",
-    color: "#f0ff29",
+    color: "#2FA866",
     desc: "La entidad la tiene y menos del 40 % de sus pares (mundo y LatAm) la declara.",
   },
   "sin-dato": {
     label: "Sin dato de pares",
-    color: "rgba(255,255,255,0.5)",
+    color: "rgba(11,11,18,0.5)",
     desc: "No hay encuesta comparable publicada para esta capacidad.",
   },
 };
@@ -211,8 +211,8 @@ export default function TestReadiness() {
                       <span
                         className="rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide"
                         style={{
-                          borderColor: consolidada ? COLOR_TU : "rgba(255,255,255,0.18)",
-                          color: consolidada ? COLOR_TU : "rgba(255,255,255,0.55)",
+                          borderColor: consolidada ? COLOR_TU : "rgba(11,11,18,0.18)",
+                          color: consolidada ? COLOR_TU : "rgba(11,11,18,0.55)",
                         }}
                       >
                         {v === undefined
@@ -247,13 +247,13 @@ export default function TestReadiness() {
                             onClick={() => responder(p.key, e.v)}
                             className="group flex flex-col items-center rounded-2xl border px-1 py-3 transition hover:-translate-y-0.5 focus-visible:outline-2"
                             style={{
-                              borderColor: on ? COLOR_TU : "rgba(255,255,255,0.16)",
-                              background: on ? "rgba(240,255,41,0.14)" : "rgba(255,255,255,0.03)",
+                              borderColor: on ? COLOR_TU : "rgba(11,11,18,0.16)",
+                              background: on ? "rgba(240,255,41,0.14)" : "rgba(11,11,18,0.03)",
                             }}
                           >
                             <span
                               className="font-mono text-xl font-semibold"
-                              style={{ color: on ? COLOR_TU : "rgba(255,255,255,0.85)" }}
+                              style={{ color: on ? COLOR_TU : "rgba(11,11,18,0.85)" }}
                             >
                               {e.v}
                             </span>
@@ -290,7 +290,7 @@ export default function TestReadiness() {
       </section>
 
       {/* BARRA DE PROGRESO */}
-      <div className="sticky bottom-0 z-40 border-t border-lime/25 bg-[#101010]/92 backdrop-blur-xl">
+      <div className="tema-oscuro sticky bottom-0 z-40 border-t border-lime/25 bg-[#101010]/92 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-3">
           <div className="flex items-center gap-3">
             <div className="h-2 w-40 overflow-hidden rounded-full bg-white/12">
@@ -429,7 +429,7 @@ function Resultado({
     .slice(0, 3);
 
   return (
-    <section id="resultado" className="border-b border-white/8 bg-[#101010]">
+    <section id="resultado" className="tema-oscuro border-b border-white/8 bg-[#101010]">
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="eyebrow text-lime">Resultado · corte {META_TEST.corte}</div>
 
@@ -507,18 +507,18 @@ function Resultado({
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={radar} outerRadius="68%">
                   <PolarGrid stroke="rgba(255,255,255,0.14)" />
-                  <PolarAngleAxis dataKey="dim" tick={{ fill: "#eef0ff", fontSize: 11 }} />
+                  <PolarAngleAxis dataKey="dim" tick={{ fill: "#F0F0F0", fontSize: 11 }} />
                   <PolarRadiusAxis domain={[0, 100]} tick={{ fill: "rgba(255,255,255,0.45)", fontSize: 9 }} axisLine={false} />
                   <Radar name="Pares del mundo (% que la declara)" dataKey="mundo" stroke={COLOR_MUNDO} fill={COLOR_MUNDO} fillOpacity={0.07} strokeDasharray="4 4" strokeWidth={1.5} />
                   <Radar name="Pares de LatAm (% que la declara)" dataKey="latam" stroke={COLOR_LATAM} fill={COLOR_LATAM} fillOpacity={0.07} strokeDasharray="2 3" strokeWidth={1.5} />
                   <Radar name="Su entidad (nivel)" dataKey="tu" stroke={COLOR_TU} fill={COLOR_TU} fillOpacity={0.28} strokeWidth={2.2} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "#eef0ff" }} />
+                  <Legend wrapperStyle={{ fontSize: 11, color: "#C9C9D6" }} />
                   <Tooltip
                     contentStyle={{
-                      background: "#1a1240",
-                      border: "1px solid rgba(255,255,255,0.14)",
+                      background: "#ffffff",
+                      border: "1px solid rgba(11,11,18,0.14)",
                       borderRadius: 12,
-                      color: "#eef0ff",
+                      color: "#0B0B12",
                       fontSize: 12,
                     }}
                     formatter={(v) => (typeof v === "number" ? fmt(v) : "sin dato")}

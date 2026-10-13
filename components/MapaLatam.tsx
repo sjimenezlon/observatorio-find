@@ -196,7 +196,7 @@ export default function MapaLatam() {
   return (
     <section id="mapa-latam" className="border-b border-white/8">
       <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#E8825A" }}>
+        <div className="mb-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: "#C2552C" }}>
           Doble clic a América Latina
         </div>
         <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
@@ -216,13 +216,13 @@ export default function MapaLatam() {
             <div key={fam} className="flex flex-wrap items-center gap-1.5">
               <span
                 className="mr-1 text-[10px] font-bold uppercase tracking-[0.14em]"
-                style={{ color: fam === "pagos" ? "#E8825A" : "#1FC9A0" }}
+                style={{ color: fam === "pagos" ? "#C2552C" : "#12866B" }}
               >
                 {fam === "pagos" ? "Pagos" : "Confianza"}
               </span>
               {CAPAS.filter((c) => c.familia === fam).map((c) => {
                 const on = capaKey === c.key;
-                const col = fam === "pagos" ? "#E8825A" : "#1FC9A0";
+                const col = fam === "pagos" ? "#C2552C" : "#12866B";
                 return (
                   <button
                     key={c.key}
@@ -230,8 +230,8 @@ export default function MapaLatam() {
                     className="rounded-full border px-3 py-1.5 text-xs font-medium transition"
                     style={{
                       background: on ? `${col}22` : "transparent",
-                      borderColor: on ? col : "rgba(255,255,255,0.14)",
-                      color: on ? col : "#8fa9a1",
+                      borderColor: on ? col : "rgba(11,11,18,0.14)",
+                      color: on ? col : "#4A4A5C",
                     }}
                   >
                     {c.label}
@@ -259,11 +259,11 @@ export default function MapaLatam() {
                   patternTransform="rotate(45)"
                   patternUnits="userSpaceOnUse"
                 >
-                  <rect width="6" height="6" fill="rgba(255,255,255,0.05)" />
-                  <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(255,255,255,0.16)" strokeWidth="1.4" />
+                  <rect width="6" height="6" fill="rgba(11,11,18,0.05)" />
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(11,11,18,0.16)" strokeWidth="1.4" />
                 </pattern>
                 <filter id="glowLatam" x="-25%" y="-25%" width="150%" height="150%">
-                  <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#eaf3ef" floodOpacity="0.4" />
+                  <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#0B0B12" floodOpacity="0.4" />
                 </filter>
               </defs>
 
@@ -275,7 +275,7 @@ export default function MapaLatam() {
                     key={p.cc}
                     d={p.d}
                     fill={conDato ? fillDe(p.cc) : "url(#sinDato)"}
-                    stroke={on ? "#eaf3ef" : "rgba(10,44,40,0.85)"}
+                    stroke={on ? "#0B0B12" : "rgba(10,44,40,0.85)"}
                     strokeWidth={on ? 1.6 : 0.7}
                     filter={on ? "url(#glowLatam)" : undefined}
                     className={conDato ? "cursor-pointer" : ""}
@@ -301,7 +301,7 @@ export default function MapaLatam() {
                       y={p.cy - 4}
                       textAnchor="middle"
                       className="tabnum"
-                      style={{ fontSize: 15, fontWeight: 800, fill: "#eaf3ef" }}
+                      style={{ fontSize: 15, fontWeight: 800, fill: "#0B0B12" }}
                     >
                       {v === null ? "n/d" : fmt(v, capa.key === "costoRemesa" ? 2 : 1)}
                     </text>
@@ -340,7 +340,7 @@ export default function MapaLatam() {
                   className="inline-block h-2.5 w-2.5 rounded-sm border border-white/20"
                   style={{
                     backgroundImage:
-                      "repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 1.5px, transparent 1.5px 4px)",
+                      "repeating-linear-gradient(45deg, rgba(11,11,18,0.18) 0 1.5px, transparent 1.5px 4px)",
                   }}
                 />
                 sin dato

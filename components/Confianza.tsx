@@ -391,30 +391,30 @@ function CruceScatter({ datos }: { datos: Punto[] }) {
         <rect x={M.l} y={py(50)} width={px(50) - M.l} height={py(0) - py(50)}
           fill="rgba(255,122,158,0.05)" />
         <line x1={px(50)} y1={M.t} x2={px(50)} y2={H - M.b}
-          stroke="rgba(255,255,255,0.09)" strokeDasharray="3 3" />
+          stroke="rgba(11,11,18,0.09)" strokeDasharray="3 3" />
         <line x1={M.l} y1={py(50)} x2={W - M.r} y2={py(50)}
-          stroke="rgba(255,255,255,0.09)" strokeDasharray="3 3" />
+          stroke="rgba(11,11,18,0.09)" strokeDasharray="3 3" />
 
         {/* ejes */}
-        <line x1={M.l} y1={H - M.b} x2={W - M.r} y2={H - M.b} stroke="rgba(255,255,255,0.16)" />
-        <line x1={M.l} y1={M.t} x2={M.l} y2={H - M.b} stroke="rgba(255,255,255,0.16)" />
+        <line x1={M.l} y1={H - M.b} x2={W - M.r} y2={H - M.b} stroke="rgba(11,11,18,0.16)" />
+        <line x1={M.l} y1={M.t} x2={M.l} y2={H - M.b} stroke="rgba(11,11,18,0.16)" />
         {[0, 25, 50, 75, 100].map((t) => (
           <g key={`x${t}`}>
             <text x={px(t)} y={H - M.b + 14} textAnchor="middle"
-              style={{ fontSize: 9, fill: "#8fa9a1" }}>{t}</text>
+              style={{ fontSize: 9, fill: "#4A4A5C" }}>{t}</text>
           </g>
         ))}
         {[0, 25, 50, 75, 100].map((t) => (
           <text key={`y${t}`} x={M.l - 6} y={py(t) + 3} textAnchor="end"
-            style={{ fontSize: 9, fill: "#8fa9a1" }}>{t}</text>
+            style={{ fontSize: 9, fill: "#4A4A5C" }}>{t}</text>
         ))}
         <text x={(W + M.l) / 2} y={H - 2} textAnchor="middle"
-          style={{ fontSize: 9.5, fill: "#8fa9a1", fontWeight: 600 }}>
+          style={{ fontSize: 9.5, fill: "#4A4A5C", fontWeight: 600 }}>
           IIIF · madurez →
         </text>
         <text x={11} y={(H - M.b + M.t) / 2} textAnchor="middle"
           transform={`rotate(-90 11 ${(H - M.b + M.t) / 2})`}
-          style={{ fontSize: 9.5, fill: "#8fa9a1", fontWeight: 600 }}>
+          style={{ fontSize: 9.5, fill: "#4A4A5C", fontWeight: 600 }}>
           ICF · confianza →
         </text>
 
@@ -427,10 +427,10 @@ function CruceScatter({ datos }: { datos: Punto[] }) {
               onMouseLeave={() => setHover(null)}
               className="cursor-pointer">
               <circle cx={px(d.x)} cy={py(d.y!)} r={on ? 9 : 6.5}
-                fill="#1FC9A0" fillOpacity={0.85}
+                fill="#12866B" fillOpacity={0.85}
                 stroke="#0a2c28" strokeWidth={2} />
               <text x={px(d.x)} y={py(d.y!) - 12} textAnchor="middle"
-                style={{ fontSize: 10, fontWeight: 700, fill: "#eaf3ef" }}>
+                style={{ fontSize: 10, fontWeight: 700, fill: "#0B0B12" }}>
                 {d.code}
               </text>
             </g>
@@ -440,9 +440,9 @@ function CruceScatter({ datos }: { datos: Punto[] }) {
         {sinY.map((d) => (
           <g key={d.code}>
             <circle cx={px(d.x)} cy={H - M.b} r={5.5} fill="none"
-              stroke="#E8B452" strokeWidth={1.8} strokeDasharray="2.5 2" />
+              stroke="#A86B00" strokeWidth={1.8} strokeDasharray="2.5 2" />
             <text x={px(d.x)} y={H - M.b - 10} textAnchor="middle"
-              style={{ fontSize: 9.5, fontWeight: 700, fill: "#E8B452" }}>
+              style={{ fontSize: 9.5, fontWeight: 700, fill: "#A86B00" }}>
               {d.code} n/d
             </text>
           </g>

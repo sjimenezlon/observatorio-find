@@ -60,7 +60,7 @@ export const BANDAS: Banda[] = [
     key: "explorador",
     label: "Explorador",
     rango: "0 – 34",
-    color: "#a99bff",
+    color: "#D08A1A",
     lectura:
       "La IA existe en la entidad como interés o como uso individual, no como capacidad de la organización. Es el punto de partida de la mayoría de las empresas medianas de la región.",
     siguiente:
@@ -70,7 +70,7 @@ export const BANDAS: Banda[] = [
     key: "experimentador",
     label: "Experimentador",
     rango: "35 – 54",
-    color: "#78d8f5",
+    color: "#1FA3B8",
     lectura:
       "Hay pilotos y entusiasmo, pero poco de eso llega a producción con impacto medido. Es donde se estanca la mayor parte de las empresas del mundo según las encuestas de 2025 y 2026.",
     siguiente:
@@ -80,7 +80,7 @@ export const BANDAS: Banda[] = [
     key: "escalador",
     label: "Escalador",
     rango: "55 – 74",
-    color: "#f0ff29",
+    color: "#8C7CF8",
     lectura:
       "Modelos en producción, gobierno formal y datos utilizables. La entidad ya compite con las que capturan valor; el reto es hacerlo sostenible y explicable ante el cliente y el supervisor.",
     siguiente:
@@ -90,7 +90,7 @@ export const BANDAS: Banda[] = [
     key: "transformador",
     label: "Transformador",
     rango: "75 – 100",
-    color: "#ffffff",
+    color: "#2FA866",
     lectura:
       "La IA es parte de cómo la entidad decide, atiende y se protege, con gobierno, medición y equidad verificadas. Es el grupo pequeño que en todas las encuestas concentra el impacto financiero.",
     siguiente:

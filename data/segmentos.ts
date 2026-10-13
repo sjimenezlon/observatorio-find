@@ -38,9 +38,9 @@ export const SEGMENTOS_META: Segmento[] = [
 ];
 
 export const FAMILIAS: Record<FamiliaSeg, { label: string; a: string; b: string; color: string }> = {
-  genero: { label: "Género", a: "mujeres", b: "hombres", color: "#FF7A9E" },
-  ingreso: { label: "Ingreso", a: "pobre40", b: "rico60", color: "#E8B452" },
-  territorio: { label: "Territorio", a: "rural", b: "urbano", color: "#5BD0E0" },
+  genero: { label: "Género", a: "mujeres", b: "hombres", color: "#C23A62" },
+  ingreso: { label: "Ingreso", a: "pobre40", b: "rico60", color: "#A86B00" },
+  territorio: { label: "Territorio", a: "rural", b: "urbano", color: "#1A8597" },
 };
 
 export interface FilaSegmento {

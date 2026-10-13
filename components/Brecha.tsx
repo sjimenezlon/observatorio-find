@@ -17,12 +17,12 @@ export default function Brecha() {
     <div className="grid gap-5 md:grid-cols-2">
       {BENCHMARKS.map((b) => {
         const data = [
-          { name: "LatAm", v: b.latam, fill: "#1FC9A0" },
+          { name: "LatAm", v: b.latam, fill: "#12866B" },
           ...(b.mundo !== null
-            ? [{ name: "Mundo", v: b.mundo, fill: "#9FCE2E" }]
+            ? [{ name: "Mundo", v: b.mundo, fill: "#5E7F12" }]
             : []),
           ...(b.altos !== null
-            ? [{ name: "Altos ingresos", v: b.altos, fill: "#5BD0E0" }]
+            ? [{ name: "Altos ingresos", v: b.altos, fill: "#1A8597" }]
             : []),
         ];
         return (
@@ -44,17 +44,17 @@ export default function Brecha() {
                     type="category"
                     dataKey="name"
                     width={92}
-                    tick={{ fill: "#eaf3ef", fontSize: 12 }}
+                    tick={{ fill: "#0B0B12", fontSize: 12 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <Tooltip
-                    cursor={{ fill: "rgba(255,255,255,0.04)" }}
+                    cursor={{ fill: "rgba(11,11,18,0.04)" }}
                     contentStyle={{
-                      background: "#0e3b36",
-                      border: "1px solid rgba(255,255,255,0.12)",
+                      background: "#ffffff",
+                      border: "1px solid rgba(11,11,18,0.12)",
                       borderRadius: 12,
-                      color: "#eaf3ef",
+                      color: "#0B0B12",
                     }}
                     formatter={(v) => [`${v} ${b.unidad}`, ""]}
                   />
@@ -65,7 +65,7 @@ export default function Brecha() {
                     <LabelList
                       dataKey="v"
                       position="right"
-                      fill="#eaf3ef"
+                      fill="#0B0B12"
                       fontSize={12}
                       fontWeight={700}
                     />

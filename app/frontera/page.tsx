@@ -12,7 +12,7 @@ export const metadata = {
     "Mapa de cambios regulatorios 2025–2026, hoja de ruta prospectiva 2026–2030, 36 tendencias fintech y las brechas de Colombia hoy frente a 2030. El contexto global que enmarca el índice del Observatorio Find.",
 };
 
-const CORAL = "#E8825A";
+const CORAL = "#C2552C";
 
 const conteo = (k: string) => MEDIDAS.filter((m) => m.estatus === k).length;
 const pagos = MEDIDAS.filter((m) => m.categorias.includes("Pagos y cuentas")).length;
@@ -29,14 +29,14 @@ export default function FronteraPage() {
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-18">
           <span
             className="mb-5 inline-block rounded-full border px-4 py-1.5 text-[13px] font-semibold"
-            style={{ borderColor: "rgba(91,208,224,0.45)", background: "rgba(91,208,224,0.12)", color: "#5BD0E0" }}
+            style={{ borderColor: "rgba(91,208,224,0.45)", background: "rgba(91,208,224,0.12)", color: "#1A8597" }}
           >
             Contexto · mapas de trabajo integrados al observatorio
           </span>
 
           <h1 className="max-w-[22ch] text-4xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
             La frontera: lo que ya está{" "}
-            <span style={{ color: "#5BD0E0" }}>decidido afuera</span>
+            <span style={{ color: "#1A8597" }}>decidido afuera</span>
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg font-light text-fg/80">
@@ -55,7 +55,7 @@ export default function FronteraPage() {
               { k: String(latam), l: "medidas latinoamericanas de 32", d: "5 de México y 1 de Brasil; ninguna colombiana" },
             ].map((x) => (
               <div key={x.l} className="card p-4">
-                <div className="tabnum text-3xl font-extrabold leading-none" style={{ color: "#5BD0E0" }}>
+                <div className="tabnum text-3xl font-extrabold leading-none" style={{ color: "#1A8597" }}>
                   {x.k}
                 </div>
                 <div className="mt-1.5 text-[13px] font-semibold leading-snug text-fg">
@@ -133,7 +133,7 @@ export default function FronteraPage() {
               Ver pagos y confianza
             </a>
             <a
-              href="/#indice"
+              href="/indice"
               className="rounded-full border border-teal/40 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
             >
               Volver al índice

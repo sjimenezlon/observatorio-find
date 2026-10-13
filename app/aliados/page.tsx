@@ -169,7 +169,7 @@ export default function Aliados() {
         <div className="mx-auto max-w-6xl px-6 py-14">
           <div
             className="mb-1 text-xs font-bold uppercase tracking-[0.16em]"
-            style={{ color: "#E8825A" }}
+            style={{ color: "#C2552C" }}
           >
             Construido sobre el foco de la Fundación
           </div>
@@ -191,7 +191,7 @@ export default function Aliados() {
                 <div className="mb-2 flex items-start gap-3">
                   <span
                     className="tabnum text-lg font-extrabold leading-none"
-                    style={{ color: "#E8825A" }}
+                    style={{ color: "#C2552C" }}
                   >
                     {c.n}
                   </span>
@@ -276,7 +276,7 @@ export default function Aliados() {
               <div key={g.titulo} className="card p-6">
                 <div
                   className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg text-sm font-extrabold"
-                  style={{ background: "rgba(159,206,46,0.15)", color: "#9FCE2E" }}
+                  style={{ background: "rgba(159,206,46,0.15)", color: "#5E7F12" }}
                 >
                   {i + 1}
                 </div>
@@ -356,7 +356,7 @@ export default function Aliados() {
                 Explorar el observatorio
               </a>
               <a
-                href="/#datos"
+                href="/indice#datos"
                 className="rounded-full border border-teal/50 px-5 py-2.5 text-sm font-semibold text-teal transition hover:bg-teal/10"
               >
                 Explorar los indicadores

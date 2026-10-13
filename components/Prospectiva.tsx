@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { HITOS, PERIODOS } from "@/data/frontera";
 
 const CERTEZA: Record<string, { color: string; desc: string }> = {
-  Fijado: { color: "#1FC9A0", desc: "fecha oficial verificable en fuente del regulador" },
-  "En discusión": { color: "#E8B452", desc: "iniciativa o expectativa anunciada, sin fecha cierta" },
+  Fijado: { color: "#12866B", desc: "fecha oficial verificable en fuente del regulador" },
+  "En discusión": { color: "#A86B00", desc: "iniciativa o expectativa anunciada, sin fecha cierta" },
   Tendencia: { color: "#9B8CF0", desc: "proyección analítica, no un hecho" },
 };
 
@@ -82,8 +82,8 @@ export default function Prospectiva() {
                   className="rounded-full border px-2.5 py-1 text-[11px] font-medium transition"
                   style={{
                     background: on ? "rgba(31,201,160,0.18)" : "transparent",
-                    borderColor: on ? "#1FC9A0" : "rgba(255,255,255,0.12)",
-                    color: on ? "#1FC9A0" : "#8fa9a1",
+                    borderColor: on ? "#12866B" : "rgba(255,255,255,0.12)",
+                    color: on ? "#12866B" : "#8fa9a1",
                   }}
                 >
                   {r}

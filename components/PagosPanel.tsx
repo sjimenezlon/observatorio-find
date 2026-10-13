@@ -7,7 +7,7 @@ import { LATAM } from "@/data/latam";
 
 const fmt = (v: number | null, d = 1) =>
   v === null ? "n/d" : v.toFixed(d).replace(".", ",");
-const CORAL = "#E8825A";
+const CORAL = "#C2552C";
 
 const AMBITOS: { key: Ambito; label: string; sub: string }[] = [
   { key: "mundo", label: "El mundo", sub: "la frontera" },
@@ -17,9 +17,9 @@ const AMBITOS: { key: Ambito; label: string; sub: string }[] = [
 
 const EJES: Record<string, { label: string; color: string }> = {
   uso: { label: "Uso", color: CORAL },
-  costo: { label: "Costo", color: "#E8B452" },
-  confianza: { label: "Confianza", color: "#1FC9A0" },
-  frontera: { label: "Frontera", color: "#5BD0E0" },
+  costo: { label: "Costo", color: "#A86B00" },
+  confianza: { label: "Confianza", color: "#12866B" },
+  frontera: { label: "Frontera", color: "#1A8597" },
 };
 
 export default function PagosPanel() {
@@ -55,8 +55,8 @@ export default function PagosPanel() {
                 className="rounded-full border px-4 py-2 text-xs font-semibold transition"
                 style={{
                   background: on ? `${CORAL}22` : "transparent",
-                  borderColor: on ? CORAL : "rgba(255,255,255,0.14)",
-                  color: on ? CORAL : "#8fa9a1",
+                  borderColor: on ? CORAL : "rgba(11,11,18,0.14)",
+                  color: on ? CORAL : "#4A4A5C",
                 }}
               >
                 {a.label}
@@ -271,7 +271,7 @@ function PagosPorAdulto() {
                     className="h-full w-full"
                     style={{
                       backgroundImage:
-                        "repeating-linear-gradient(45deg, rgba(255,255,255,0.14) 0 2px, transparent 2px 6px)",
+                        "repeating-linear-gradient(45deg, rgba(11,11,18,0.14) 0 2px, transparent 2px 6px)",
                     }}
                   />
                 )}
@@ -354,7 +354,7 @@ function FugaComercio() {
                   style={{
                     left: `${d.comercio}%`,
                     width: `${d.fuga}%`,
-                    background: "rgba(255,255,255,0.22)",
+                    background: "rgba(11,11,18,0.22)",
                   }}
                 />
                 <div
@@ -369,7 +369,7 @@ function FugaComercio() {
                   className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2"
                   style={{
                     left: `${d.total}%`,
-                    background: "#1FC9A0",
+                    background: "#12866B",
                     borderColor: "#0a2c28",
                   }}
                 />

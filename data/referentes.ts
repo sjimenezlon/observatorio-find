@@ -20,7 +20,7 @@ export const REFERENTES_GLOBALES: ReferenteGlobal[] = [
     fuente: "Cambridge Centre for Alternative Finance · informe 2026",
     url: "https://www.jbs.cam.ac.uk/faculty-research/centres/alternative-finance/publications/2026-global-ai-in-financial-services-report/",
     anio: 2026,
-    color: "#1FC9A0",
+    color: "#12866B",
   },
   {
     sigla: "GOFI",
@@ -31,7 +31,7 @@ export const REFERENTES_GLOBALES: ReferenteGlobal[] = [
     fuente: "Open Banking Excellence · Global Open Finance Index",
     url: "https://www.openbankingexcellence.org/index/",
     anio: 2023,
-    color: "#E8B452",
+    color: "#A86B00",
   },
   {
     sigla: "EVIDENT",
