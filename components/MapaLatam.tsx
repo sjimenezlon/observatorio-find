@@ -95,7 +95,7 @@ const CAPAS: Capa[] = [
     unidad: "% de deudores",
     mejorAlto: true,
     familia: "confianza",
-    nota: "De cada 100 que se endeudaron, cuántos usaron el sistema formal en vez de familia, prestamista o 'gota a gota'.",
+    nota: "De cada 100 que se endeudaron, cuántos lo hicieron con un banco u otra entidad financiera formal (el resto: familia, tienda, dinero móvil o prestamista informal).",
   },
   {
     key: "conversionEstafa",

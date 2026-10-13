@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { PAISES, PILARES, INDICADORES, CC } from "@/data/dataset";
+import { PAISES, PILARES, INDICADORES, CC, cotaDe } from "@/data/dataset";
 import { calcularIndice, normalizarIndicador, banda } from "@/lib/index";
 
 const COLORS: Record<CC, string> = {
@@ -175,7 +175,7 @@ export default function Duelo() {
                         }}
                       >
                         {gana === "A" && "● "}
-                        {fmtValor(ind.valores[a], ind.unidad)}
+                        {cotaDe(ind, a) ?? fmtValor(ind.valores[a], ind.unidad)}
                       </span>
                       <span className="flex-1 text-center text-xs text-fg/75">
                         {ind.label}
@@ -189,7 +189,7 @@ export default function Duelo() {
                           color: gana === "B" ? COLORS[b] : "#8fa9a1",
                         }}
                       >
-                        {fmtValor(ind.valores[b], ind.unidad)}
+                        {cotaDe(ind, b) ?? fmtValor(ind.valores[b], ind.unidad)}
                         {gana === "B" && " ●"}
                       </span>
                     </div>

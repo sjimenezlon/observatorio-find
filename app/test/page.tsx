@@ -213,7 +213,7 @@ export default function TestPage() {
               <div className="eyebrow text-teal">Contexto regional</div>
               <h3 className="mt-2 text-lg font-extrabold tracking-tight">Dónde está su país</h3>
               <p className="mt-2 text-[13px] leading-relaxed text-muted">
-                El <a href="/indice" className="font-semibold text-lime underline decoration-lime/40 underline-offset-2">índice IMIAF</a> y el <a href="/pagos#icf" className="font-semibold text-lime underline decoration-lime/40 underline-offset-2">ICF</a> muestran la madurez y la confianza del sistema financiero de seis países. La preparación de una entidad se lee mejor sobre ese mapa.
+                El <a href="/indice" className="font-semibold text-lime underline decoration-lime/40 underline-offset-2">índice IIIF</a> y el <a href="/pagos#icf" className="font-semibold text-lime underline decoration-lime/40 underline-offset-2">ICF</a> muestran la madurez y la confianza del sistema financiero de seis países. La preparación de una entidad se lee mejor sobre ese mapa.
               </p>
             </div>
             <div className="card p-5">

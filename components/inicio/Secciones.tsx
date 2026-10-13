@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import type { CC } from "@/data/dataset";
 import type { IndicadorInicio } from "@/lib/inicio";
 import { useInicio } from "./Inicio";
-import { cifra, cifraConUnidad, sinTildes, sufijo } from "./formato";
+import { cifra, cifraConUnidad, sinTildes, sufijo, valorPais } from "./formato";
 
 /* ---------------------------------------------------------------- bitácora */
 
@@ -168,7 +168,7 @@ export function Explorador() {
                   className={`tile ${v === null ? "nd" : ""}`}
                   type="button"
                   onClick={() => abrir(i.key)}
-                  aria-label={`${i.label}: ${v === null ? "sin dato publicado" : cifraConUnidad(i, v)} en ${nombrePais}. Abrir ficha`}
+                  aria-label={`${i.label}: ${v === null ? "sin dato publicado" : valorPais(i, pais)} en ${nombrePais}. Abrir ficha`}
                 >
                   <span className="top">
                     <span className="ln">
@@ -178,8 +178,8 @@ export function Explorador() {
                     <span className={`pill ${i.mayorEsMejor ? "good" : "bad"}`}>{i.mayorEsMejor ? "↑ mejor" : "↓ mejor"}</span>
                   </span>
                   <span className="big tab-n">
-                    {cifra(v, i.unidad)}
-                    <small>{v === null ? "" : sufijo(i.unidad).trim()}</small>
+                    {i.paises[pais].cota ?? cifra(v, i.unidad)}
+                    <small>{v === null || i.paises[pais].cota ? "" : sufijo(i.unidad).trim()}</small>
                   </span>
                   <span className="nm">{i.label}</span>
                   <span className="srcl">{`${i.paises[pais].fuente.split(/ · |, /)[0]} · ${i.paises[pais].anio}`}</span>
@@ -280,7 +280,7 @@ export function Perfiles() {
                       <b>{m.label}</b>
                       <small>{`Le sirve para: ${m.sirve}`}</small>
                     </span>
-                    <span className="v tab-n">{cifraConUnidad(m, m.paises.CO.valor)}</span>
+                    <span className="v tab-n">{valorPais(m, "CO")}</span>
                     <span className={`delta ${m.mayorEsMejor ? "good" : "bad"}`}>CO</span>
                   </button>
                 );

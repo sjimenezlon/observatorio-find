@@ -476,11 +476,12 @@ function RankingIndice({
         </p>
       ) : (
         <p className="mt-3 text-[11px] leading-relaxed text-muted">
-          <b className="text-amber">Sobre la columna Δ:</b> el corte anterior se
-          calculó con cinco pilares, sin Pagos. Los deltas de esta versión mezclan
-          cambio de datos y cambio de metodología, así que sirven como referencia
-          de posición y no como variación limpia. El detalle está en{" "}
-          <a href="/metodologia" className="text-teal underline">
+          <b className="text-amber">Sobre la columna Δ:</b> este corte cambió
+          cómo entra al cálculo un país fuera del top 20 del ranking cripto
+          (ahora puesto 21; antes se omitía). Los deltas frente a septiembre
+          mezclan cambio de datos y cambio de metodología, así que sirven como
+          referencia de posición y no como variación limpia. El detalle está en{" "}
+          <a href="/metodologia#auditoria" className="text-teal underline">
             metodología
           </a>
           .
@@ -689,6 +690,7 @@ function IndicadorCard({
     name: `${p.flag}`,
     full: p.nombre,
     crudo: ind.valores[p.code],
+    cota: ind.cotas?.[p.code],
     norm: norm[p.code],
   }));
   const valor = (d: (typeof data)[number]) =>
@@ -742,8 +744,10 @@ function IndicadorCard({
                 borderRadius: 12,
                 color: "#0B0B12",
               }}
-              formatter={(v) => [
-                v === null || v === undefined
+              formatter={(v, _n, item) => [
+                modo === "crudo" && (item?.payload as { cota?: string })?.cota
+                  ? (item.payload as { cota: string }).cota
+                  : v === null || v === undefined
                   ? "n/d"
                   : `${v}${modo === "crudo" ? " " + ind.unidad : " / 100"}`,
                 modo === "crudo" ? "Valor" : "Normalizado",

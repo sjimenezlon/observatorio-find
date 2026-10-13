@@ -110,9 +110,9 @@ export default function Indice() {
               </div>
               <div className="grid grid-cols-2 gap-px bg-white/8">
                 {[
-                  { k: "502", l: "pagos inmediatos por adulto al año en Brasil", c: "#C2552C" },
-                  { k: "70", l: "en Colombia: el riel aceleró, todavía lejos de Brasil", c: "#C2552C" },
-                  { k: "6 de 10", l: "créditos de la región son informales", c: "#12866B" },
+                  { k: "503", l: "pagos inmediatos por adulto al año en Brasil", c: "#C2552C" },
+                  { k: "69", l: "en Colombia: el riel aceleró, todavía lejos de Brasil", c: "#C2552C" },
+                  { k: "6 de 10", l: "personas que se endeudan en la región lo hacen fuera de la banca formal", c: "#12866B" },
                   { k: "último", l: "lugar de Colombia en confianza (ICF) entre 16 países medibles", c: "#C23A62" },
                 ].map((x) => (
                   <div key={x.l} className="bg-panel p-5">

@@ -113,12 +113,12 @@ export default function Metodologia() {
           <b className="text-fg">perímetro único</b> —solo el riel nacional de
           pagos inmediatos— y publica la aritmética país por país:
         </p>
-        <pre className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
-{`Brasil     87.800 M tx/año (PIX, BCB, 1S-2026 anualizado)      ÷ 175 M adultos = 502
-Argentina   9.326 M tx/año (777,2 M/mes, BCRA jul-2026)         ÷  37 M adultos = 252
-Perú        3.156 M tx/año (263 M/mes interoperables, BCRP)      ÷  26,5 M       = 119
-México      7.300 M tx/año (SPEI usuarios finales, Banxico 2025) ÷ 100 M        =  73
-Colombia    2.920 M tx/año (~8 M/día corrientes, Banrep sep-2026) ÷ 41,5 M     =  70
+        <pre data-noi18n className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
+{`Brasil     87.992 M tx/año (PIX, BCB, 1S-2026 anualizado)        ÷ 175 M adultos = 503
+Argentina   9.348 M tx/año (779 M/mes, BCRA ago-2026)              ÷  37 M adultos = 253
+Perú        3.156 M tx/año (263 M/mes interoperables, BCRP)        ÷  26,5 M       = 119
+México      7.300 M tx/año (SPEI, Banxico 2025)                    ÷ 100 M        =  73
+Colombia    2.877 M tx/año (7,88 M/día promedio 30 días, Banrep MOL) ÷ 41,5 M      =  69
 Chile       sin riel de pagos inmediatos → n/d`}
         </pre>
         <p className="mt-3">
@@ -176,7 +176,7 @@ Chile       sin riel de pagos inmediatos → n/d`}
           <b className="text-fg">derivados</b>: no se inventa nada, se divide una
           serie por otra para volverla comparable. La aritmética completa:
         </p>
-        <pre className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
+        <pre data-noi18n className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[12.5px] leading-relaxed text-teal">
 {`desconfianza      = fin11d ÷ (100 − cuenta) × 100
                     # fin11d viene en % de adultos 15+; dividirlo por la
                     # población sin cuenta lo vuelve comparable entre países
@@ -184,7 +184,8 @@ Chile       sin riel de pagos inmediatos → n/d`}
 
 formalidadCredito = fin22a ÷ borrow.any.t.d × 100
                     # de cada 100 que se endeudaron, cuántos usaron el
-                    # sistema formal en vez de familia, prestamista o gota a gota
+                    # banco u otra entidad financiera formal (fin22a); el resto
+                    # usó familia, tienda, dinero móvil o prestamista informal
 
 creditoDeposito   = prestatarios/1.000 ÷ depositantes/1.000 × 100   (FAS del FMI)
 
@@ -240,7 +241,7 @@ conversionEstafa  = con22 ÷ con21 × 100
           Cada indicador se lleva a una escala 0–100 con normalización min–max
           sobre los seis países:
         </p>
-        <pre className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[13px] text-teal">
+        <pre data-noi18n className="mt-3 overflow-x-auto rounded-xl border border-white/10 bg-black/30 p-4 text-[13px] text-teal">
 {`# más es mejor:
 score = 100 * (valor − min) / (max − min)
 
@@ -271,9 +272,17 @@ score = 100 * (max − valor) / (max − min)`}
         <p>
           Cuando un indicador no tiene dato para un país, ese país no recibe
           puntaje en ese indicador y el pilar se promedia solo con los
-          indicadores disponibles. No se imputan valores. Los casos de n/d (p.
-          ej. ranking de adopción cripto fuera del top 20 público, o VC sin
-          desglose país) están anotados en cada indicador del tablero.
+          indicadores disponibles. No se imputan valores. Los casos de n/d
+          están anotados en cada indicador del tablero.
+        </p>
+        <p className="mt-3">
+          <b className="text-fg">Valores censurados (desde oct-2026).</b> Un dato
+          ausente no es lo mismo que un dato conocido como «peor que el último
+          publicado». Si un país queda fuera del top 20 público del índice de
+          adopción cripto de Chainalysis, se sabe que su puesto es mayor que 20:
+          entra al cálculo como puesto 21 (la cota) y la interfaz lo muestra como
+          «&gt;20». Omitirlo premiaba salir del ranking: con la regla anterior,
+          Argentina habría ganado 7,5 puntos de IIIF al caer del 20º puesto.
         </p>
       </Section>
 
@@ -418,6 +427,62 @@ score = 100 * (max − valor) / (max − min)`}
 
         <div className="mt-4 space-y-3">
           <div className="card p-4" style={{ borderColor: "rgba(31,201,160,0.35)" }}>
+            <div className="mb-2 text-sm font-bold text-teal">
+              Nuevo en el corte de octubre (verificación del 13-oct-2026)
+            </div>
+            <ul className="space-y-2.5 text-sm text-muted">
+              <li>
+                <b className="text-fg">Cambio de método · ranking cripto.</b>{" "}
+                Chainalysis publicó el índice 2026 (23-sep-2026): Brasil 1º, México
+                11º y Argentina sale del top 20 público. Con la regla anterior —fuera
+                del top 20 = sin dato, se omite— Argentina habría subido 7,5 puntos
+                en el IIIF por empeorar. Desde este corte, un país fuera del top 20
+                entra al cálculo como puesto 21 (cota) y se muestra como «&gt;20».
+                Por eso los deltas frente a septiembre mezclan dato y método.
+              </li>
+              <li>
+                <b className="text-fg">Bre-B: 70 → 69 pagos por adulto.</b> El
+                tablero de indicadores MOL del Banco de la República da 7,88 millones
+                de pagos diarios en promedio entre el 13-sep y el 12-oct-2026 (236,5
+                millones en 30 días). Reemplaza la cifra declarada «casi 8 millones»;
+                ambas son promedios, no picos.
+              </li>
+              <li>
+                <b className="text-fg">PIX: 502 → 503; Argentina: 252 → 253.</b> El
+                semestre oficial de PIX es 43.996 millones de transacciones (serie de
+                pagos minoristas del BCB), no 43.900; Argentina se actualiza con el
+                informe del BCRA de agosto de 2026 (779 millones de transferencias
+                push).
+              </li>
+              <li>
+                <b className="text-fg">Correcciones de redacción y datos.</b> Perú
+                en conversión de la estafa telefónica: 2,2 → 2,3 (0,50 ÷ 22,25). El
+                38,8% de formalidad del crédito es un promedio simple de 21 economías
+                y mide préstamos de bancos y entidades formales: se retiró la
+                afirmación de que «el resto fue a la familia o al gota a gota», que el
+                Findex no mide. El costo «3,68×» de LexisNexis cubre solo Argentina,
+                Brasil, Colombia y México. Se retiró el múltiplo «3,3× frente a
+                US$11,8B» de los RWA tokenizados, que no se sostiene.
+              </li>
+              <li>
+                <b className="text-fg">Datos nuevos.</b> Chile pasa de 348 a 374
+                fintechs locales (Finnovista Radar Chile 2026). En la frontera
+                regulatoria, el AI Act ya no obliga al scoring crediticio desde el
+                2-ago-2026: el Reglamento (UE) 2026/1744 lo aplazó al 2-dic-2027.
+                Brasil: la Res. BCB 589 movió al 6-nov-2026 la prohibición de operar
+                con contrapartes cripto no autorizadas.
+              </li>
+              <li>
+                <b className="text-fg">Confirmado vigente</b> contra la fuente
+                primaria: los valores del Global Findex (API del Banco Mundial),
+                Basel AML Index 2025 (sin edición 2026), Cuántico VP, BIS Red Book,
+                Cambridge CCAF, Evident AI y el cronograma propuesto de Open Finance
+                de la SFC (sigue siendo proyecto).
+              </li>
+            </ul>
+          </div>
+
+          <div className="card p-4">
             <div className="mb-2 text-sm font-bold text-teal">
               Nuevo en el corte de septiembre
             </div>

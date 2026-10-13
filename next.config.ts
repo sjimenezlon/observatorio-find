@@ -41,18 +41,27 @@ const cabeceras = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-DNS-Prefetch-Control", value: "off" },
 
-  // El sitio no necesita ninguna capacidad del dispositivo. Se apagan todas.
+  // El sitio no necesita ninguna capacidad del dispositivo. Se apagan todas,
+  // incluida la segmentación publicitaria del navegador (browsing-topics).
   {
     key: "Permissions-Policy",
     value: [
       "accelerometer=()",
+      "bluetooth=()",
+      "browsing-topics=()",
       "camera=()",
+      "display-capture=()",
       "geolocation=()",
       "gyroscope=()",
+      "hid=()",
+      "idle-detection=()",
       "magnetometer=()",
       "microphone=()",
       "payment=()",
+      "publickey-credentials-get=()",
+      "serial=()",
       "usb=()",
+      "xr-spatial-tracking=()",
     ].join(", "),
   },
 

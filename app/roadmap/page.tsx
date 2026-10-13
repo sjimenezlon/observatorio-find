@@ -161,7 +161,7 @@ export default function Roadmap() {
       <section className="border-t border-white/8">
         <div className="mx-auto max-w-6xl px-6 py-12 text-center">
           <p className="mx-auto max-w-2xl text-[15px] text-muted">
-            El roadmap se nutre del Índice de Madurez de IA Financiera. Volvé al
+            El roadmap se nutre del Índice Integral de Innovación Financiera (IIIF). Volvé al
             tablero para ver dónde está cada país y consultar los indicadores.
           </p>
           <div className="mt-5 flex flex-wrap justify-center gap-3">

@@ -64,7 +64,7 @@ export const DIMENSIONES: Dimension[] = [
     color: "#9B8CF0",
     peso: 30,
     pregunta: "Cuando necesita crédito, ¿acude al sistema formal?",
-    desc: "La prueba más exigente de confianza mutua: el crédito. De cada 100 personas que se endeudaron, cuántas lo hicieron con una entidad formal (el resto fue a familia, prestamistas o 'gota a gota'), y cuántas relaciones de crédito existen por cada 100 de depósito.",
+    desc: "La prueba más exigente de confianza mutua: el crédito. De cada 100 personas que se endeudaron, cuántas lo hicieron con una entidad formal (el resto acudió a familia, tienda, dinero móvil o prestamistas informales), y cuántas relaciones de crédito existen por cada 100 de depósito.",
   },
   {
     key: "integridad",

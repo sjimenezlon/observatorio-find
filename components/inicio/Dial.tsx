@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useInicio } from "./Inicio";
-import { cifraConUnidad } from "./formato";
+import { valorPais } from "./formato";
 import { sonido } from "./sonido";
 
 const cx = 800;
@@ -257,7 +257,7 @@ export default function Dial() {
           <span className="k">{`En foco · ${plFoco.nombre} · ${nombrePais}`}</span>
           <span className="n">{enFoco.label}</span>
           <span className="v">
-            <b className="tab-n">{cifraConUnidad(enFoco, enFoco.paises[pais].valor)}</b>
+            <b className="tab-n">{valorPais(enFoco, pais)}</b>
             <span className="delta good">{enFoco.mayorEsMejor ? "↑ mejor" : "↓ mejor"}</span>
           </span>
           <button className="btn btn-volt" type="button" onClick={() => abrir(enFoco.key)}>

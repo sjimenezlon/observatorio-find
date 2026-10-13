@@ -72,3 +72,4 @@ service-account*.json
 # ajustes locales de agentes (AGENTS.md y CLAUDE.md sí se versionan)
 .claude/settings.local.json
 .codex/
+scripts/salida/

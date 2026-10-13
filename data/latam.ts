@@ -222,7 +222,7 @@ export const LATAM: PaisLatam[] = [
     inactiva: 2.52, guarda: 25.56, desconfianza: 43.0, desconfianzaRaw: 17.51,
     creditoformal: 20.06, borrowAny: 47.34, formalidadCredito: 42.4,
     prestatarios: 167.06, depositantes: 1553.48, creditoDeposito: 10.8,
-    estafaOferta: 22.25, estafaEnvio: 0.5, conversionEstafa: 2.2, comisiones: 5.01,
+    estafaOferta: 22.25, estafaEnvio: 0.5, conversionEstafa: 2.3, comisiones: 5.01,
     remesasPib: 1.58, costoRemesa: 3.57, debito: 36.65, movil: 42.5,
   },
   {

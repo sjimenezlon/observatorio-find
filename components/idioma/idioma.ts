@@ -1,4 +1,4 @@
-// Cambio ES ↔ EN de la portada, portado del prototipo: recorre el DOM y
+// Cambio ES ↔ EN de todo el sitio, portado del prototipo: recorre el DOM y
 // traduce texto y atributos con un diccionario (en.json, cargado a demanda).
 // Lo que no está en el diccionario se queda en español. Las cifras cambian
 // de formato (1.360,5 → 1,360.5) pero nunca de valor.
@@ -9,6 +9,7 @@ let D: Dic | null = null;
 let lang: "es" | "en" = "es";
 let busy = false;
 let observador: MutationObserver | null = null;
+let tituloOriginal = "";
 const ORIG = new WeakMap<Node, string>();
 const ATTR = ["placeholder", "aria-label", "title", "alt"];
 const oyentes = new Set<(l: "es" | "en") => void>();
@@ -151,15 +152,22 @@ export const idioma = {
   },
   async poner(l: "es" | "en") {
     if (l === "en" && !D) {
-      // en.json: diccionario del prototipo · en-extra.json: textos propios del sitio.
-      const [base, extra] = await Promise.all([import("./en.json"), import("./en-extra.json")]);
-      D = { ...(base.default as Dic), ...(extra.default as Dic) };
+      // en-prototipo: diccionario del diseño · en-portada: textos propios de la portada ·
+      // en-sitio: páginas interiores (se regenera con scripts/textos-en.mjs).
+      const [a, b, c] = await Promise.all([
+        import("./en-prototipo.json"),
+        import("./en-portada.json"),
+        import("./en-sitio.json"),
+      ]);
+      D = { ...(a.default as Dic), ...(c.default as Dic), ...(b.default as Dic) };
     }
     lang = l;
     busy = true;
     document.documentElement.lang = l;
     observar(document.body);
     nodo(document.body);
+    if (!tituloOriginal) tituloOriginal = document.title;
+    document.title = l === "en" ? tr(tituloOriginal) : tituloOriginal;
     observador?.takeRecords();
     busy = false;
     try {

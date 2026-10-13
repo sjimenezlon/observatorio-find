@@ -139,8 +139,8 @@ const HALLAZGOS = [
   {
     color: "#6C5CD6",
     kicker: "Crédito",
-    t: "Seis de cada diez créditos de la región son informales",
-    d: "En 21 economías, apenas el 38,8% de quienes se endeudaron usó el sistema formal; el resto fue a la familia, al prestamista o al gota a gota. Colombia tiene la peor formalidad del panel: 26,8%. Abrir cuentas no resuelve esto.",
+    t: "Seis de cada diez personas que se endeudan en la región lo hacen fuera de la banca formal",
+    d: "En la economía típica del panel (promedio simple de 21), apenas el 38,8% de quienes se endeudaron lo hizo con un banco u otra entidad financiera formal; el resto acudió a familia, tienda, dinero móvil o prestamistas informales. Colombia tiene la peor formalidad del panel: 26,8%. Abrir cuentas no resuelve esto.",
     href: "/pagos",
     cta: "Ver el panel LATAM",
   },
@@ -368,7 +368,7 @@ export default function Presentacion() {
               {
                 sigla: "IIIF",
                 color: "#12866B",
-                nombre: "Índice de Madurez de IA Financiera",
+                nombre: "Índice Integral de Innovación Financiera",
                 pregunta: "¿Qué tan madura es la infraestructura financiera del país?",
                 alcance: `${PILARES.length} pilares · ${INDICADORES.length} indicadores · ${PAISES.length} países`,
                 d: "Combina inclusión, pagos, ecosistema de IA, integridad, tokenización y regulación. Es el tablero de la oferta: lo que el sistema pone a disposición.",

@@ -10,7 +10,7 @@ import {
   Radar,
   Tooltip,
 } from "recharts";
-import { PAISES, PILARES, INDICADORES, CC, SNAPSHOT_ANTERIOR } from "@/data/dataset";
+import { PAISES, PILARES, INDICADORES, CC, SNAPSHOT_ANTERIOR, cotaDe } from "@/data/dataset";
 import { calcularIndice, normalizarIndicador, banda } from "@/lib/index";
 
 const COLORS: Record<CC, string> = {
@@ -241,13 +241,14 @@ export default function FichaPais() {
                         <div className="flex items-baseline justify-between gap-3 text-[13px]">
                           <span className="text-fg/85">{ind.label}</span>
                           <span className="tabnum shrink-0 font-bold text-fg">
-                            {v === null
+                            {cotaDe(ind, cc) ??
+                              (v === null
                               ? "n/d"
                               : `${
                                   Math.abs(v) >= 1000
                                     ? v.toLocaleString("es-CO")
                                     : v
-                                } ${ind.unidad}`}
+                                } ${ind.unidad}`)}
                           </span>
                         </div>
                         <div className="mt-1.5 h-1.5 rounded-full bg-white/[0.06]">
