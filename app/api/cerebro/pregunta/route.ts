@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { ipCliente, mismoOrigen } from "@/lib/cerebro/sesion";
 import { sistema } from "@/lib/cerebro/pregunta/contexto";
+import { pedirTurno } from "@/lib/cerebro/pregunta/limite";
 import { cotizar, simboloValido, type Cotizacion } from "@/lib/cerebro/pregunta/mercado";
 
 export const dynamic = "force-dynamic";
@@ -90,6 +91,15 @@ export async function POST(req: Request) {
     );
   }
 
+  // El tope de uso se decide antes de gastar un solo token.
+  const permiso = pedirTurno(ipCliente(req));
+  if (!permiso.ok) {
+    return Response.json(
+      { error: permiso.mensaje },
+      { status: 429, headers: { "Retry-After": String(permiso.reintentarEn) } },
+    );
+  }
+
   const cliente = new Anthropic();
   const mensajes: Anthropic.Beta.BetaMessageParam[] = turnos.map((t) => ({
     role: t.rol === "usuario" ? "user" : "assistant",
@@ -108,7 +118,8 @@ export async function POST(req: Request) {
           const flujo = cliente.beta.messages.stream(
             {
               model: MODELO,
-              max_tokens: 16000,
+              // Respuestas cortas por diseño: el techo acota también lo que puede costar una pregunta.
+              max_tokens: 6000,
               // Conversación corta y cercana: el esfuerzo bajo responde rápido y basta para la cuenta.
               output_config: { effort: "low" },
               // Si el modelo principal declina por sus filtros, la API reintenta en el de respaldo.
@@ -175,6 +186,7 @@ export async function POST(req: Request) {
           emitir({ t: "error", m: mensajeDeError(err) });
         }
       } finally {
+        permiso.liberar();
         try {
           emitir({ t: "fin" });
           control.close();
@@ -182,6 +194,9 @@ export async function POST(req: Request) {
           // el cliente ya cerró la conexión
         }
       }
+    },
+    cancel() {
+      permiso.liberar();
     },
   });
 
