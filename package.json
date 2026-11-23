@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.13.0",
-    "next": "^16.4.5",
+    "next": "^16.4.6",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "recharts": "^3.10.1",
@@ -27,7 +27,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.170.0",
     "tailwindcss": "^4",
-    "tsx": "^4.23.13",
+    "tsx": "^4.23.15",
     "typescript": "^7"
   }
 }
