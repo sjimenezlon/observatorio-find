@@ -8,6 +8,7 @@ const RUTAS = [
   { href: "/cerebro/inversion", label: "Inversión" },
   { href: "/cerebro/paises", label: "Países" },
   { href: "/cerebro/biblioteca", label: "Biblioteca" },
+  { href: "/cerebro/pregunta", label: "@findy" },
 ];
 
 export default function CerebroNav() {
